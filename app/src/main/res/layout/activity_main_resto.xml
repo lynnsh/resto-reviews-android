@@ -13,6 +13,7 @@ tools:context="com.radiantridge.restoradiantridge.MainRestoActivity"
 android:orientation="vertical">
 
 <!-- These buttons will be image buttons in the future -->
+<!-- The strings are temporary, they will be replaced with the images -->
 <Button
     android:id="@+id/logoBtn"
     android:layout_width="match_parent"
@@ -25,23 +26,28 @@ android:orientation="vertical">
     <TableRow>
         <Button
             android:id="@+id/favoritesBtn"
-            android:text="favorites button"/>
+            android:text="favorites button"
+            android:onClick="launchFavorites"/>
         <Button
             android:id="@+id/searchBtn"
-            android:text="search button"/>
+            android:text="search button"
+            android:onClick="launchSearch"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/nearbyBtn"
-            android:text="nearby button"/>
+            android:text="nearby button"
+            android:onClick="launchNearby"/>
         <Button
             android:id="@+id/tipCalcBtn"
-            android:text="tip calculator button"/>
+            android:text="tip calculator button"
+            android:onClick="launchTipCalc"/>
     </TableRow>
     <TableRow>
         <Button
             android:id="@+id/addRestoBtn"
-            android:text="add restaurant button"/>
+            android:text="add restaurant button"
+            android:onClick="launchAddResto"/>
     </TableRow>
 </TableLayout>
 
