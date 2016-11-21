@@ -30,7 +30,7 @@ public class Menu extends AppCompatActivity {
                 // Victor this is where you launch the dawson website
             case R.id.settings: {
                 Log.i(TAG, "Settings selected.");
-                // to do
+                startActivity(new Intent(this, SettingsActivity.class));
             }
             default:
                 return super.onOptionsItemSelected(menuOption);
