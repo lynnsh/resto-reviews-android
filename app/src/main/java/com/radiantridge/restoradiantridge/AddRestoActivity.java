@@ -3,17 +3,11 @@ package com.radiantridge.restoradiantridge;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends Menu {
+public class AddRestoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        // check saved prefs
+        setContentView(R.layout.activity_add_resto);
     }
-
-    // log in functionality
-
-    // save the login in and redirect to MainRestoActivity
 }

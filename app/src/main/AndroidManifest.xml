@@ -16,7 +16,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".Menu"></activity>
+        <activity android:name=".Menu" />
+        <activity android:name=".MainRestoActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".FavoritesActivty" />
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".NearbyActivity" />
+        <activity android:name=".TipCalcActivity" />
+        <activity android:name=".AddRestoActivity"></activity>
     </application>
 
 </manifest>
