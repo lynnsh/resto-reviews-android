@@ -6,9 +6,21 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+/**
+ * Menu for the restaurant application. All activities extend
+ * this menu.
+ *
+ * @author Erika Bourque
+ */
 public class Menu extends AppCompatActivity {
     private static final String TAG = "Menu";
 
+    /**
+     * Overriden lifecycle method.  Displays the menu.
+     *
+     * @param menu      The menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu)
     {
@@ -17,6 +29,13 @@ public class Menu extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Overriden lifecycle method.  Launches the activity
+     * associated to the menuOption.
+     *
+     * @param menuOption    The menu option selected
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem menuOption)
     {
