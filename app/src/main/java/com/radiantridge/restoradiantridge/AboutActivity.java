@@ -7,17 +7,24 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+/**
+* This activity tells you what our application does.
+* It displays text and an image icon at the bottom.
+
+* @author Victor
+*/
+
 public class AboutActivity extends Menu {
 
+	/**
+	* Minimum override method
+	*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        //Get outer layout.
-        RelativeLayout rl = (RelativeLayout)findViewById(R.id.activity_about);
 
-        //Get inner layout. I set the orientation to vertical in my XML.
         LinearLayout ll = (LinearLayout)findViewById(R.id.LL);
         TextView tv1 = new TextView(this);
         tv1.setText(R.string.menu_about);
@@ -31,6 +38,5 @@ public class AboutActivity extends Menu {
         tv1.setTextColor(Color.parseColor("#03CA00")); /*Green*/
         ll.addView(tv2);
 
-        rl.addView(ll);
     }
 }
