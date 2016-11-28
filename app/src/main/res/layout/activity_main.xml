@@ -21,25 +21,25 @@
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/login_fname"/>
+                android:text="@string/first_name"/>
             <EditText
                 android:id="@+id/login_fname_et"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/login_lname"/>
+                android:text="@string/last_name"/>
             <EditText
                 android:id="@+id/login_lname_et"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/login_email"/>
+                android:text="@string/email"/>
             <EditText
                 android:id="@+id/login_email_et"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/login_pw"/>
+                android:text="@string/password"/>
             <EditText
                 android:id="@+id/login_pw_et"
                 android:inputType="textPassword"/>
