@@ -51,7 +51,7 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "Item clicked at pos: " + position);
-        displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
+        //displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
     }
 
     /**

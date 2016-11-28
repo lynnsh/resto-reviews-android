@@ -1,8 +1,14 @@
 package com.radiantridge.restoradiantridge;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Initial activity for the restaurant application.  Logs in the
@@ -12,6 +18,7 @@ import android.os.Bundle;
  * @author Erika Bourque
  */
 public class MainActivity extends Menu {
+    private static final String TAG = "Login";
 
     /**
      * Overriden lifecycle method.  Creates the view, and checks if login details
@@ -23,17 +30,91 @@ public class MainActivity extends Menu {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // should this be in the if-else?
         setContentView(R.layout.activity_main);
 
-        // check saved prefs here, put next in if statement
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
-        // Starting the restaurant's main activity
-        startActivity(new Intent(this, MainRestoActivity.class));
+        // Making sure we have all values
+        if ((prefs.getString("fname", null) != null)
+                && (prefs.getString("lname", null) != null)
+                && (prefs.getString("email", null) != null)
+                && (prefs.getString("password", null) != null))
+        {
+            Log.i(TAG, "SharedPrefs found, launching MainResto.");
+
+            // Starting the main resto activity
+            startActivity(new Intent(this, MainRestoActivity.class));
+        }
     }
 
-    // log in functionality
+    /**
+     * Event handler for the login button.  Validates the data and displays
+     * appropriate error messages if the data is invalid.  Saves the data
+     * and launches the main resto activity.
+     *
+     * @param v     The view that fired the event
+     */
+    public void login(View v)
+    {
+        // Retrieving Strings in two steps
+        EditText fnameET = (EditText) findViewById(R.id.login_fname_et);
+        EditText lnameET = (EditText) findViewById(R.id.login_lname_et);
+        EditText emailET = (EditText) findViewById(R.id.login_email_et);
+        EditText pwET = (EditText) findViewById(R.id.login_pw_et);
+        String fname = fnameET.getText().toString();
+        String lname = lnameET.getText().toString();
+        String email = emailET.getText().toString();
+        String pw = pwET.getText().toString();
 
-    // save the login in and redirect to MainRestoActivity
+        // Checking if all fields are valid
+        if ((!fname.isEmpty()) && (!lname.isEmpty())
+                && (!email.isEmpty()) && (!pw.isEmpty()))
+        {
+            // Checking if the email is in a valid format
+            if (email.matches(".+@.+"))
+            {
+                // Saving the data
+                saveData(fname, lname, email, pw);
+
+                Log.i(TAG, "Launching MainResto.");
+                // Starting the main resto activity
+                startActivity(new Intent(this, MainRestoActivity.class));
+            }
+            else
+            {
+                // Display error message concerning invalid email
+                Toast.makeText(this, getResources().getString(R.string.login_err_email), Toast.LENGTH_SHORT).show();
+            }
+        }
+        else {
+            // Display error message concerning missing fields
+            Toast.makeText(this, getResources().getString(R.string.login_err_empty), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * This method saves the given data in the Shared Preferences.
+     *
+     * @param fname     The first name
+     * @param lname     The last name
+     * @param email     The email
+     * @param pw        The password
+     */
+    private void saveData(String fname, String lname, String email, String pw)
+    {
+        Log.i(TAG, "Saving data.");
+
+        // Getting the shared prefs editor
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        // Inserting the values
+        editor.putString("fname", fname);
+        editor.putString("lname", lname);
+        editor.putString("email", email);
+        editor.putString("password", pw);
+
+        // Saving the changes
+        editor.commit();
+    }
 }
