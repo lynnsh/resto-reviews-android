@@ -3,6 +3,7 @@ package com.radiantridge.restoradiantridge;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -15,7 +16,7 @@ import android.widget.Toast;
  *
  * @author Erika Bourque
  */
-public class MainActivity extends Menu {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Login";
 
     /**
@@ -30,7 +31,7 @@ public class MainActivity extends Menu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
 
         // Making sure we have all values
         if ((prefs.getString("fname", null) != null)
@@ -103,7 +104,7 @@ public class MainActivity extends Menu {
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
         // Inserting the values
