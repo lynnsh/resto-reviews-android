@@ -1,15 +1,26 @@
 package com.radiantridge.restoradiantridge;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
+/**
+ * This activity represents the main activity, where users can decide
+ * what they want to do in the application.  It is the central launcher for
+ * most other activities.
+ *
+ * @author Erika Bourque
+ */
 public class MainRestoActivity extends Menu {
     private static final String TAG = "Resto Main Activity";
 
     /**
-     * Overriden lifecycle method.
+     * Overriden lifecycle method.  Displays the user's name
+     * in the greeting.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -18,7 +29,7 @@ public class MainRestoActivity extends Menu {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_resto);
 
-        // change greetingTxt to greeting string + user name from sharedprefs
+        updateGreeting();
     }
 
     /**
@@ -74,5 +85,30 @@ public class MainRestoActivity extends Menu {
     public void launchAddResto(View view)
     {
         startActivity(new Intent(this, AddRestoActivity.class));
+    }
+
+    /**
+     * Updates the greeting to display the user's name.
+     */
+    private void updateGreeting()
+    {
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        TextView greetingTV = (TextView) findViewById(R.id.main_greeting);
+
+        String greetingMess = getResources().getString(R.string.greeting)
+                + prefs.getString("fname", null) + " " + prefs.getString("lname", null);
+
+        greetingTV.setText(greetingMess);
+    }
+
+    /**
+     * Event handler for the logo button.  Launches
+     * the about activity.
+     *
+     * @param view      The view that fired the event
+     */
+    public void launchAbout(View view)
+    {
+        startActivity(new Intent(this, AboutActivity.class));
     }
 }

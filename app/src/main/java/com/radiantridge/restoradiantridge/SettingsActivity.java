@@ -7,6 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
+/**
+ * This activity allows a user to change their login settings for the
+ * application.
+ *
+ * @author Erika Bourque
+ */
 public class SettingsActivity extends Menu {
     private static final String TAG = "Settings";
     private EditText fnameET;
@@ -14,6 +22,12 @@ public class SettingsActivity extends Menu {
     private EditText emailET;
     private EditText pwET;
 
+    /**
+     * Overriden lifecycle method.  Instantiates class variables and
+     * sets the current values of the settings to the EditTexts.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +42,9 @@ public class SettingsActivity extends Menu {
         setEditTextValues();
     }
 
+    /**
+     * This method sets the values from the Settings SharedPrefs to the EditTexts.
+     */
     private void setEditTextValues()
     {
         Log.i(TAG, "Displaying current values");
@@ -39,6 +56,12 @@ public class SettingsActivity extends Menu {
         pwET.setText(prefs.getString("password", null));
     }
 
+    /**
+     * Event handler for the save button.  Validates the data before saving and
+     * closing the activity.
+     *
+     * @param v     The view that fired the event
+     */
     public void save(View v)
     {
         boolean dataIsValid = validateData();
@@ -46,11 +69,17 @@ public class SettingsActivity extends Menu {
         if (dataIsValid)
         {
             saveData();
-            // display saved toast
-            // exit
+            // TODO: display saved toast
+            // TODO: exit
         }
     }
 
+    /**
+     * This method validates that the data in the EditText is not empty and is in
+     * the correct format.
+     *
+     * @return      True if the data is valid
+     */
     private boolean validateData()
     {
         boolean isValid = false;
@@ -67,7 +96,6 @@ public class SettingsActivity extends Menu {
             // Checking if the email is in a valid format
             if (email.matches(".+@.+"))
             {
-                // Saving the data
                 isValid = true;
             }
             else
@@ -84,8 +112,13 @@ public class SettingsActivity extends Menu {
         return isValid;
     }
 
+    /**
+     * This method saves the data in the EditTexts to the Settings
+     * SharedPrefs.
+     */
     private void saveData()
     {
+        // TODO: also verify timestamp with Alena
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
@@ -97,10 +130,11 @@ public class SettingsActivity extends Menu {
         editor.putString("lname", lnameET.getText().toString());
         editor.putString("email", emailET.getText().toString());
         editor.putString("password", pwET.getText().toString());
+        editor.putString("timestamp", Calendar.getInstance().getTime().toString());
 
         // Saving the changes
         editor.commit();
     }
 
-    // Also need on back pressed to display do you want to leave popup
+    // TODO: on back pressed to display "do you want to leave" popup
 }
