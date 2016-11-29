@@ -10,4 +10,138 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.radiantridge.restoradiantridge.TipCalcActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="0.08"
+            android:textSize="32dp"
+            android:gravity="center"
+            android:textColor="#ff6666"
+            android:text="Tip Calculator" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="66dp">
+
+            <TextView
+                android:text="Bill"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView4"
+                android:textSize="25dp"
+                android:layout_weight="0.5" />
+
+            <EditText
+                android:layout_width="169dp"
+                android:layout_height="match_parent"
+                android:inputType="numberDecimal"
+                android:background="@drawable/round_borders"
+                android:id="@+id/editText"
+                android:layout_weight="0.27" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:weightSum="1">
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal">
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="10%"
+                android:id="@+id/radioButton10"
+                android:layout_weight="0.29" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="15%"
+                android:id="@+id/radioButton15"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.23" />
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="20%"
+                android:id="@+id/radioButton20"
+                android:layout_weight="0.31" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:weightSum="1">
+
+            <Button
+                android:text="Button"
+                android:layout_width="63dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:gravity="center"
+                android:onClick="onCalculateTip"
+
+                android:layout_weight="0.53" />
+        </LinearLayout>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="81dp">
+            <TextView
+                android:text="Tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:text="Calculated tip will be displayed here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="81dp">
+
+            <TextView
+                android:text="Total Bill + Tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView7"
+                android:layout_weight="1" />
+
+            <TextView
+                android:text="will be displayed here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView8"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
 </RelativeLayout>
