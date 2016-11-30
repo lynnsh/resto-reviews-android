@@ -1,9 +1,8 @@
 package com.radiantridge.restoradiantridge;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AboutActivity extends Menu {
+public class AboutActivity extends MenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

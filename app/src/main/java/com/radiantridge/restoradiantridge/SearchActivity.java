@@ -2,7 +2,7 @@ package com.radiantridge.restoradiantridge;
 
 import android.os.Bundle;
 
-public class SearchActivity extends Menu {
+public class SearchActivity extends MenuActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".Menu" />
+        <activity android:name=".MenuActivity" />
         <activity android:name=".MainRestoActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".FavoritesActivty" />

@@ -14,7 +14,7 @@ import android.widget.TextView;
  *
  * @author Erika Bourque
  */
-public class MainRestoActivity extends Menu {
+public class MainRestoActivity extends MenuActivity {
     private static final String TAG = "Resto Main Activity";
 
     /**
