@@ -23,4 +23,16 @@
         Furthermore, we even provide you with a tip calculator that you can use to find out how much of a tip you should give your waiter following
         your visit.
     </string>
+    <string name="about_header">Dawson College</string>
+    <string name="course_desc">420-518-DW</string>
+
+    <string name="alertbox_title">Our group</string>
+    <string name="alertbox_text">Android-PHP Project Group Members\n\n
+                                Erika Bourque\n
+                                Rafia Anwar\n
+                                Victor Ruggi\n
+                                Alena Shulzhenko\n
+                                Theodore Acco-Thomas\n\n
+
+                                Fifth semester of six</string>
 </resources>
