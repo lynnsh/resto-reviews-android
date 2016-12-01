@@ -9,4 +9,7 @@ public class NearbyActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby);
     }
+
+    // TODO: display lat/long on UI
+    // TODO: backdoor btn to force certain lat/long
 }

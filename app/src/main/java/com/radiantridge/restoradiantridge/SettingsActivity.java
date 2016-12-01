@@ -1,5 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,8 +47,7 @@ public class SettingsActivity extends MenuActivity {
     /**
      * This method sets the values from the Settings SharedPrefs to the EditTexts.
      */
-    private void setEditTextValues()
-    {
+    private void setEditTextValues() {
         Log.i(TAG, "Displaying current values");
         SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
 
@@ -60,17 +61,15 @@ public class SettingsActivity extends MenuActivity {
      * Event handler for the save button.  Validates the data before saving and
      * closing the activity.
      *
-     * @param v     The view that fired the event
+     * @param v The view that fired the event
      */
-    public void save(View v)
-    {
+    public void save(View v) {
         boolean dataIsValid = validateData();
 
-        if (dataIsValid)
-        {
-            saveData();
-            // TODO: display saved toast
-            // TODO: exit
+        if (dataIsValid) {
+            saveValidatedData();
+            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT);
+            finish();
         }
     }
 
@@ -78,10 +77,9 @@ public class SettingsActivity extends MenuActivity {
      * This method validates that the data in the EditText is not empty and is in
      * the correct format.
      *
-     * @return      True if the data is valid
+     * @return True if the data is valid
      */
-    private boolean validateData()
-    {
+    private boolean validateData() {
         boolean isValid = false;
 
         String fname = fnameET.getText().toString();
@@ -91,20 +89,15 @@ public class SettingsActivity extends MenuActivity {
 
         // Checking if all fields are valid
         if ((!fname.isEmpty()) && (!lname.isEmpty())
-                && (!email.isEmpty()) && (!pw.isEmpty()))
-        {
+                && (!email.isEmpty()) && (!pw.isEmpty())) {
             // Checking if the email is in a valid format
-            if (email.matches(".+@.+"))
-            {
+            if (email.matches(".+@.+")) {
                 isValid = true;
-            }
-            else
-            {
+            } else {
                 // Display error message concerning invalid email
                 Toast.makeText(this, getResources().getString(R.string.error_invalid_email), Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             // Display error message concerning missing fields
             Toast.makeText(this, getResources().getString(R.string.error_empty_fields), Toast.LENGTH_SHORT).show();
         }
@@ -116,9 +109,8 @@ public class SettingsActivity extends MenuActivity {
      * This method saves the data in the EditTexts to the Settings
      * SharedPrefs.
      */
-    private void saveData()
-    {
-        // TODO: also verify timestamp with Alena
+    private void saveValidatedData() {
+        // TODO: also verify timestamp format with Alena
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
@@ -136,5 +128,33 @@ public class SettingsActivity extends MenuActivity {
         editor.commit();
     }
 
-    // TODO: on back pressed to display "do you want to leave" popup
+    /**
+     * Overriden lifecycle method.  Asks the user to confirm before
+     * exiting the activity.
+     */
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "Back pressed.");
+
+        // Building the alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title);
+        builder.setMessage(R.string.dialog_text);
+
+        // Setting buttons on the alert dialog
+        builder.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        });
+
+        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Do nothing
+            }
+        });
+
+        // Displaying the dialog
+        builder.show();
+    }
 }
