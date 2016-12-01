@@ -79,6 +79,7 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
      */
     public void setList(Restaurant[] list)
     {
+        // TODO: use custom adapter to display only name of resto
         Log.i(TAG, "New ListAdapter");
         this.list = list;
         setListAdapter(new ArrayAdapter<Restaurant>(getActivity(), android.R.layout.simple_list_item_1, list));

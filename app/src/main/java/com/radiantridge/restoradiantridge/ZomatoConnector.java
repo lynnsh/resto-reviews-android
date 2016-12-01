@@ -2,11 +2,9 @@ package com.radiantridge.restoradiantridge;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +15,6 @@ import java.net.URL;
 /**
  * Created by 1141669 on 11/21/2016.
  */
-
 public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     private final String TAG="ZomatoConn";
     private final String userKey = "7aa3592c74a89f7580be9be959fde45b";
@@ -123,6 +120,14 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             {
                 resto.setAddPostalCode(sub.getString("zipcode"));
             }
+            if (sub.has("latitude"))
+            {
+                resto.setLatitude(sub.getDouble("latitude"));
+            }
+            if (sub.has("longitude"))
+            {
+                resto.setLongitude(sub.getDouble("longitude"));
+            }
         }
 
         if (obj.has("cuisines"))
@@ -132,12 +137,12 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
         if (obj.has("price_range"))
         {
-
+            // TODO: get price_range
         }
 
         if (obj.has("user_rating")) // get user_rating obj, get aggregate_rating (FOR starRating)
         {
-
+            // TODO: get user_rating
         }
 
         if (obj.has("phone_numbers"))

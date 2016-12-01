@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import java.io.IOException;
 
 public class NearbyActivity extends MenuActivity {
     private final String TAG = "Nearby";
