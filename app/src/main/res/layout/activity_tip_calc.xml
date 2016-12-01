@@ -46,7 +46,7 @@
                 android:layout_width="169dp"
                 android:layout_height="match_parent"
                 android:inputType="numberDecimal"
-                android:background="@drawable/round_borders"
+                android:background="@drawable/edittextBorders"
                 android:id="@+id/editText"
                 android:layout_weight="0.27" />
         </LinearLayout>

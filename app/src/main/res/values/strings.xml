@@ -13,6 +13,21 @@
     <string name="button_save">Save</string>
     <string name="error_empty_fields">All fields must be complete.</string>
     <string name="error_invalid_email">Please enter a valid email.</string>
+    <!-- by rafia -->
+    <string name="resto_name">Enter Restaurant Name: </string>
+    <string name="resto_add">Restaurant Address: </string>
+    <string name="resto_num">Number: </string>
+    <string name="resto_street">Street: </string>
+    <string name="resto_city"> City: </string>
+    <string name="resto_code"> Postal Code: </string>
+    <string name="resto_genre">Restaurant Genre: </string>
+    <string name="resto_price">Price Range($-$$$): </string>
+    <string name="resto_notes">Notes: </string>
+    <string name="resto_longitude">Restaurant Longitude: </string>
+    <string name="resto_latitude">Restaurant Latitude: </string>
+    <string name="resto_rating">Rate the Restaurant: </string>
+    <string name="resto_save">Save: </string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
