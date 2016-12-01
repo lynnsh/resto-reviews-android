@@ -23,7 +23,9 @@
         <activity android:name=".SearchActivity" />
         <activity android:name=".NearbyActivity" />
         <activity android:name=".TipCalcActivity" />
-        <activity android:name=".AddRestoActivity"></activity>
+        <activity android:name=".AddRestoActivity" />
     </application>
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
