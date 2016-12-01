@@ -13,10 +13,12 @@
     <string name="button_save">Save</string>
     <string name="error_empty_fields">All fields must be complete.</string>
     <string name="error_invalid_email">Please enter a valid email.</string>
-    <string name="dialog_title">Exit</string>
-    <string name="dialog_text">Are you sure you wish to leave this page?</string>
+    <string name="dialog_exit_title">Exit</string>
+    <string name="dialog_exit_text">Are you sure you wish to leave this page?</string>
     <string name="dialog_positive">Yes</string>
     <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_GPS_title">GPS Settings</string>
+    <string name="dialog_GPS_text">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="settings_saved">Settings have been saved.</string>
 
     <!-- TODO: Remove or change this placeholder text -->

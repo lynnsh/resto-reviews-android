@@ -138,8 +138,8 @@ public class SettingsActivity extends MenuActivity {
 
         // Building the alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.dialog_title);
-        builder.setMessage(R.string.dialog_text);
+        builder.setTitle(R.string.dialog_exit_title);
+        builder.setMessage(R.string.dialog_exit_text);
 
         // Setting buttons on the alert dialog
         builder.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
