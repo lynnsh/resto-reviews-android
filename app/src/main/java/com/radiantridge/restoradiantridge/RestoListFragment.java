@@ -16,7 +16,7 @@ import android.widget.ListView;
  */
 public class RestoListFragment extends ListFragment implements FragmentManager.OnBackStackChangedListener {
     private static final String TAG = "ListFrag";
-    //Restaurant[] list;
+    Restaurant[] list;
 
     /**
      * Overriden lifecycle method.  Sets up the fragment.
@@ -51,7 +51,7 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "Item clicked at pos: " + position);
-        //displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
+        displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
     }
 
     /**
@@ -60,17 +60,17 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
      *
      * @param resto     The restaurant to be displayed
      */
-//    private void displayRestoDetails(Restaurant resto)
-//    {
-//        int id = resto.getDatabaseId();
-//
-//        // Send Database Id
-//        Intent intent = new Intent();
-//        // Class could change (not AddRestoActivity, to see with Rafia)
-//        intent.setClass(getActivity(), AddRestoActivity.class);
-//        intent.putExtra("databaseId", id);
-//        startActivity(intent);
-//    }
+    private void displayRestoDetails(Restaurant resto)
+    {
+        int id = resto.getDatabaseId();
+
+        // Send Database Id
+        Intent intent = new Intent();
+        // Class could change (not AddRestoActivity, to see with Rafia)
+        intent.setClass(getActivity(), AddRestoActivity.class);
+        intent.putExtra("databaseId", id);
+        startActivity(intent);
+    }
 
     /**
      * This method sets the list to the adapter for the ListFragment to display.
@@ -80,7 +80,9 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
     public void setList(Restaurant[] list)
     {
         Log.i(TAG, "New ListAdapter");
-        //this.list = list;
+        this.list = list;
         setListAdapter(new ArrayAdapter<Restaurant>(getActivity(), android.R.layout.simple_list_item_1, list));
     }
+
+    // TODO: long click launches phone with tel # of resto or dialog box saying no phone number
 }

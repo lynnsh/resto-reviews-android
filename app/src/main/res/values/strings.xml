@@ -20,6 +20,9 @@
     <string name="dialog_GPS_title">GPS Settings</string>
     <string name="dialog_GPS_text">GPS is not enabled. Do you want to go to settings menu?</string>
     <string name="settings_saved">Settings have been saved.</string>
+    <string name="button_lat_long">Change Lat and Long</string>
+    <string name="longitude">Longitude: </string>
+    <string name="latitude">Latitude: </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
