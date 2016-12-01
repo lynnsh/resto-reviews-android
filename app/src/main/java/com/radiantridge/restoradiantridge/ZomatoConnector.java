@@ -142,7 +142,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
         if (obj.has("user_rating")) // get user_rating obj, get aggregate_rating (FOR starRating)
         {
-            // TODO: get user_rating
+            //resto.setUserRating(Float.parseFloat(obj.getString("price_range")));
         }
 
         if (obj.has("phone_numbers"))
