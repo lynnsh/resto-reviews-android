@@ -62,14 +62,14 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
      */
     private void displayRestoDetails(Restaurant resto)
     {
-        int id = resto.getDatabaseId();
-
-        // Send Database Id
-        Intent intent = new Intent();
-        // Class could change (not AddRestoActivity, to see with Rafia)
-        intent.setClass(getActivity(), AddRestoActivity.class);
-        intent.putExtra("databaseId", id);
-        startActivity(intent);
+//        int id = resto.getDatabaseId();
+//
+//        // Send Database Id
+//        Intent intent = new Intent();
+//        // Class could change (not AddRestoActivity, to see with Rafia)
+//        intent.setClass(getActivity(), AddRestoActivity.class);
+//        intent.putExtra("databaseId", id);
+//        startActivity(intent);
     }
 
     /**

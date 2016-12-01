@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import java.io.IOException;
 
 public class NearbyActivity extends MenuActivity {
     private final String TAG = "Nearby";
@@ -28,6 +29,7 @@ public class NearbyActivity extends MenuActivity {
         setUpTracker();
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.nearby_list);
         updateLatLong();
+        getListFromZomato();
     }
 
     private void setUpTracker()
@@ -136,5 +138,11 @@ public class NearbyActivity extends MenuActivity {
     {
         latitude = tracker.getLatitude();
         longitude = tracker.getLongitude();
+    }
+
+    private void getListFromZomato()
+    {
+        ZomatoConnector conn = new ZomatoConnector(fragment);
+        conn.execute(latitude, longitude);
     }
 }
