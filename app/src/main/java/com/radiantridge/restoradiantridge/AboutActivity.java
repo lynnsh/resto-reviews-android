@@ -83,7 +83,7 @@ public class AboutActivity extends Menu {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss(); //Dismisses the dialogue
+                        dialog.dismiss(); //Dismisses the dialog
                     }
                 });
 
@@ -94,6 +94,7 @@ public class AboutActivity extends Menu {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent (getApplicationContext(), MainActivity.class);
                         startActivity(i);
+                        dialog.dismiss(); //Dismisses the dialog
                     }
                 });
 
