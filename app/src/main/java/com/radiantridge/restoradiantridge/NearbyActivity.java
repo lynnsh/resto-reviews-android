@@ -3,6 +3,7 @@ package com.radiantridge.restoradiantridge;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -15,6 +16,8 @@ public class NearbyActivity extends MenuActivity {
     RestoListFragment fragment;
     double latitude;
     double longitude;
+    private final int CHANGE_LAT_LONG = 1;
+    private final int MY_PERMISSION_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,6 @@ public class NearbyActivity extends MenuActivity {
 
     private void setUpTracker()
     {
-        // TODO: figure out why it is not working
         tracker = new GPSTracker(this);
 
         if (!tracker.canGetLocation())
@@ -39,9 +41,7 @@ public class NearbyActivity extends MenuActivity {
             // Attempt to get location again
             tracker.getLocation();
         }
-
-        latitude = tracker.getLatitude();
-        longitude = tracker.getLongitude();
+        getTrackerLatLong();
     }
 
     /**
@@ -79,7 +79,8 @@ public class NearbyActivity extends MenuActivity {
     public void launchLatLong(View view)
     {
         Log.i(TAG, "Setting lat and long manually.");
-        startActivity(new Intent(this, LatLongActivity.class));
+        // start for result
+        startActivityForResult(new Intent(this, LatLongActivity.class), CHANGE_LAT_LONG);
     }
 
     private void updateLatLong()
@@ -91,5 +92,49 @@ public class NearbyActivity extends MenuActivity {
 
         latitudeTV.setText(latStr);
         longitudeTV.setText(longStr);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CHANGE_LAT_LONG)
+        {
+            latitude = data.getDoubleExtra("latitude", 0.0);
+            longitude = data.getDoubleExtra("longitude", 0.0);
+            updateLatLong();
+        }
+    }
+
+    /**
+     * Overriden method.  This method will update the tracker if the
+     * permission for GPS access has been allowed.
+     * TODO: Overriden here because GPSTracker is not an activity, to change?
+     * TODO: make the gps in here instead of outside object
+     *
+     *
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if (requestCode == MY_PERMISSION_REQUEST)
+            // If request is cancelled, the result arrays are empty.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                tracker.getLocation();
+                getTrackerLatLong();
+            } else {
+
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+            }
+    }
+
+    private void getTrackerLatLong()
+    {
+        latitude = tracker.getLatitude();
+        longitude = tracker.getLongitude();
     }
 }

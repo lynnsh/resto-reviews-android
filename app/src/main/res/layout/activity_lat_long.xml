@@ -10,4 +10,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.radiantridge.restoradiantridge.LatLongActivity">
 
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="0,1">
+        <TableRow>
+            <TextView
+                android:text="@string/latitude"/>
+            <EditText
+                android:id="@+id/latitude_ET"
+                android:inputType="numberDecimal|numberSigned"/>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="@string/longitude"/>
+            <EditText
+                android:id="@+id/longitude_ET"
+                android:inputType="numberDecimal|numberSigned"/>
+        </TableRow>
+        <TableRow>
+            <Button
+                android:text="@string/button_save"
+                android:onClick="save"
+                android:layout_span="2"/>
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>

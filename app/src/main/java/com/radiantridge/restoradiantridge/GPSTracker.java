@@ -1,6 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -20,9 +21,9 @@ import static android.content.Context.LOCATION_SERVICE;
  * @author Erika Bourque
  */
 public class GPSTracker implements LocationListener {
-    // TODO: ask about ActivityCompat.checkSelfPermission
     private final String TAG = "GPSTracker";
     private final Context mContext;
+    private final int MY_PERMISSION_REQUEST = 1;
 
     // flag for GPS status
     private boolean isGPSEnabled = false;
@@ -61,15 +62,11 @@ public class GPSTracker implements LocationListener {
      * @return The current location
      */
     public Location getLocation() {
-        // Check if permissions were revoked by user
+        // Check if permissions were granted by user
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            // Request permission
+            ActivityCompat.requestPermissions((Activity)mContext, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST);
+            // Can't continue, return
             return null;
         }
 
@@ -179,4 +176,6 @@ public class GPSTracker implements LocationListener {
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
+
+
 }

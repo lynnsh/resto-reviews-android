@@ -5,4 +5,5 @@ package com.radiantridge.restoradiantridge;
  */
 
 public class ZomatoConnector {
+    private String key = "7aa3592c74a89f7580be9be959fde45b";
 }
