@@ -262,8 +262,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setDatabaseId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
             resto.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
             resto.setGenre(cursor.getString(cursor.getColumnIndex(COLUMN_GENRE)));
-            resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
-            resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
+//            resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
+//            resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
             resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));

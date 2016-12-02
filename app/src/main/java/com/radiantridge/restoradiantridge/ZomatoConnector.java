@@ -13,7 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Connector for the Zomato API.  It 
+ * Connector for the Zomato API.  It
  *
  */
 public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
