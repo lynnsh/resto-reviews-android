@@ -13,7 +13,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by 1141669 on 11/21/2016.
+ * Connector for the Zomato API.  It 
+ *
  */
 public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     private final String TAG="ZomatoConn";
@@ -90,7 +91,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     private String convertStreamToString(InputStream stream) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(stream));
         StringBuilder sb = new StringBuilder();
-        String line = null;
+        String line;
 
         while ((line = in.readLine()) != null)
         {
@@ -137,12 +138,17 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
         if (obj.has("price_range"))
         {
-            // TODO: get price_range
+            // resto.setPriceRange(obj.getInt("price_range");
         }
 
         if (obj.has("user_rating")) // get user_rating obj, get aggregate_rating (FOR starRating)
         {
-            //resto.setUserRating(Float.parseFloat(obj.getString("price_range")));
+            JSONObject sub = obj.getJSONObject("user_rating");
+
+            if (sub.has("aggregate_rating"))
+            {
+                //resto.setStarRating(sub.getDouble("aggregate_rating"));
+            }
         }
 
         if (obj.has("phone_numbers"))
