@@ -22,7 +22,7 @@ import android.widget.TextView;
 * @author Victor
 */
 
-public class AboutActivity extends Menu {
+public class AboutActivity extends MenuActivity {
 
 	/**
 	* Minimum override method
