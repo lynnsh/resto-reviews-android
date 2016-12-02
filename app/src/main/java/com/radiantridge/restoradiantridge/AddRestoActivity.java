@@ -1,19 +1,38 @@
 package com.radiantridge.restoradiantridge;
 
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.sql.Time;
 
 /**
  * This acitivty takes in user input to add a restaurant to the database.
+ *
+ * @author Rafia Anwar
  */
 public class AddRestoActivity extends AppCompatActivity {
     private static final String TAG = "Add resto Act";
-  //  private static DAOObject dao;
+    private Restaurant resto;
+    private String name;
+    private int num;
+    private String street;
+    private String city;
+    private String code;
+    private String genre;
+    private int price;
+    private String notes;
+    private Double longit;
+    private Double latid;
+    private float rating;
+  //  private static DatabaseConnector dbconn;
 
     /**
      * Overridden Lifecycle method.
@@ -23,6 +42,9 @@ public class AddRestoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
+      //  dbconn = new DatabaseConnector();
+        resto = new Restaurant();
+
     }
 
     /**
@@ -34,50 +56,143 @@ public class AddRestoActivity extends AppCompatActivity {
         //do validation
         //check for nulls
         //getting the text values from fields
-        EditText editName = (EditText) findViewById(R.id.editRestoName);
-        String name = editName.getText().toString();
-        EditText editNumber = (EditText) findViewById(R.id.editNum);
-        String number = editNumber.getText().toString();
-        int num=-1;
-        try {
-             num = Integer.parseInt(number);
-        }
-        catch(NumberFormatException nfe)
-        {
-            Log.e(TAG, nfe.getLocalizedMessage());
-        }
-        EditText editStreet = (EditText) findViewById(R.id.editStreet);
-        String street = editStreet.getText().toString();
-        EditText editCity = (EditText) findViewById(R.id.editCity);
-        String city = editCity.getText().toString();
-        EditText editCode = (EditText) findViewById(R.id.editCode);
-        String code = editCode.getText().toString();
-        EditText editGenre = (EditText) findViewById(R.id.editGenre);
-        String genre = editGenre.getText().toString();
-        EditText editPrice = (EditText) findViewById(R.id.editPrice);
-        String priceRange = editPrice.getText().toString();
-        EditText editNotes = (EditText) findViewById(R.id.editNotes);
-        String notes = editNotes.getText().toString();
-        EditText editLongitude = (EditText) findViewById(R.id.editLongitude);
-        String longitude = editLongitude.getText().toString();
-        EditText editLatitude = (EditText) findViewById(R.id.editLatitude);
-        String latitude = editLatitude.getText().toString();
-        Double longit,latid=0.0;
-        try {
-             longit = Double.parseDouble(longitude);
+        //gets the name field and save it to name string
+        handleNameField(v);
+        handleNumField(v);
+        handleStreetField(v);
+        handleCityField(v);
+        handleCodeField(v);
+        handleGenreField(v);
+        handlePriceField(v);
+        handleNotesField(v);
+        handleLongLatFields(v);
+        handleRatingBar(v);
 
-             latid = Double.parseDouble(latitude);
-        }
-        catch(NumberFormatException nfe)
-        {
-            Log.e(TAG, nfe.getLocalizedMessage());
-        }
-        RatingBar editRating = (RatingBar) findViewById(R.id.ratingBar);
-        Float rating = editRating.getRating();
-        Log.i(TAG, "rating bar val" + rating);
+
         long time = System.currentTimeMillis()/1000;
         Time t = new Time(time);
         Log.i(TAG,"time " +t);
       //  dao.insert(name,num,street,city,code,genre,priceRange,notes,longit,latid,rating,time );
+    }
+    private void handleNameField(View v){
+        EditText editName = (EditText) findViewById(R.id.editRestoName);
+        name = editName.getText().toString();
+        TextView nameErr= (TextView) findViewById(R.id.textNameError);
+        if(name != null) {
+            resto.setName(name);
+            nameErr.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            nameErr.setVisibility(View.VISIBLE);
+        }
+    }
+    private void handleNumField(View v) {
+        EditText editNumber = (EditText) findViewById(R.id.editNum);
+        String number = editNumber.getText().toString();
+        if (number != null && !(number.isEmpty())) {
+            num = Integer.parseInt(number);
+            resto.setAddNum(num);
+        }
+        Log.i(TAG, "NUM " + num);
+    }
+    private void handleStreetField(View v) {
+        EditText editStreet = (EditText) findViewById(R.id.editStreet);
+        street = editStreet.getText().toString();
+
+        if (street != null && !(street.isEmpty())) {
+            resto.setAddStreet(street);
+        }
+        Log.i(TAG, "STREET " + street);
+    }
+    private void handleCityField(View v) {
+        EditText editCity = (EditText) findViewById(R.id.editCity);
+        city = editCity.getText().toString();
+
+        if (city != null && !(city.isEmpty())) {
+            resto.setAddCity(city);
+        }
+        Log.i(TAG, "city " + city);
+    }
+
+    private void handleCodeField(View v) {
+        EditText editCode = (EditText) findViewById(R.id.editCode);
+        code = editCode.getText().toString();
+        TextView codeErr= (TextView) findViewById(R.id.textCodeError);
+        String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
+        if (code != null && !(code.isEmpty())) {
+            if(code.matches(regex)) {
+                codeErr.setVisibility(View.INVISIBLE);
+                resto.setAddPostalCode(code);
+                Log.i(TAG, "matches regex");
+            }
+        }
+        else{
+            codeErr.setVisibility(View.VISIBLE);
+        }
+        Log.i(TAG, "code " + code);
+    }
+    private void handleGenreField(View v) {
+        EditText editGenre = (EditText) findViewById(R.id.editGenre);
+        genre = editGenre.getText().toString();
+        TextView genreErr= (TextView) findViewById(R.id.textGenreError);
+        if (genre != null && !(genre.isEmpty())) {
+            genreErr.setVisibility(View.INVISIBLE);
+                resto.setGenre(genre);
+        }
+        else{
+            genreErr.setVisibility(View.VISIBLE);
+        }
+        Log.i(TAG, "genre " + genre);
+    }
+    private void handlePriceField(View v) {
+        EditText editPrice = (EditText) findViewById(R.id.editPrice);
+        String priceRange = editPrice.getText().toString();
+        TextView priceErr= (TextView) findViewById(R.id.textPriceError);
+        String regex = "^/${1,4}$";
+        if (priceRange != null && !(priceRange.isEmpty())) {
+            if (priceRange.matches(regex)) {
+                priceErr.setVisibility(View.INVISIBLE);
+                price = Integer.parseInt(priceRange);
+                resto.setPriceRange(price);
+                Log.i(TAG, "matches regex");
+            }
+        } else{
+            priceErr.setVisibility(View.VISIBLE);
+        }
+        Log.i(TAG, "price range " + price);
+    }
+
+    private void handleNotesField(View v)
+    {
+        EditText editNotes = (EditText) findViewById(R.id.editNotes);
+        notes = editNotes.getText().toString();
+        if (notes != null && !(notes.isEmpty())) {
+            resto.setNotes(notes);
+        }
+        Log.i(TAG, "notes " + notes);
+    }
+
+    private void handleLongLatFields(View v) {
+        EditText editLongitude = (EditText) findViewById(R.id.editLongitude);
+        String longitude = editLongitude.getText().toString();
+        EditText editLatitude = (EditText) findViewById(R.id.editLatitude);
+        String latitude = editLatitude.getText().toString();
+        if (longitude != null && !(longitude.isEmpty()) && latitude != null && !(latitude.isEmpty())) {
+            longit = Double.parseDouble(longitude);
+            latid = Double.parseDouble(latitude);
+            resto.setLongitude(longit);
+            resto.setLatitude(latid);
+        }
+        Log.i(TAG, "longitude & latitude " + longit +" & "+latid);
+
+
+    }
+    private void handleRatingBar(View v) {
+        RatingBar editRating = (RatingBar) findViewById(R.id.ratingBar);
+        rating = editRating.getRating();
+            resto.setStarRating(rating);
+
+        Log.i(TAG, "rating bar val" + rating);
     }
     }

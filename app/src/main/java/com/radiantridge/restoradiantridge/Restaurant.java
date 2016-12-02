@@ -45,10 +45,13 @@ public class Restaurant {
     }
 
     public int getAddNum() {
+
+
         return addNum;
     }
 
     public void setAddNum(int addNum) {
+
         this.addNum = addNum;
     }
 
