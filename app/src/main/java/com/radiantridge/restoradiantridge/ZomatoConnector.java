@@ -201,6 +201,8 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             resto.setPhone(obj.getString("phone_numbers"));
         }
 
+        resto.setDatabaseId(-1);
+
         return resto;
     }
 
@@ -213,25 +215,38 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
      */
     private void parseAddress(Restaurant resto, String address)
     {
+        String regex = "\\d+";
         String[] split = address.split(",");
         String[] numAndName = split[0].split(" ", 2);
 
         // Getting Street Number
         String num = numAndName[0];
-        resto.setAddNum(Integer.parseInt(num));
 
-        // Getting Street Name
-        if (numAndName.length == 1)
+        // Verify street number exists
+        if (num.matches(regex))
         {
-            // They had a comma for num
-            resto.setAddStreet(split[1]);
-            resto.setAddCity(split[2]);
+            resto.setAddNum(Integer.parseInt(num));
+
+            // Getting Street Name
+            if (numAndName.length == 1)
+            {
+                // They had a comma for num
+                resto.setAddStreet(split[1]);
+                resto.setAddCity(split[2]);
+            }
+            else
+            {
+                resto.setAddStreet(numAndName[1]);
+                resto.setAddCity(split[1]);
+            }
         }
         else
         {
-            resto.setAddStreet(numAndName[1]);
+            // No street number
+            resto.setAddStreet(split[0]);
             resto.setAddCity(split[1]);
         }
+
     }
 
     /**

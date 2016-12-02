@@ -65,6 +65,8 @@ public class AddRestoActivity extends AppCompatActivity {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         resto.setCreatedTime(timestamp);
+        resto.setModifiedTime(timestamp);
+
         Log.i(TAG,"time " +timestamp);
         dbconn = DatabaseConnector.getDatabaseConnector(this);
         dbconn.addResto(resto);

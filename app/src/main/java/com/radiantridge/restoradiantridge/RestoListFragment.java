@@ -67,14 +67,21 @@ public class RestoListFragment extends ListFragment {
      */
     private void displayRestoDetails(Restaurant resto)
     {
-//        int id = resto.getDatabaseId();
-//
-//        // Send Database Id
-//        Intent intent = new Intent();
-//        // Class could change (not AddRestoActivity, to see with Rafia)
-//        intent.setClass(getActivity(), AddRestoActivity.class);
-//        intent.putExtra("databaseId", id);
-//        startActivity(intent);
+        int id = resto.getDatabaseId();
+        Intent intent = new Intent();
+
+        if (id == -1)
+        {
+            // send all resto parts
+            intent.putExtra("isZomato", true);
+        }
+        else
+        {
+            intent.setClass(getActivity(), ShowRestoActivity.class);
+            intent.putExtra("databaseId", id);
+            intent.putExtra("isZomato", false);
+            startActivity(intent);
+        }
     }
 
     /**
