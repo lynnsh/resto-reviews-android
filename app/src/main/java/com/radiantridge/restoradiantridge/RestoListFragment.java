@@ -13,8 +13,9 @@ import android.widget.ListView;
  * ListFragment for the Restaurant list.
  *
  * @author Erika Bourque
+ * @version 01/12/2016
  */
-public class RestoListFragment extends ListFragment implements FragmentManager.OnBackStackChangedListener {
+public class RestoListFragment extends ListFragment {
     private static final String TAG = "ListFrag";
     Restaurant[] list;
 
@@ -28,15 +29,6 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
         super.onActivityCreated(savedInstanceState);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        // monitor back stack changes to update list view
-        // Do we need to monitor this?
-        getFragmentManager().addOnBackStackChangedListener(this);
-    }
-
-    @Override
-    public void onBackStackChanged() {
-        // what to do here?
     }
 
     /**

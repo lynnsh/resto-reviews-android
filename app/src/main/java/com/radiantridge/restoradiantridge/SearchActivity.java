@@ -6,21 +6,43 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+/**
+ * This activity provides a search functionality for the
+ * user's database.  They can search by name, genre or city.
+ *
+ * @author Erika Bourque
+ * @version 01/12/2016
+ */
 public class SearchActivity extends MenuActivity {
     private Spinner spinner;
     DatabaseConnector db;
     RestoListFragment fragment;
 
+    /**
+     * Overriden lifecycle method.  Sets up
+     * the variables and spinner.
+     *
+     * @param savedInstanceState    savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        // Initializing variables
         db = DatabaseConnector.getDatabaseConnector(this);
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.favorites_list);
+
+        // Setting up spinner with its options
         setUpSpinner();
     }
 
+    /**
+     * Event handler for search button.  Queries the database
+     * with the appropriate search type.
+     *
+     * @param view      The view that fired the event
+     */
     public void search(View view)
     {
         EditText searchBox = (EditText) findViewById(R.id.search_ET);
@@ -28,6 +50,7 @@ public class SearchActivity extends MenuActivity {
         String query = searchBox.getText().toString();
         Restaurant[] results = null;
 
+        // Sending appropriate query
         switch(selection)
         {
             case "Name":
@@ -41,12 +64,17 @@ public class SearchActivity extends MenuActivity {
                 break;
         }
         
+        // Displaying results
         if (results != null)
         {
             fragment.setList(results);
         }
     }
 
+    /**
+     * This method gives the spinner its adapter from
+     * a saved array of strings for the search type.
+     */
     private void setUpSpinner()
     {
         spinner = (Spinner) findViewById(R.id.searchType);

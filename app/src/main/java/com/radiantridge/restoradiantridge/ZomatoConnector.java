@@ -13,22 +13,38 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Connector for the Zomato API.  It
+ * Connector for the Zomato API.  It is an AsyncTask that
+ * queries the Zomato API for restaurants around a certain
+ * latitude and longitude, and sends the restaurants for display
+ * on the fragment given.
  *
+ * @author Erika Bourque
+ * @version 01/12/2016
  */
 public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     private final String TAG="ZomatoConn";
     private final String userKey = "7aa3592c74a89f7580be9be959fde45b";
-    // follow these by lat=num&lon=num
     private final String nearbyUrl = "https://developers.zomato.com/api/v2.1/geocode?";
-    private final String cuisinesUrl = "https://developers.zomato.com/api/v2.1/cuisines?";
     private RestoListFragment fragment;
 
+    /**
+     * Constructor.  Requires the fragment that will display the
+     * list of restaurants.
+     *
+     * @param fragment      The fragment that will display the restaurants
+     */
     public ZomatoConnector(RestoListFragment fragment)
     {
         this.fragment = fragment;
     }
 
+    /**
+     * Overriden method.  This method queries the Zomato API
+     * with an HTTPURLConnection GET in the background.
+     *
+     * @param params    The latitude and longitude
+     * @return          The array of Restaurants
+     */
     @Override
     protected Restaurant[] doInBackground(Double...params)
     {
@@ -53,12 +69,14 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             // Get results
             if (urlConn.getResponseCode() == HttpURLConnection.HTTP_OK)
             {
+                // Process and return results
                 stream = urlConn.getInputStream();
                 return processNearbyJSON(convertStreamToString(stream));
             }
         } catch (IOException | JSONException e) {
             Log.e(TAG, e.getMessage());
         } finally {
+            // Make sure to close stream and HTTP connection
             if (stream != null)
             {
                 try {
@@ -74,11 +92,20 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
         return null;
     }
 
+    /**
+     * This method processes a JSON response into Restaurant objects.
+     *
+     * @param response          The JSON response
+     * @return                  The array of Restaurants
+     * @throws JSONException
+     */
     private Restaurant[] processNearbyJSON(String response) throws JSONException {
         JSONObject totalResponse = new JSONObject(response);
+        // Get only the nearby restaurants, no other data
         JSONArray restoArray = totalResponse.getJSONArray("nearby_restaurants");
         Restaurant[] list = new Restaurant[restoArray.length()];
 
+        // Build a restaurant with each JSON object
         for(int i = 0; i < restoArray.length(); i++)
         {
             JSONObject obj = restoArray.getJSONObject(i).getJSONObject("restaurant");
@@ -88,6 +115,13 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
         return list;
     }
 
+    /**
+     * This method converts an InputStream into a String.
+     *
+     * @param stream        The input stream to be converted
+     * @return              The converted String
+     * @throws IOException
+     */
     private String convertStreamToString(InputStream stream) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(stream));
         StringBuilder sb = new StringBuilder();
@@ -101,20 +135,30 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
         return sb.toString();
     }
 
+    /**
+     * This method turns a JSON object into a Restaurant object.
+     *
+     * @param obj               The JSON object
+     * @return                  The converted Restaurant object
+     * @throws JSONException
+     */
     private Restaurant buildRestaurant(JSONObject obj) throws JSONException {
         Restaurant resto = new Restaurant();
 
+        // Verify each key exists before saving it to the Restaurant
         if (obj.has("name"))
         {
             resto.setName(obj.getString("name"));
         }
 
-        if (obj.has("location")) // split into address fields
+        // location is container for more fields
+        if (obj.has("location"))
         {
             JSONObject sub = obj.getJSONObject("location");
 
             if (sub.has("address"))
             {
+                // Split address into various fields
                 parseAddress(resto, sub.getString("address"));
             }
             if (sub.has("zipcode"))
@@ -141,7 +185,8 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             // resto.setPriceRange(obj.getInt("price_range");
         }
 
-        if (obj.has("user_rating")) // get user_rating obj, get aggregate_rating (FOR starRating)
+        // user_rating is a container for more fields
+        if (obj.has("user_rating"))
         {
             JSONObject sub = obj.getJSONObject("user_rating");
 
@@ -159,6 +204,13 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
         return resto;
     }
 
+    /**
+     * This method splits an entire address string into its
+     * individual components.
+     *
+     * @param resto     The Restaurant the address will be added to
+     * @param address   The address to be split
+     */
     private void parseAddress(Restaurant resto, String address)
     {
         String[] split = address.split(",");
@@ -182,6 +234,12 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
         }
     }
 
+    /**
+     * Overriden method.  Gives the list of Restaurants to
+     * the fragment for display.
+     *
+     * @param list      The list of Restaurants to be displayed
+     */
     @Override
     protected void onPostExecute(Restaurant[] list)
     {

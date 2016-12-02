@@ -17,6 +17,7 @@ import java.util.Calendar;
  * and launches the restaurant's main activity.
  *
  * @author Erika Bourque
+ * @version 28/11/2016
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Login";

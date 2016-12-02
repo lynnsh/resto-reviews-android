@@ -13,6 +13,7 @@ import android.widget.TextView;
  * most other activities.
  *
  * @author Erika Bourque
+ * @version 30/11/2016
  */
 public class MainRestoActivity extends MenuActivity {
     private static final String TAG = "Resto Main Activity";

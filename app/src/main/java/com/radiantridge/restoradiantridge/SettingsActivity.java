@@ -16,6 +16,7 @@ import java.util.Calendar;
  * application.
  *
  * @author Erika Bourque
+ * @version 01/12/2016
  */
 public class SettingsActivity extends MenuActivity {
     private static final String TAG = "Settings";
