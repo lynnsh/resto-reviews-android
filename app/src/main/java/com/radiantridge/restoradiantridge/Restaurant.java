@@ -21,6 +21,8 @@ public class Restaurant {
     private String notes;
     private double longitude;
     private double latitude;
+    private int dbId;
+    private String phone;
 
     public Restaurant() {
 
@@ -128,6 +130,26 @@ public class Restaurant {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public void setDatabaseId(int id)
+    {
+        this.dbId = id;
+    }
+
+    public int getDatabaseId()
+    {
+        return this.dbId;
+    }
+
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public String getPhone()
+    {
+        return this.phone;
     }
 
     @Override

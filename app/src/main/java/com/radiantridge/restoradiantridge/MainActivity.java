@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 /**
  * Initial activity for the restaurant application.  Logs in the
  * user if log details are not present in the shared preferences,
  * and launches the restaurant's main activity.
  *
  * @author Erika Bourque
+ * @version 28/11/2016
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Login";
@@ -101,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void saveData(String fname, String lname, String email, String pw)
     {
+        // TODO: verify that Alena is using same format of timestamp
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("lname", lname);
         editor.putString("email", email);
         editor.putString("password", pw);
+        editor.putString("timestamp", Calendar.getInstance().getTime().toString());
 
         // Saving the changes
         editor.commit();
