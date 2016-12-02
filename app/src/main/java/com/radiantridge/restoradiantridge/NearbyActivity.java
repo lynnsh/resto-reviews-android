@@ -147,6 +147,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
             latitude = data.getDoubleExtra("latitude", 0.0);
             longitude = data.getDoubleExtra("longitude", 0.0);
             updateLatLong();
+            getListFromZomato();
         }
     }
 
@@ -168,6 +169,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Get new location
                 getLocation();
+                getListFromZomato();
             }
         }
     }
@@ -228,7 +230,6 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         return location;
     }
 
-    // TODO: override onPause to stop check for updates
     /**
      * This method will remove the update listener from the
      * location manager.
@@ -246,12 +247,19 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         }
     }
 
+    /**
+     * Overriden method.  Updates the location, latitude and longitude
+     * when the location changes.
+     *
+     * @param location      The new location
+     */
     @Override
     public void onLocationChanged(Location location) {
         this.location = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
         updateLatLong();
+        getListFromZomato();
     }
 
     @Override
@@ -265,4 +273,16 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
     }
+
+    /**
+     * Overriden lifecycle method.  Stops the GPS listener.
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        stopUsingGPS();
+    }
+
+    // TODO: on resume starts listener?
 }

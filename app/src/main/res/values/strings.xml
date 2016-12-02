@@ -27,4 +27,6 @@
     <string name="search_name">Name: </string>
     <string name="search_genre">Genre: </string>
     <string name="button_search">Search</string>
+    <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
+    <string name="dialog_phone_title">Call Restaurant</string>
 </resources>

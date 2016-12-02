@@ -145,13 +145,15 @@ public class SettingsActivity extends MenuActivity {
         // Setting buttons on the alert dialog
         builder.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+                // End activity
                 finish();
             }
         });
 
         builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                // Do nothing
+                // Cancel the dialog
+                dialog.cancel();
             }
         });
 
