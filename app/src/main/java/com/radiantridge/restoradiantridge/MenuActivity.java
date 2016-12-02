@@ -14,7 +14,7 @@ import android.view.MenuItem;
  * @author Erika Bourque
  * @author Victor Ruggi
  */
-public class Menu extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
     private static final String TAG = "Menu";
 
     /**
