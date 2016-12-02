@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.AddRestoActivity">
+    tools:context="com.radiantridge.restoradiantridge.ShowRestoActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,28 +31,14 @@
                 android:layout_weight="0.5"
                 />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="n"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
                 android:id="@+id/editRestoName" />
         </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="32dp">
-        <TextView
-            android:text="@string/name_error"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/colorAccent"
-            android:gravity="right"
-            android:visibility="invisible"
-            android:id="@+id/textNameError" />
-    </LinearLayout>
+
 
         <TextView
             android:text="@string/resto_add"
@@ -71,16 +57,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textNum"
                 android:layout_weight="0.5"
-               />
+                />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNum"
-                 />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -95,11 +80,9 @@
                 android:id="@+id/textStreet"
                 android:layout_weight="0.5" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:text="name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editStreet" />
@@ -117,11 +100,9 @@
                 android:id="@+id/textCity"
                 android:layout_weight="0.5" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="Name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCity" />
@@ -139,27 +120,14 @@
                 android:id="@+id/textCode"
                 android:layout_weight="0.5" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCode" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/code_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:gravity="right"
-                android:id="@+id/textCodeError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -172,10 +140,9 @@
                 android:id="@+id/textPhone"
                 android:layout_weight="0.5" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editTextPhone" />
@@ -194,27 +161,14 @@
                 android:id="@+id/textGenre"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="Name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editGenre" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/genre_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:gravity="right"
-                android:id="@+id/textGenreError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -227,28 +181,15 @@
                 android:id="@+id/textPrice"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editPrice" />
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/price_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:id="@+id/textPriceError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -261,10 +202,9 @@
                 android:id="@+id/textNotes"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="match_parent"
-                android:inputType="textMultiLine"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNotes" />
@@ -282,10 +222,9 @@
                 android:id="@+id/textLongitude"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLongitude" />
@@ -303,10 +242,9 @@
                 android:id="@+id/textLatitude"
                 android:layout_weight="1" />
 
-            <EditText
+            <TextView
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLatitude" />
@@ -324,14 +262,8 @@
             android:id="@+id/ratingBar"
             style="@style/Widget.AppCompat.RatingBar"
             android:numStars="5"
-            android:isIndicator="false" />
-
-        <Button
-            android:text="@string/button_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/buttonSave"
-            android:onClick="saveResto"
+            android:isIndicator="true"
             />
+
     </LinearLayout>
 </RelativeLayout>

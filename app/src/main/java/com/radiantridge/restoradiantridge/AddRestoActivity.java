@@ -1,6 +1,5 @@
 package com.radiantridge.restoradiantridge;
 
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,13 +7,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
- * This acitivty takes in user input to add a restaurant to the database.
+ * This activity takes in user input to add a restaurant to the database.
  *
  * @author Rafia Anwar
  */
@@ -32,8 +28,8 @@ public class AddRestoActivity extends AppCompatActivity {
     private Double longit;
     private Double latid;
     private float rating;
-  //  private static DatabaseConnector dbconn;
-
+   private  DatabaseConnector dbconn;
+    private boolean save; //keeps check of valid inputs
     /**
      * Overridden Lifecycle method.
      * @param savedInstanceState stores the value when screen rotated
@@ -42,7 +38,6 @@ public class AddRestoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
-      //  dbconn = new DatabaseConnector();
         resto = new Restaurant();
 
     }
@@ -53,8 +48,7 @@ public class AddRestoActivity extends AppCompatActivity {
      * @param v
      */
     public void saveResto(View v) {
-        //do validation
-        //check for nulls
+        //make labels work, stop eveyrhitng until valid input
         //getting the text values from fields
         //gets the name field and save it to name string
         handleNameField(v);
@@ -68,11 +62,12 @@ public class AddRestoActivity extends AppCompatActivity {
         handleLongLatFields(v);
         handleRatingBar(v);
 
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        long time = System.currentTimeMillis()/1000;
-        Time t = new Time(time);
-        Log.i(TAG,"time " +t);
-      //  dao.insert(name,num,street,city,code,genre,priceRange,notes,longit,latid,rating,time );
+        resto.setCreatedTime(timestamp);
+        Log.i(TAG,"time " +timestamp);
+        dbconn = DatabaseConnector.getDatabaseConnector(this);
+        dbconn.addResto(resto);
     }
     private void handleNameField(View v){
         EditText editName = (EditText) findViewById(R.id.editRestoName);
