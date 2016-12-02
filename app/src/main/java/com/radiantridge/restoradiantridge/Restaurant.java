@@ -14,13 +14,15 @@ public class Restaurant {
     private String addCity;
     private String addPostalCode;
     private String genre;
-    private String priceRange; //the range is $ to $$$$
+    private String phone;
+    private int priceRange; //the range is $ to $$$$ //int
     private Timestamp createdTime;  // ?? creation time of what
     private Timestamp modifiedTime;  // ?? of what
-    private int starRating; // 1- 5
+    private double starRating; // 1- 5 //double
     private String notes;
     private double longitude;
     private double latitude;
+    private int dbId;
 
     public Restaurant() {
 
@@ -74,16 +76,26 @@ public class Restaurant {
         this.genre = genre;
     }
 
-    public String getPriceRange() {
+    public int getPriceRange() {
         return priceRange;
     }
 
-    public void setPriceRange(String priceRange) {
+    public void setPriceRange(int priceRange) {
         this.priceRange = priceRange;
     }
 
     public Timestamp getCreatedTime() {
         return createdTime;
+    }
+
+    public void setDatabaseId(int id)
+    {
+        this.dbId = id;
+    }
+
+    public int getDatabaseId()
+    {
+        return this.dbId;
     }
 
     public void setCreatedTime(Timestamp createdTime) {
@@ -98,11 +110,11 @@ public class Restaurant {
         this.modifiedTime = modifiedTime;
     }
 
-    public int getStarRating() {
+    public double getStarRating() {
         return starRating;
     }
 
-    public void setStarRating(int starRating) {
+    public void setStarRating(double starRating) {
         this.starRating = starRating;
     }
 
@@ -129,6 +141,15 @@ public class Restaurant {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
+    public void setPhone(String phone)
+    {
+        this.phone = phone;
+    }
+
+    public String getPhone()
+    {
+        return this.phone;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -147,7 +168,7 @@ public class Restaurant {
         if (addCity != null ? !addCity.equals(that.addCity) : that.addCity != null) return false;
         if (!addPostalCode.equals(that.addPostalCode)) return false;
         if (genre != null ? !genre.equals(that.genre) : that.genre != null) return false;
-        if (priceRange != null ? !priceRange.equals(that.priceRange) : that.priceRange != null)
+        if (priceRange != that.priceRange)
             return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null)
             return false;
@@ -167,10 +188,11 @@ public class Restaurant {
         result = 31 * result + (addCity != null ? addCity.hashCode() : 0);
         result = 31 * result + addPostalCode.hashCode();
         result = 31 * result + (genre != null ? genre.hashCode() : 0);
-        result = 31 * result + (priceRange != null ? priceRange.hashCode() : 0);
+        result = 31 * result + priceRange;
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         result = 31 * result + (modifiedTime != null ? modifiedTime.hashCode() : 0);
-        result = 31 * result + starRating;
+        temp = Double.doubleToLongBits(starRating);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         temp = Double.doubleToLongBits(longitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
