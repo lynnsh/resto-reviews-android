@@ -1,11 +1,15 @@
 package com.radiantridge.restoradiantridge;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ListFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -13,10 +17,11 @@ import android.widget.ListView;
  * ListFragment for the Restaurant list.
  *
  * @author Erika Bourque
+ * @version 01/12/2016
  */
-public class RestoListFragment extends ListFragment implements FragmentManager.OnBackStackChangedListener {
+public class RestoListFragment extends ListFragment {
     private static final String TAG = "ListFrag";
-    //Restaurant[] list;
+    Restaurant[] list;
 
     /**
      * Overriden lifecycle method.  Sets up the fragment.
@@ -28,15 +33,15 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
         super.onActivityCreated(savedInstanceState);
 
         getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-        // monitor back stack changes to update list view
-        // Do we need to monitor this?
-        getFragmentManager().addOnBackStackChangedListener(this);
-    }
-
-    @Override
-    public void onBackStackChanged() {
-        // what to do here?
+        getListView().setLongClickable(true);
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i(TAG, "Item long clicked at pos: " + position);
+                callRestaurant((Restaurant) getListView().getItemAtPosition(position));
+                return true;
+            }
+        });
     }
 
     /**
@@ -51,7 +56,7 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Log.i(TAG, "Item clicked at pos: " + position);
-        //displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
+        displayRestoDetails((Restaurant) getListView().getItemAtPosition(position));
     }
 
     /**
@@ -60,8 +65,8 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
      *
      * @param resto     The restaurant to be displayed
      */
-//    private void displayRestoDetails(Restaurant resto)
-//    {
+    private void displayRestoDetails(Restaurant resto)
+    {
 //        int id = resto.getDatabaseId();
 //
 //        // Send Database Id
@@ -70,7 +75,7 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
 //        intent.setClass(getActivity(), AddRestoActivity.class);
 //        intent.putExtra("databaseId", id);
 //        startActivity(intent);
-//    }
+    }
 
     /**
      * This method sets the list to the adapter for the ListFragment to display.
@@ -80,7 +85,27 @@ public class RestoListFragment extends ListFragment implements FragmentManager.O
     public void setList(Restaurant[] list)
     {
         Log.i(TAG, "New ListAdapter");
-        //this.list = list;
-        setListAdapter(new ArrayAdapter<Restaurant>(getActivity(), android.R.layout.simple_list_item_1, list));
+        this.list = list;
+        setListAdapter(new RestaurantAdapter(getActivity(), list));
+    }
+
+    private void callRestaurant(Restaurant resto)
+    {
+        if (resto.getPhone() != null)
+        {
+            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + resto.getPhone())));
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle(R.string.dialog_phone_title).setMessage(R.string.dialog_phone_text);
+            builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // Cancel the dialog
+                    dialog.cancel();
+                }
+            });
+            builder.show();
+        }
     }
 }

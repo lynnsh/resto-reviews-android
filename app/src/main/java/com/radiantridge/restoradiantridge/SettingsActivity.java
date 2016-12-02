@@ -1,5 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,13 +9,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class SettingsActivity extends Menu {
+import java.util.Calendar;
+
+/**
+ * This activity allows a user to change their login settings for the
+ * application.
+ *
+ * @author Erika Bourque
+ * @version 01/12/2016
+ */
+public class SettingsActivity extends MenuActivity {
     private static final String TAG = "Settings";
     private EditText fnameET;
     private EditText lnameET;
     private EditText emailET;
     private EditText pwET;
 
+    /**
+     * Overriden lifecycle method.  Instantiates class variables and
+     * sets the current values of the settings to the EditTexts.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +45,10 @@ public class SettingsActivity extends Menu {
         setEditTextValues();
     }
 
-    private void setEditTextValues()
-    {
+    /**
+     * This method sets the values from the Settings SharedPrefs to the EditTexts.
+     */
+    private void setEditTextValues() {
         Log.i(TAG, "Displaying current values");
         SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
 
@@ -39,20 +58,29 @@ public class SettingsActivity extends Menu {
         pwET.setText(prefs.getString("password", null));
     }
 
-    public void save(View v)
-    {
+    /**
+     * Event handler for the save button.  Validates the data before saving and
+     * closing the activity.
+     *
+     * @param v The view that fired the event
+     */
+    public void save(View v) {
         boolean dataIsValid = validateData();
 
-        if (dataIsValid)
-        {
-            saveData();
-            // display saved toast
-            // exit
+        if (dataIsValid) {
+            saveValidatedData();
+            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT);
+            finish();
         }
     }
 
-    private boolean validateData()
-    {
+    /**
+     * This method validates that the data in the EditText is not empty and is in
+     * the correct format.
+     *
+     * @return True if the data is valid
+     */
+    private boolean validateData() {
         boolean isValid = false;
 
         String fname = fnameET.getText().toString();
@@ -62,21 +90,15 @@ public class SettingsActivity extends Menu {
 
         // Checking if all fields are valid
         if ((!fname.isEmpty()) && (!lname.isEmpty())
-                && (!email.isEmpty()) && (!pw.isEmpty()))
-        {
+                && (!email.isEmpty()) && (!pw.isEmpty())) {
             // Checking if the email is in a valid format
-            if (email.matches(".+@.+"))
-            {
-                // Saving the data
+            if (email.matches(".+@.+")) {
                 isValid = true;
-            }
-            else
-            {
+            } else {
                 // Display error message concerning invalid email
                 Toast.makeText(this, getResources().getString(R.string.error_invalid_email), Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             // Display error message concerning missing fields
             Toast.makeText(this, getResources().getString(R.string.error_empty_fields), Toast.LENGTH_SHORT).show();
         }
@@ -84,8 +106,12 @@ public class SettingsActivity extends Menu {
         return isValid;
     }
 
-    private void saveData()
-    {
+    /**
+     * This method saves the data in the EditTexts to the Settings
+     * SharedPrefs.
+     */
+    private void saveValidatedData() {
+        // TODO: also verify timestamp format with Alena
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
@@ -97,10 +123,41 @@ public class SettingsActivity extends Menu {
         editor.putString("lname", lnameET.getText().toString());
         editor.putString("email", emailET.getText().toString());
         editor.putString("password", pwET.getText().toString());
+        editor.putString("timestamp", Calendar.getInstance().getTime().toString());
 
         // Saving the changes
         editor.commit();
     }
 
-    // Also need on back pressed to display do you want to leave popup
+    /**
+     * Overriden lifecycle method.  Asks the user to confirm before
+     * exiting the activity.
+     */
+    @Override
+    public void onBackPressed() {
+        Log.i(TAG, "Back pressed.");
+
+        // Building the alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_exit_title);
+        builder.setMessage(R.string.dialog_exit_text);
+
+        // Setting buttons on the alert dialog
+        builder.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // End activity
+                finish();
+            }
+        });
+
+        builder.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // Cancel the dialog
+                dialog.cancel();
+            }
+        });
+
+        // Displaying the dialog
+        builder.show();
+    }
 }

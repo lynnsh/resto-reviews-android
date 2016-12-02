@@ -1,6 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuInflater;
@@ -11,8 +12,9 @@ import android.view.MenuItem;
  * this menu.
  *
  * @author Erika Bourque
+ * @author Victor Ruggi
  */
-public class Menu extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
     private static final String TAG = "Menu";
 
     /**
@@ -46,10 +48,14 @@ public class Menu extends AppCompatActivity {
                 return true;
             case R.id.dawson:
                 Log.i(TAG, "Dawson selected.");
-                // Victor this is where you launch the dawson website
+                String url = "https://www.dawsoncollege.qc.ca/computer-science-technology/";
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(intent);
+                return true;
             case R.id.settings: {
                 Log.i(TAG, "Settings selected.");
                 startActivity(new Intent(this, SettingsActivity.class));
+                return true;
             }
             default:
                 return super.onOptionsItemSelected(menuOption);
