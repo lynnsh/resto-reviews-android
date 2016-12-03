@@ -28,6 +28,14 @@ public class Restaurant {
     public Restaurant() {
     }
 
+    public int getDbId() {
+        return dbId;
+    }
+
+    public void setDbId(int dbId) {
+        this.dbId = dbId;
+    }
+
     public String getName() {
         return name;
     }

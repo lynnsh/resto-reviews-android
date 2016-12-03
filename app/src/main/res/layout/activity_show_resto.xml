@@ -31,9 +31,11 @@
                 android:layout_weight="0.5"
                 />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
                 android:id="@+id/editRestoName" />
@@ -59,9 +61,11 @@
                 android:layout_weight="0.5"
                 />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNum"
@@ -80,9 +84,11 @@
                 android:id="@+id/textStreet"
                 android:layout_weight="0.5" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editStreet" />
@@ -100,9 +106,11 @@
                 android:id="@+id/textCity"
                 android:layout_weight="0.5" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCity" />
@@ -120,9 +128,11 @@
                 android:id="@+id/textCode"
                 android:layout_weight="0.5" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCode" />
@@ -140,9 +150,11 @@
                 android:id="@+id/textPhone"
                 android:layout_weight="0.5" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editTextPhone" />
@@ -161,9 +173,11 @@
                 android:id="@+id/textGenre"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editGenre" />
@@ -181,9 +195,11 @@
                 android:id="@+id/textPrice"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editPrice" />
@@ -202,9 +218,11 @@
                 android:id="@+id/textNotes"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="match_parent"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNotes" />
@@ -222,9 +240,11 @@
                 android:id="@+id/textLongitude"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLongitude" />
@@ -242,9 +262,11 @@
                 android:id="@+id/textLatitude"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLatitude" />
@@ -262,8 +284,15 @@
             android:id="@+id/ratingBar"
             style="@style/Widget.AppCompat.RatingBar"
             android:numStars="5"
-            android:isIndicator="true"
-            />
+            android:isIndicator="false" />
 
+     <!--   <Button
+            android:text="@string/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonSave"
+            android:onClick="saveResto"
+            />
+        -->
     </LinearLayout>
 </RelativeLayout>

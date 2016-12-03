@@ -1,5 +1,6 @@
 package com.radiantridge.restoradiantridge;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,13 +52,14 @@ public class AddRestoActivity extends AppCompatActivity {
         //make labels work, stop eveyrhitng until valid input
         //getting the text values from fields
         //gets the name field and save it to name string
-        handleNameField(v);
+        boolean isNameValid,isCodeValid,isPriceValid,isGenreValid;
+        isNameValid =  handleNameField(v);
         handleNumField(v);
         handleStreetField(v);
         handleCityField(v);
-        handleCodeField(v);
-        handleGenreField(v);
-        handlePriceField(v);
+        isCodeValid= handleCodeField(v);
+        isGenreValid = handleGenreField(v);
+        isPriceValid = handlePriceField(v);
         handleNotesField(v);
         handleLongLatFields(v);
         handleRatingBar(v);
@@ -65,22 +67,35 @@ public class AddRestoActivity extends AppCompatActivity {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         resto.setCreatedTime(timestamp);
+        resto.setModifiedTime(timestamp);
         Log.i(TAG,"time " +timestamp);
         dbconn = DatabaseConnector.getDatabaseConnector(this);
-        dbconn.addResto(resto);
+
+        Log.i(TAG,""+isNameValid +" "+ isCodeValid +" " + isPriceValid +" "+ isGenreValid);
+        if(isNameValid && isCodeValid && isPriceValid && isGenreValid) {
+            Log.i(TAG , "Saving resto..");
+            int id =(int) dbconn.addResto(resto);
+            resto.setDbId(id);
+            Intent intent = new Intent(this, MainRestoActivity.class);
+            startActivity(intent);
+        }
     }
-    private void handleNameField(View v){
+    private boolean handleNameField(View v){
+        boolean isValid=false;
         EditText editName = (EditText) findViewById(R.id.editRestoName);
         name = editName.getText().toString();
         TextView nameErr= (TextView) findViewById(R.id.textNameError);
-        if(name != null) {
+        if(name != null&& !(name.isEmpty())) {
             resto.setName(name);
+            isValid=true;
             nameErr.setVisibility(View.INVISIBLE);
         }
         else
         {
+            isValid=false;
             nameErr.setVisibility(View.VISIBLE);
         }
+        return isValid;
     }
     private void handleNumField(View v) {
         EditText editNumber = (EditText) findViewById(R.id.editNum);
@@ -110,52 +125,65 @@ public class AddRestoActivity extends AppCompatActivity {
         Log.i(TAG, "city " + city);
     }
 
-    private void handleCodeField(View v) {
+    private boolean handleCodeField(View v) {
+        boolean isValid=false;
         EditText editCode = (EditText) findViewById(R.id.editCode);
         code = editCode.getText().toString();
         TextView codeErr= (TextView) findViewById(R.id.textCodeError);
         String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
         if (code != null && !(code.isEmpty())) {
             if(code.matches(regex)) {
+                isValid=true;
                 codeErr.setVisibility(View.INVISIBLE);
                 resto.setAddPostalCode(code);
                 Log.i(TAG, "matches regex");
             }
         }
         else{
+            isValid=false;
             codeErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "code " + code);
+        return isValid;
     }
-    private void handleGenreField(View v) {
+    private boolean handleGenreField(View v) {
+        boolean isValid=false;
         EditText editGenre = (EditText) findViewById(R.id.editGenre);
         genre = editGenre.getText().toString();
         TextView genreErr= (TextView) findViewById(R.id.textGenreError);
         if (genre != null && !(genre.isEmpty())) {
+            isValid=true;
             genreErr.setVisibility(View.INVISIBLE);
                 resto.setGenre(genre);
         }
         else{
+            isValid=false;
             genreErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "genre " + genre);
+        return isValid;
     }
-    private void handlePriceField(View v) {
+    private boolean handlePriceField(View v) {
+        boolean isValid=false;
         EditText editPrice = (EditText) findViewById(R.id.editPrice);
         String priceRange = editPrice.getText().toString();
         TextView priceErr= (TextView) findViewById(R.id.textPriceError);
-        String regex = "^/${1,4}$";
+        String regex = "^[1-4]{1}$";
         if (priceRange != null && !(priceRange.isEmpty())) {
             if (priceRange.matches(regex)) {
+                isValid=true;
                 priceErr.setVisibility(View.INVISIBLE);
                 price = Integer.parseInt(priceRange);
                 resto.setPriceRange(price);
                 Log.i(TAG, "matches regex");
             }
         } else{
+            isValid=false;
             priceErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "price range " + price);
+        Log.i(TAG, "is price valid" + isValid);
+        return isValid;
     }
 
     private void handleNotesField(View v)

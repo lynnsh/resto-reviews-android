@@ -30,15 +30,14 @@
                 android:id="@+id/textRestoName"
                 android:layout_weight="0.5"
                 />
-
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="n"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
                 android:id="@+id/editRestoName" />
+
         </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -99,7 +98,6 @@
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:text="name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editStreet" />
@@ -121,7 +119,6 @@
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCity" />
@@ -198,7 +195,6 @@
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Name"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editGenre" />
@@ -213,6 +209,7 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/colorAccent"
                 android:gravity="right"
+                android:visibility="invisible"
                 android:id="@+id/textGenreError" />
         </LinearLayout>
         <LinearLayout
