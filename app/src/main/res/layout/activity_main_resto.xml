@@ -12,13 +12,14 @@ android:paddingBottom="@dimen/activity_vertical_margin"
 tools:context="com.radiantridge.restoradiantridge.MainRestoActivity"
 android:orientation="vertical">
 
-<!-- These buttons will be image buttons in the future -->
+<!-- TODO: These buttons will be image buttons in the future -->
 <!-- The strings are temporary, they will be replaced with the images -->
 <Button
     android:id="@+id/logoBtn"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:text="this will be our logo" />
+    android:text="this will be our logo"
+    android:onClick="launchAbout"/>
 
 <TableLayout
     android:layout_width="match_parent"
@@ -52,9 +53,8 @@ android:orientation="vertical">
 </TableLayout>
 
 <TextView
-    android:id="@+id/greetingTxt"
+    android:id="@+id/main_greeting"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="@string/greeting"/>
+    android:layout_height="wrap_content" />
 </LinearLayout>
 
