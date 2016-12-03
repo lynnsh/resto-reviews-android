@@ -85,6 +85,8 @@ public class MainRestoActivity extends MenuActivity {
      */
     public void launchAddResto(View view)
     {
+        Intent intent = new Intent();
+        intent.putExtra("isNew", true);
         startActivity(new Intent(this, AddRestoActivity.class));
     }
 

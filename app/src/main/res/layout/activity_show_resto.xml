@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.AddRestoActivity">
+    tools:context="com.radiantridge.restoradiantridge.ShowRestoActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -30,28 +30,17 @@
                 android:id="@+id/textRestoName"
                 android:layout_weight="0.5"
                 />
+
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
                 android:id="@+id/editRestoName" />
-
         </LinearLayout>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="32dp">
-        <TextView
-            android:text="@string/name_error"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/colorAccent"
-            android:gravity="right"
-            android:visibility="invisible"
-            android:id="@+id/textNameError" />
-    </LinearLayout>
+
 
         <TextView
             android:text="@string/resto_add"
@@ -70,16 +59,17 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/textNum"
                 android:layout_weight="0.5"
-               />
+                />
 
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNum"
-                 />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +87,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editStreet" />
@@ -118,7 +109,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCity" />
@@ -139,24 +131,13 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editCode" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/code_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:gravity="right"
-                android:id="@+id/textCodeError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -172,7 +153,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editTextPhone" />
@@ -194,24 +176,13 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editGenre" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/genre_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:id="@+id/textGenreError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -227,25 +198,14 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editPrice" />
 
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="32dp">
-            <TextView
-                android:text="@string/price_error"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textColor="@color/colorAccent"
-                android:gravity="right"
-                android:visibility="invisible"
-                android:id="@+id/textPriceError" />
-        </LinearLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -261,7 +221,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="match_parent"
-                android:inputType="textMultiLine"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editNotes" />
@@ -282,7 +243,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLongitude" />
@@ -303,7 +265,8 @@
             <EditText
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:ems="10"
                 android:background="@drawable/edittextborders"
                 android:id="@+id/editLatitude" />
@@ -323,12 +286,28 @@
             android:numStars="5"
             android:isIndicator="false" />
 
-        <Button
-            android:text="@string/button_save"
+       <Button
+            android:text="@string/button_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSave"
-            android:onClick="saveResto"
+            android:id="@+id/buttonAdd"
+            android:visibility="invisible"
             />
+        <Button
+            android:text="@string/button_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonEdit"
+            android:visibility="invisible"
+            />
+        <Button
+        android:text="@string/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonDelete"
+            android:visibility="invisible"
+
+            />
+
     </LinearLayout>
 </RelativeLayout>

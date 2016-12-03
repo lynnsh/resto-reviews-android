@@ -47,6 +47,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      */
     private DatabaseConnector(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     /**
@@ -55,22 +56,23 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase database) {
+onUpgrade(database,1,2);
         String sql = "create table "
                 + TABLE_RESTOS + "( "
                 + COLUMN_ID + " integer primary key autoincrement, "
                 + COLUMN_NAME + " text not null, "
                 + COLUMN_GENRE + " text, "
-                + COLUMN_PRICE + " integer "
-                + COLUMN_RATING + " real "
-                + COLUMN_NOTES + " text "
-                + COLUMN_PHONE + " text "
-                + COLUMN_ADDRESS_NUMBER + " integer "
-                + COLUMN_ADDRESS_STREET + " text "
-                + COLUMN_ADDRESS_CITY + " text "
-                + COLUMN_POSTAL_CODE + " text "
-                + COLUMN_LATITUDE + " real "
-                + COLUMN_LONGITUDE + " real "
-                + COLUMN_DATE_CREATED + " integer "
+                + COLUMN_PRICE + " integer, "
+                + COLUMN_RATING + " real, "
+                + COLUMN_NOTES + " text, "
+                + COLUMN_PHONE + " text, "
+                + COLUMN_ADDRESS_NUMBER + " integer, "
+                + COLUMN_ADDRESS_STREET + " text, "
+                + COLUMN_ADDRESS_CITY + " text, "
+                + COLUMN_POSTAL_CODE + " text, "
+                + COLUMN_LATITUDE + " real, "
+                + COLUMN_LONGITUDE + " real, "
+                + COLUMN_DATE_CREATED + " integer, "
                 + COLUMN_DATE_MODIFIED + " integer "
                 + ");";
         database.execSQL(sql);
@@ -262,8 +264,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setDatabaseId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
             resto.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
             resto.setGenre(cursor.getString(cursor.getColumnIndex(COLUMN_GENRE)));
-//            resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
-//            resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
+            resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
+            resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
             resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));
