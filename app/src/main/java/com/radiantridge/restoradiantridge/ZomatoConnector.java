@@ -201,6 +201,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             resto.setPhone(obj.getString("phone_numbers"));
         }
 
+        Log.i(TAG, "Built restaurant: " + resto.getName());
         return resto;
     }
 
