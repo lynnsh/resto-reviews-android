@@ -1,6 +1,8 @@
 package com.radiantridge.restoradiantridge;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +30,7 @@ public class AddRestoActivity extends AppCompatActivity {
     private String notes;
     private Double longit;
     private Double latid;
-    private float rating;
+    private Double rating;
    private  DatabaseConnector dbconn;
     private boolean save; //keeps check of valid inputs
     /**
@@ -213,9 +215,32 @@ public class AddRestoActivity extends AppCompatActivity {
     }
     private void handleRatingBar(View v) {
         RatingBar editRating = (RatingBar) findViewById(R.id.ratingBar);
-        rating = editRating.getRating();
+        rating = (double)editRating.getRating();
             resto.setStarRating(rating);
 
         Log.i(TAG, "rating bar val" + rating);
+    }
+    @Override
+    public void onBackPressed(){
+        //code taken from Android Developers Site
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.dialog_title);
+        builder.setMessage(R.string.dialog_msg);
+
+        builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+
     }
     }

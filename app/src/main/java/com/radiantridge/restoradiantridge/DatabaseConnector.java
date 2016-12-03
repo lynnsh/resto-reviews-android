@@ -1,4 +1,5 @@
 package com.radiantridge.restoradiantridge;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -6,11 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import java.sql.Timestamp;
+
 /**
  * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
  * @author Alena Shulzhenko
  * @version 2016-12-01
  */
+
 public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String TAG = "DBConnector";
     // table name
@@ -37,40 +40,45 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // static instance to share DBHelper
     private static DatabaseConnector dbh = null;
+
     /**
      * Private constructor for DatabaseConnector
      * @param context the reference to the Context class.
      */
     private DatabaseConnector(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
+
     /**
      * The lifecycle method that creates restos database.
      * @param database the database.
      */
     @Override
     public void onCreate(SQLiteDatabase database) {
+onUpgrade(database,1,2);
         String sql = "create table "
                 + TABLE_RESTOS + "( "
                 + COLUMN_ID + " integer primary key autoincrement, "
                 + COLUMN_NAME + " text not null, "
                 + COLUMN_GENRE + " text, "
-                + COLUMN_PRICE + " integer "
-                + COLUMN_RATING + " real "
-                + COLUMN_NOTES + " text "
-                + COLUMN_PHONE + " text "
-                + COLUMN_ADDRESS_NUMBER + " integer "
-                + COLUMN_ADDRESS_STREET + " text "
-                + COLUMN_ADDRESS_CITY + " text "
-                + COLUMN_POSTAL_CODE + " text "
-                + COLUMN_LATITUDE + " real "
-                + COLUMN_LONGITUDE + " real "
-                + COLUMN_DATE_CREATED + " integer "
+                + COLUMN_PRICE + " integer, "
+                + COLUMN_RATING + " real, "
+                + COLUMN_NOTES + " text, "
+                + COLUMN_PHONE + " text, "
+                + COLUMN_ADDRESS_NUMBER + " integer, "
+                + COLUMN_ADDRESS_STREET + " text, "
+                + COLUMN_ADDRESS_CITY + " text, "
+                + COLUMN_POSTAL_CODE + " text, "
+                + COLUMN_LATITUDE + " real, "
+                + COLUMN_LONGITUDE + " real, "
+                + COLUMN_DATE_CREATED + " integer, "
                 + COLUMN_DATE_MODIFIED + " integer "
                 + ");";
         database.execSQL(sql);
         Log.i(TAG, "onCreate()");
     }
+
     /**
      * The static Database Connector initializer to make sure to have one instance
      * in app.
@@ -86,6 +94,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         Log.i(TAG, "getDatabaseConnector()");
         return dbh;
     }
+
     /**
      * The lifecycle method that updates restos database.
      * @param db the new database to upgrade the old version.
@@ -100,6 +109,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         onCreate(db);
         Log.i(TAG, "onUpgrade()");
     }
+
     /**
      * Adds the Restaurant object to the database.
      * @param resto the Restaurant object to add to the database.
@@ -121,10 +131,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_LONGITUDE, resto.getLongitude());
         cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
         cv.put(COLUMN_DATE_MODIFIED, resto.getModifiedTime().getTime());
+
         long id = getWritableDatabase().insert(TABLE_RESTOS, null, cv);
         Log.d(TAG, "Inserted resto, name: " + resto.getName() + ", id: " + id);
         return id;
     }
+
     /**
      * Deletes the Restaurant object with the given id.
      * @param id the id of the Restaurant object to delete.
@@ -134,6 +146,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) });
         Log.d(TAG, "Deleted resto with the id: " + id);
     }
+
     /**
      * Updates the Restaurant object in the database.
      * @param resto the Restaurant object to update.
@@ -154,10 +167,12 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_LONGITUDE, resto.getLongitude());
         cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
         cv.put(COLUMN_DATE_MODIFIED, resto.getModifiedTime().getTime());
+
         long id = getWritableDatabase().update(TABLE_RESTOS, cv, COLUMN_ID + " = ?",
                 new String[] { String.valueOf(resto.getDatabaseId()) });
         Log.d(TAG, "Updated resto, name: " + resto.getName() + ", id: " + id);
     }
+
     /**
      * Returns all Restaurant objects in the database.
      * @return all Restaurant objects in the database.
@@ -167,6 +182,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
     }
+
     /**
      * Searches for Restaurant objects with the name like the one provided.
      * @param name the name key.
@@ -178,6 +194,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
     }
+
     /**
      * Searches for Restaurant objects with the genre like the one provided.
      * @param genre the genre key.
@@ -189,6 +206,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
     }
+
     /**
      * Searches for Restaurant objects with the city like the one provided.
      * @param city the city key.
@@ -200,6 +218,8 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
     }
+
+
     /**
      * Searches for Restaurant objects with the name, genre, or city like the key provided.
      * @param key the key to search against in the database.
@@ -214,6 +234,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
     }
+
     /**
      * Returns the Restaurant object with the provided id.
      * @param id the id of the Restaurant object to find.
@@ -227,6 +248,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         Restaurant[] restos = getRestosFromCursor(cursor);
         return restos.length == 0 ? null : restos[0];
     }
+
     /**
      * Populates restos array using the information from the cursor.
      * @param cursor the SQLiteCursor with the results from the query.
@@ -243,7 +265,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
             resto.setGenre(cursor.getString(cursor.getColumnIndex(COLUMN_GENRE)));
             resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
-            resto.setStarRating(cursor.getFloat(cursor.getColumnIndex(COLUMN_RATING)));
+            resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
             resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));

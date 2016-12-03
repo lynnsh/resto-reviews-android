@@ -25,7 +25,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
     private String notes;
     private Double longit;
     private Double latid;
-    private float rating;
+    private double rating;
     private int id;  // get it
     private  DatabaseConnector dbconn;
     /**
@@ -36,6 +36,15 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
+
+        Bundle bundle = getIntent().getExtras();
+
+        boolean isZomato = bundle.getBoolean("isZomato");
+        if(!isZomato)
+        {
+             id = bundle.getInt("databaseId");
+        }
+
         resto = new Restaurant();
 
         dbconn = DatabaseConnector.getDatabaseConnector(this);
@@ -71,7 +80,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
         txtlongitude.setText(lon);
         String lat = latid+"";
         txtlatitude.setText(lat);
-        ratingBar.setRating(rating);
+        ratingBar.setRating((float)rating);
 
     }
     private void setFields(Restaurant resto)

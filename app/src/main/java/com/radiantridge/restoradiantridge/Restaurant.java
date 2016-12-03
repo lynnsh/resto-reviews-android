@@ -18,7 +18,7 @@ public class Restaurant {
     private int priceRange; //the range is 1 to 4
     private Timestamp createdTime;  // ?? creation time of what
     private Timestamp modifiedTime;  // ?? of what
-    private float starRating; // 1- 5
+    private double starRating; // 1- 5
     private String notes;
     private double longitude;
     private double latitude;
@@ -111,11 +111,11 @@ public class Restaurant {
         this.modifiedTime = modifiedTime;
     }
 
-    public float getStarRating() {
+    public double getStarRating() {
         return starRating;
     }
 
-    public void setStarRating(float starRating) {
+    public void setStarRating(double starRating) {
         this.starRating = starRating;
     }
 
@@ -159,6 +159,7 @@ public class Restaurant {
         return this.phone;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -168,7 +169,7 @@ public class Restaurant {
 
         if (addNum != that.addNum) return false;
         if (priceRange != that.priceRange) return false;
-        if (Float.compare(that.starRating, starRating) != 0) return false;
+        if (Double.compare(that.starRating, starRating) != 0) return false;
         if (Double.compare(that.longitude, longitude) != 0) return false;
         if (Double.compare(that.latitude, latitude) != 0) return false;
         if (dbId != that.dbId) return false;
@@ -176,10 +177,10 @@ public class Restaurant {
         if (addStreet != null ? !addStreet.equals(that.addStreet) : that.addStreet != null)
             return false;
         if (addCity != null ? !addCity.equals(that.addCity) : that.addCity != null) return false;
-        if (addPostalCode != null ? !addPostalCode.equals(that.addPostalCode) : that.addPostalCode != null)
+        if (!addPostalCode.equals(that.addPostalCode)) return false;
+        if (!genre.equals(that.genre)) return false;
+        if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null)
             return false;
-        if (genre != null ? !genre.equals(that.genre) : that.genre != null) return false;
-        if (!createdTime.equals(that.createdTime)) return false;
         if (modifiedTime != null ? !modifiedTime.equals(that.modifiedTime) : that.modifiedTime != null)
             return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
@@ -195,12 +196,13 @@ public class Restaurant {
         result = 31 * result + addNum;
         result = 31 * result + (addStreet != null ? addStreet.hashCode() : 0);
         result = 31 * result + (addCity != null ? addCity.hashCode() : 0);
-        result = 31 * result + (addPostalCode != null ? addPostalCode.hashCode() : 0);
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + addPostalCode.hashCode();
+        result = 31 * result + genre.hashCode();
         result = 31 * result + priceRange;
-        result = 31 * result + createdTime.hashCode();
+        result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         result = 31 * result + (modifiedTime != null ? modifiedTime.hashCode() : 0);
-        result = 31 * result + (starRating != +0.0f ? Float.floatToIntBits(starRating) : 0);
+        temp = Double.doubleToLongBits(starRating);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
         temp = Double.doubleToLongBits(longitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
