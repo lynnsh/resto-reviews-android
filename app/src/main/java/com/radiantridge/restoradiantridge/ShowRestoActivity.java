@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,24 +46,31 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
-        getFields();
 
         Bundle bundle = getIntent().getExtras();
 
         boolean isZomato = bundle.getBoolean("isZomato");
         if(!isZomato)
         {
+            Log.i(TAG,"is not a zomato resto");
              id = bundle.getInt("databaseId");
+            Log.i(TAG, "the id os resto " + id);
         }
         if(isZomato)
         {
+            Log.i(TAG,"is  a zomato resto");
+
             showAddButton();
         }
-        resto = new Restaurant();
-
         dbconn = DatabaseConnector.getDatabaseConnector(this);
 
+        resto = new Restaurant();
+
+        //
+
         resto = dbconn.getResto(id);
+        Log.i(TAG, "IS RESTO PRESENT" + resto);
+        getFields();
     }
 
     private void showAddButton() {
@@ -78,9 +86,9 @@ public class ShowRestoActivity  extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), AddRestoActivity.class);
                 //sending resto obj
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("resto", resto);
+              //  bundle.putSerializable("resto", resto);
 
-                intent.putExtras(bundle);
+                intent.putExtra("resto",resto);
                 startActivity(intent);
             }
         });
@@ -129,13 +137,13 @@ public class ShowRestoActivity  extends AppCompatActivity {
         setFields(resto);
         txtname.setText(name);
         //how to check for nulls
-        txtnum.setText(num);
+        txtnum.setText(num+"");
         txtstreet.setText(street);
         txtcity.setText(city);
         txtcode.setText(code);
         txtphone.setText(phone);
         txtgenre.setText(genre);
-        txtprice.setText(price);
+        txtprice.setText(price+"");
         txtnotes.setText(notes);
         String lon = longit+"";
         txtlongitude.setText(lon);
