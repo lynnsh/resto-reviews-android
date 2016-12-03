@@ -8,7 +8,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+/**
+ *
+ * @author Rafia Anwar
+ */
 public class TipCalcActivity extends AppCompatActivity {
+    private static final String TAG = "Tip Act"; //use it
+
     private String billStr;
     private RadioGroup radioGroup;
     private RadioButton radioButton;

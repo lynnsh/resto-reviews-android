@@ -1,12 +1,14 @@
 package com.radiantridge.restoradiantridge;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
  * Created by 1141669 on 11/21/2016.
+ * @author rafia
  */
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 
     private String name;
     private int addNum;
@@ -14,18 +16,25 @@ public class Restaurant {
     private String addCity;
     private String addPostalCode;
     private String genre;
-    private String phone;
-    private int priceRange; //the range is $ to $$$$ //int
+    private int priceRange; //the range is 1 to 4
     private Timestamp createdTime;  // ?? creation time of what
     private Timestamp modifiedTime;  // ?? of what
-    private double starRating; // 1- 5 //double
+    private double starRating; // 1- 5
     private String notes;
     private double longitude;
     private double latitude;
     private int dbId;
+    private String phone;
 
     public Restaurant() {
+    }
 
+    public int getDbId() {
+        return dbId;
+    }
+
+    public void setDbId(int dbId) {
+        this.dbId = dbId;
     }
 
     public String getName() {
@@ -45,10 +54,13 @@ public class Restaurant {
     }
 
     public int getAddNum() {
+
+
         return addNum;
     }
 
     public void setAddNum(int addNum) {
+
         this.addNum = addNum;
     }
 
@@ -86,16 +98,6 @@ public class Restaurant {
 
     public Timestamp getCreatedTime() {
         return createdTime;
-    }
-
-    public void setDatabaseId(int id)
-    {
-        this.dbId = id;
-    }
-
-    public int getDatabaseId()
-    {
-        return this.dbId;
     }
 
     public void setCreatedTime(Timestamp createdTime) {
@@ -141,15 +143,23 @@ public class Restaurant {
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
-    public void setPhone(String phone)
-    {
+
+    public void setDatabaseId(int id) {
+        this.dbId = id;
+    }
+
+    public int getDatabaseId() {
+        return this.dbId;
+    }
+
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public String getPhone()
-    {
+    public String getPhone() {
         return this.phone;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -159,22 +169,23 @@ public class Restaurant {
         Restaurant that = (Restaurant) o;
 
         if (addNum != that.addNum) return false;
-        if (starRating != that.starRating) return false;
+        if (priceRange != that.priceRange) return false;
+        if (Double.compare(that.starRating, starRating) != 0) return false;
         if (Double.compare(that.longitude, longitude) != 0) return false;
         if (Double.compare(that.latitude, latitude) != 0) return false;
+        if (dbId != that.dbId) return false;
         if (!name.equals(that.name)) return false;
         if (addStreet != null ? !addStreet.equals(that.addStreet) : that.addStreet != null)
             return false;
         if (addCity != null ? !addCity.equals(that.addCity) : that.addCity != null) return false;
         if (!addPostalCode.equals(that.addPostalCode)) return false;
-        if (genre != null ? !genre.equals(that.genre) : that.genre != null) return false;
-        if (priceRange != that.priceRange)
-            return false;
+        if (!genre.equals(that.genre)) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null)
             return false;
         if (modifiedTime != null ? !modifiedTime.equals(that.modifiedTime) : that.modifiedTime != null)
             return false;
-        return notes != null ? notes.equals(that.notes) : that.notes == null;
+        if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
+        return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
 
@@ -187,7 +198,7 @@ public class Restaurant {
         result = 31 * result + (addStreet != null ? addStreet.hashCode() : 0);
         result = 31 * result + (addCity != null ? addCity.hashCode() : 0);
         result = 31 * result + addPostalCode.hashCode();
-        result = 31 * result + (genre != null ? genre.hashCode() : 0);
+        result = 31 * result + genre.hashCode();
         result = 31 * result + priceRange;
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
         result = 31 * result + (modifiedTime != null ? modifiedTime.hashCode() : 0);
@@ -198,6 +209,8 @@ public class Restaurant {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(latitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + dbId;
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
 
@@ -210,13 +223,15 @@ public class Restaurant {
                 ", addCity='" + addCity + '\'' +
                 ", addPostalCode='" + addPostalCode + '\'' +
                 ", genre='" + genre + '\'' +
-                ", priceRange='" + priceRange + '\'' +
+                ", priceRange=" + priceRange +
                 ", createdTime=" + createdTime +
                 ", modifiedTime=" + modifiedTime +
                 ", starRating=" + starRating +
                 ", notes='" + notes + '\'' +
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
+                ", dbId=" + dbId +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 }
