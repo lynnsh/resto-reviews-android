@@ -56,7 +56,6 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase database) {
-onUpgrade(database,1,2);
         String sql = "create table "
                 + TABLE_RESTOS + "( "
                 + COLUMN_ID + " integer primary key autoincrement, "

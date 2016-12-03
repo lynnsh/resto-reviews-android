@@ -42,6 +42,8 @@ public class AddRestoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
 
+        dbconn = DatabaseConnector.getDatabaseConnector(this);
+
         Bundle bundle = getIntent().getExtras();
         if(getIntent().getSerializableExtra("resto") != null) {
             Log.i(TAG, "Received a resto object from ShowActitivty");
@@ -78,7 +80,7 @@ public class AddRestoActivity extends AppCompatActivity {
         resto.setCreatedTime(timestamp);
         resto.setModifiedTime(timestamp);
         Log.i(TAG,"time " +timestamp);
-        dbconn = DatabaseConnector.getDatabaseConnector(this);
+
 
         Log.i(TAG,""+isNameValid +" "+ isCodeValid +" " + isPriceValid +" "+ isGenreValid);
         if(isNameValid && isCodeValid && isPriceValid && isGenreValid) {
@@ -249,6 +251,6 @@ public class AddRestoActivity extends AppCompatActivity {
             }
         });
         AlertDialog dialog = builder.create();
-
+        dialog.show();
     }
     }
