@@ -41,6 +41,13 @@ public class AddRestoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
+
+        Bundle bundle = getIntent().getExtras();
+        if(getIntent().getSerializableExtra("resto") != null) {
+            Log.i(TAG, "Received a resto object from ShowActitivty");
+            resto =(Restaurant) bundle.getSerializable("resto"); ///////// test
+        }
+
         resto = new Restaurant();
 
     }
@@ -78,6 +85,7 @@ public class AddRestoActivity extends AppCompatActivity {
             Log.i(TAG , "Saving resto..");
             int id =(int) dbconn.addResto(resto);
             resto.setDbId(id);
+            //change it to last opened page
             Intent intent = new Intent(this, MainRestoActivity.class);
             startActivity(intent);
         }

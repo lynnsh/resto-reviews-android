@@ -1,5 +1,6 @@
 package com.radiantridge.restoradiantridge;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
  * @author rafia
  */
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 
     private String name;
     private int addNum;

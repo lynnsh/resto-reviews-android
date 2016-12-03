@@ -286,13 +286,28 @@
             android:numStars="5"
             android:isIndicator="false" />
 
-     <!--   <Button
-            android:text="@string/button_save"
+       <Button
+            android:text="@string/button_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonSave"
-            android:onClick="saveResto"
+            android:id="@+id/buttonAdd"
+            android:visibility="invisible"
             />
-        -->
+        <Button
+            android:text="@string/button_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonEdit"
+            android:visibility="invisible"
+            />
+        <Button
+        android:text="@string/button_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonDelete"
+            android:visibility="invisible"
+
+            />
+
     </LinearLayout>
 </RelativeLayout>

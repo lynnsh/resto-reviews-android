@@ -70,5 +70,8 @@
     <string name="dialog_msg">Are you sure you want to leave this page? </string>
     <string name="dialog_ok">Yes </string>
     <string name="dialog_no">No </string>
+    <string name="button_add">Add </string>
+    <string name="button_edit">Edit </string>
+    <string name="button_delete">Delete </string>
 
 </resources>
