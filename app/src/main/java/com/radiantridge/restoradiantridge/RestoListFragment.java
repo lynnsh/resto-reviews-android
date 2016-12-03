@@ -17,7 +17,7 @@ import android.widget.ListView;
  * ListFragment for the Restaurant list.
  *
  * @author Erika Bourque
- * @version 01/12/2016
+ * @version 03/12/2016
  */
 public class RestoListFragment extends ListFragment {
     private static final String TAG = "ListFrag";
@@ -69,19 +69,21 @@ public class RestoListFragment extends ListFragment {
     {
         int id = resto.getDatabaseId();
         Intent intent = new Intent();
+        intent.setClass(getActivity(), ShowRestoActivity.class);
 
+        // Check if the restaurant already exists in database
         if (id == -1)
         {
-            // send all resto parts
             intent.putExtra("isZomato", true);
+            addRestoFields(intent, resto);
         }
         else
         {
-            intent.setClass(getActivity(), ShowRestoActivity.class);
-            intent.putExtra("databaseId", id);
             intent.putExtra("isZomato", false);
-            startActivity(intent);
+            intent.putExtra("databaseId", id);
         }
+
+        startActivity(intent);
     }
 
     /**
@@ -96,8 +98,15 @@ public class RestoListFragment extends ListFragment {
         setListAdapter(new RestaurantAdapter(getActivity(), list));
     }
 
+    /**
+     * This method dials a restaurant's phone number if it exists, and
+     * shows a dialog if does not.
+     *
+     * @param resto     The restaurant to dial
+     */
     private void callRestaurant(Restaurant resto)
     {
+        // Check if the phone number exists
         if (resto.getPhone() != null)
         {
             startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + resto.getPhone())));
@@ -114,5 +123,27 @@ public class RestoListFragment extends ListFragment {
             });
             builder.show();
         }
+    }
+
+    /**
+     * This method adds the fields of a restaurant to an intent.
+     *
+     * @param intent    The intent to add the fields to
+     * @param resto     The restaurant whose fields are being added
+     */
+    private void addRestoFields(Intent intent, Restaurant resto)
+    {
+        // Zomato does not have fields for notes, createdTime, modifiedTime or dbId
+        intent.putExtra("name", resto.getName());
+        intent.putExtra("addNum", resto.getAddNum());
+        intent.putExtra("addStreet", resto.getAddStreet());
+        intent.putExtra("addCity", resto.getAddCity());
+        intent.putExtra("addPostalCode", resto.getAddPostalCode());
+        intent.putExtra("genre", resto.getGenre());
+        intent.putExtra("priceRange", resto.getPriceRange());
+        intent.putExtra("starRating", resto.getStarRating());
+        intent.putExtra("latitude", resto.getLatitude());
+        intent.putExtra("longitude", resto.getLongitude());
+        intent.putExtra("phone", resto.getPhone());
     }
 }
