@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 /**
  * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
  * @author Alena Shulzhenko
- * @version 2016-12-01
+ * @version 2016-12-05
  */
 
 public class DatabaseConnector extends SQLiteOpenHelper {
@@ -26,6 +26,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_NOTES = "notes";
     public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_SOURCE = "source";
     public static final String COLUMN_ADDRESS_NUMBER = "addressNumber";
     public static final String COLUMN_ADDRESS_STREET = "addressStreet";
     public static final String COLUMN_ADDRESS_CITY = "addressCity";
@@ -65,6 +66,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 + COLUMN_RATING + " real, "
                 + COLUMN_NOTES + " text, "
                 + COLUMN_PHONE + " text, "
+                + COLUMN_SOURCE + " integer, "
                 + COLUMN_ADDRESS_NUMBER + " integer, "
                 + COLUMN_ADDRESS_STREET + " text, "
                 + COLUMN_ADDRESS_CITY + " text, "
@@ -122,6 +124,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_RATING, resto.getStarRating());
         cv.put(COLUMN_NOTES, resto.getNotes());
         cv.put(COLUMN_PHONE, resto.getPhone());
+        cv.put(COLUMN_SOURCE, resto.getSource());
         cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
         cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
         cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
@@ -158,6 +161,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_RATING, resto.getStarRating());
         cv.put(COLUMN_NOTES, resto.getNotes());
         cv.put(COLUMN_PHONE, resto.getPhone());
+        cv.put(COLUMN_SOURCE, resto.getSource());
         cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
         cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
         cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
@@ -267,6 +271,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
+            resto.setSource(cursor.getInt(cursor.getColumnIndex(COLUMN_SOURCE)));
             resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));
             resto.setAddStreet(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_STREET)));
             resto.setAddCity(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_CITY)));

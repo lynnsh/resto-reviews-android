@@ -25,6 +25,7 @@ public class Restaurant implements Serializable{
     private double latitude;
     private int dbId;
     private String phone;
+    private int source; //0-direct input, 1-zomato, 2-heroku api.
 
     public Restaurant() {
     }
@@ -160,6 +161,16 @@ public class Restaurant implements Serializable{
         return this.phone;
     }
 
+    public int getSource() {
+        return this.source;
+    }
+
+    public void setSource(int source) {
+        if(source != 0 || source != 1 || source != 2)
+            throw new IllegalArgumentException("Invalid source value: " + source);
+        this.source = source;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -185,6 +196,7 @@ public class Restaurant implements Serializable{
         if (modifiedTime != null ? !modifiedTime.equals(that.modifiedTime) : that.modifiedTime != null)
             return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
+        if (source != that.source) return false;
         return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
@@ -210,6 +222,7 @@ public class Restaurant implements Serializable{
         temp = Double.doubleToLongBits(latitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + dbId;
+        result = 31 * result + source;
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
@@ -231,6 +244,7 @@ public class Restaurant implements Serializable{
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", dbId=" + dbId +
+                ", source=" + dbId +
                 ", phone='" + phone + '\'' +
                 '}';
     }
