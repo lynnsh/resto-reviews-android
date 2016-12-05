@@ -46,6 +46,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
+        resto = new Restaurant();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -55,24 +56,19 @@ public class ShowRestoActivity  extends AppCompatActivity {
             Log.i(TAG,"is not a zomato resto");
              id = bundle.getInt("databaseId");
             Log.i(TAG, "the id os resto " + id);
+            resto = dbconn.getResto(id);
+            setFields(resto);
+
         }
         if(isZomato)
         {
             Log.i(TAG,"is  a zomato resto");
-            String name = (String)bundle.get("name");
-
+            setZomatoFields(bundle);
             // get each field
-            Log.i(TAG,name);
-
             showAddButton();
+            //make resto obj
         }
         dbconn = DatabaseConnector.getDatabaseConnector(this);
-
-        resto = new Restaurant();
-
-        //
-
-        resto = dbconn.getResto(id);
         handleFields();
     }
 
@@ -82,7 +78,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
         addButton.setVisibility(View.VISIBLE);
         getFields();
 
-        makeAllFieldsEditable();
+        //makeAllFieldsEditable();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,32 +94,6 @@ public class ShowRestoActivity  extends AppCompatActivity {
         });
     }
 
-    private void makeAllFieldsEditable() {
-        txtname.setFocusableInTouchMode(true);
-        txtname.setFocusable(true);
-        txtnum.setFocusableInTouchMode(true);
-        txtnum.setFocusable(true);
-        txtstreet.setFocusableInTouchMode(true);
-        txtstreet.setFocusable(true);
-        txtcity.setFocusableInTouchMode(true);
-        txtcity.setFocusable(true);
-        txtcode.setFocusableInTouchMode(true);
-        txtcode.setFocusable(true);
-        txtphone.setFocusableInTouchMode(true);
-        txtphone.setFocusable(true);
-        txtgenre.setFocusableInTouchMode(true);
-        txtgenre.setFocusable(true);
-        txtprice.setFocusableInTouchMode(true);
-        txtprice.setFocusable(true);
-        txtnotes.setFocusableInTouchMode(true);
-        txtnotes.setFocusable(true);
-        txtlongitude.setFocusableInTouchMode(true);
-        txtlongitude.setFocusable(true);
-        txtlatitude.setFocusableInTouchMode(true);
-        txtlatitude.setFocusable(true);
-        ratingBar.setIsIndicator(true);
-
-    }
 
     private void getFields() {
         txtname = (EditText) findViewById(R.id.editRestoName);
@@ -140,7 +110,6 @@ public class ShowRestoActivity  extends AppCompatActivity {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
     }
     private void handleFields(){
-        setFields(resto);
         txtname.setText(name);
         //how to check for nulls
         txtnum.setText(num+"");
@@ -171,5 +140,18 @@ public class ShowRestoActivity  extends AppCompatActivity {
         longit=resto.getLongitude();
         latid=resto.getLatitude();
         rating=resto.getStarRating();
+    }
+    private void setZomatoFields(Bundle bundle) {
+        name = (String) bundle.get("name");
+
+        num = (int) bundle.get("addNum");
+        street = (String) bundle.get("addStreet");
+        city = (String) bundle.get("addCity");
+        code = (String) bundle.get("addPostalCode");
+        genre = (String) bundle.get("genre");
+        price = (int) bundle.get("priceRange");
+        longit = (double) bundle.get("longitude");
+        latid = (double) bundle.get("latitude");
+        rating = (double) bundle.get("starRating");
     }
 }
