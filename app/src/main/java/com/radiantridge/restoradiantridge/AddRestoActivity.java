@@ -90,6 +90,10 @@ public class AddRestoActivity extends AppCompatActivity {
         handleNotesField(v);
         handleLongLatFields(v);
         handleRatingBar(v);
+        String phone = txtphone.getText().toString();
+        if (phone != null && !(phone.isEmpty())) {
+            resto.setPhone(phone);
+        }
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
@@ -266,8 +270,10 @@ public class AddRestoActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
-                Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
+//                startActivity(intent);
+                finish();
+
             }
         });
         builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
@@ -287,7 +293,7 @@ public class AddRestoActivity extends AppCompatActivity {
         editStreet.setText(resto.getAddStreet());
         editCity.setText(resto.getAddCity());
         editCode.setText(resto.getAddPostalCode());
-      //  txtphone.setText(phone);
+        txtphone.setText(resto.getPhone());
         editGenre.setText(resto.getGenre());
         editPrice.setText(resto.getPriceRange()+"");
         editNotes.setText("");
