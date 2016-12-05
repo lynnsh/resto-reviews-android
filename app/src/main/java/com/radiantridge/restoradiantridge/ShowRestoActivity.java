@@ -59,6 +59,10 @@ public class ShowRestoActivity  extends AppCompatActivity {
         if(isZomato)
         {
             Log.i(TAG,"is  a zomato resto");
+            String name = (String)bundle.get("name");
+
+            // get each field
+            Log.i(TAG,name);
 
             showAddButton();
         }
@@ -69,14 +73,14 @@ public class ShowRestoActivity  extends AppCompatActivity {
         //
 
         resto = dbconn.getResto(id);
-        Log.i(TAG, "IS RESTO PRESENT" + resto);
-        getFields();
+        handleFields();
     }
 
     private void showAddButton() {
         Button addButton = (Button) findViewById(R.id.buttonAdd);
 
         addButton.setVisibility(View.VISIBLE);
+        getFields();
 
         makeAllFieldsEditable();
 
@@ -121,19 +125,21 @@ public class ShowRestoActivity  extends AppCompatActivity {
 
     }
 
-    private void getFields(){
-         txtname = (EditText) findViewById(R.id.editRestoName);
-         txtnum = (EditText) findViewById(R.id.editNum);
-         txtstreet = (EditText) findViewById(R.id.editStreet);
-         txtcity = (EditText) findViewById(R.id.editCity);
-         txtcode = (EditText) findViewById(R.id.editCode);
-         txtphone = (EditText) findViewById(R.id.editTextPhone);
-         txtgenre = (EditText) findViewById(R.id.editGenre);
-         txtprice = (EditText) findViewById(R.id.editPrice);
-         txtnotes = (EditText) findViewById(R.id.editNotes);
-         txtlongitude = (EditText) findViewById(R.id.editLongitude);
-         txtlatitude = (EditText) findViewById(R.id.editLatitude);
-         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+    private void getFields() {
+        txtname = (EditText) findViewById(R.id.editRestoName);
+        txtnum = (EditText) findViewById(R.id.editNum);
+        txtstreet = (EditText) findViewById(R.id.editStreet);
+        txtcity = (EditText) findViewById(R.id.editCity);
+        txtcode = (EditText) findViewById(R.id.editCode);
+        txtphone = (EditText) findViewById(R.id.editTextPhone);
+        txtgenre = (EditText) findViewById(R.id.editGenre);
+        txtprice = (EditText) findViewById(R.id.editPrice);
+        txtnotes = (EditText) findViewById(R.id.editNotes);
+        txtlongitude = (EditText) findViewById(R.id.editLongitude);
+        txtlatitude = (EditText) findViewById(R.id.editLatitude);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+    }
+    private void handleFields(){
         setFields(resto);
         txtname.setText(name);
         //how to check for nulls
