@@ -46,18 +46,17 @@ public class AddRestoActivity extends AppCompatActivity {
         if(bundle != null)
         {
             Log.i(TAG, "Received a resto object from ShowActitivty");
-            resto =(Restaurant) bundle.getSerializable("resto"); // test
+            resto =(Restaurant) bundle.getSerializable("resto");
             if(resto != null)
-            {            Log.i(TAG, "resto obj is not null");
+            {
+                Log.i(TAG, "resto obj is not null");
             }
-            else            Log.i(TAG, "resto obj is null");
-
-
+            else {
+                Log.i(TAG, "resto obj is null");
+                //make our own resto obj
+                resto = new Restaurant();
+            }
         }
-
-
-        resto = new Restaurant();
-
     }
 
     /**
@@ -259,4 +258,31 @@ public class AddRestoActivity extends AppCompatActivity {
         dialog.show();
 
     }
-    }
+//    private void makeAllFieldsEditable() {
+//        txtname.setFocusableInTouchMode(true);
+//        txtname.setFocusable(true);
+//        txtnum.setFocusableInTouchMode(true);
+//        txtnum.setFocusable(true);
+//        txtstreet.setFocusableInTouchMode(true);
+//        txtstreet.setFocusable(true);
+//        txtcity.setFocusableInTouchMode(true);
+//        txtcity.setFocusable(true);
+//        txtcode.setFocusableInTouchMode(true);
+//        txtcode.setFocusable(true);
+//        txtphone.setFocusableInTouchMode(true);
+//        txtphone.setFocusable(true);
+//        txtgenre.setFocusableInTouchMode(true);
+//        txtgenre.setFocusable(true);
+//        txtprice.setFocusableInTouchMode(true);
+//        txtprice.setFocusable(true);
+//        txtnotes.setFocusableInTouchMode(true);
+//        txtnotes.setFocusable(true);
+//        txtlongitude.setFocusableInTouchMode(true);
+//        txtlongitude.setFocusable(true);
+//        txtlatitude.setFocusableInTouchMode(true);
+//        txtlatitude.setFocusable(true);
+//        ratingBar.setIsIndicator(true);
+//
+//    }
+
+}
