@@ -166,7 +166,7 @@ public class Restaurant implements Serializable{
     }
 
     public void setSource(int source) {
-        if(source != 0 || source != 1 || source != 2)
+        if(source != 0 && source != 1 && source != 2)
             throw new IllegalArgumentException("Invalid source value: " + source);
         this.source = source;
     }
