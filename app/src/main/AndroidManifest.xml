@@ -27,6 +27,7 @@
         <activity android:name=".NearbyActivity" />
         <activity android:name=".TipCalcActivity" />
         <activity android:name=".AddRestoActivity" />
+        <activity android:name=".ShowRestoActivity" />
         <activity android:name=".LatLongActivity"></activity>
     </application>
 

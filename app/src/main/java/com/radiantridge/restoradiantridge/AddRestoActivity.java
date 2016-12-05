@@ -41,14 +41,20 @@ public class AddRestoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
-
         dbconn = DatabaseConnector.getDatabaseConnector(this);
-
-        Bundle bundle = getIntent().getExtras();
-        if(getIntent().getSerializableExtra("resto") != null) {
+        Bundle bundle = this.getIntent().getExtras();
+        if(bundle != null)
+        {
             Log.i(TAG, "Received a resto object from ShowActitivty");
-            resto =(Restaurant) bundle.getSerializable("resto"); ///////// test
+            resto =(Restaurant) bundle.getSerializable("resto"); // test
+            if(resto != null)
+            {            Log.i(TAG, "resto obj is not null");
+            }
+            else            Log.i(TAG, "resto obj is null");
+
+
         }
+
 
         resto = new Restaurant();
 
@@ -80,7 +86,6 @@ public class AddRestoActivity extends AppCompatActivity {
         resto.setCreatedTime(timestamp);
         resto.setModifiedTime(timestamp);
         Log.i(TAG,"time " +timestamp);
-
 
         Log.i(TAG,""+isNameValid +" "+ isCodeValid +" " + isPriceValid +" "+ isGenreValid);
         if(isNameValid && isCodeValid && isPriceValid && isGenreValid) {
@@ -252,5 +257,6 @@ public class AddRestoActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
+
     }
     }
