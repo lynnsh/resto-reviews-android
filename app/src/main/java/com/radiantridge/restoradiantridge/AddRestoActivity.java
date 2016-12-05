@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.sql.Timestamp;
 
 /**
@@ -32,6 +34,9 @@ public class AddRestoActivity extends AppCompatActivity {
     private Double latid;
     private Double rating;
    private  DatabaseConnector dbconn;
+    private EditText editName,editNumber, editStreet,editCity,editCode,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
+    private RatingBar editRating;
+    private boolean exisitngRecord;
     private boolean save; //keeps check of valid inputs
     /**
      * Overridden Lifecycle method.
@@ -42,21 +47,27 @@ public class AddRestoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
         dbconn = DatabaseConnector.getDatabaseConnector(this);
+        resto = new Restaurant();
+        getFields();
         Bundle bundle = this.getIntent().getExtras();
         if(bundle != null)
         {
+            exisitngRecord =  bundle.getBoolean("databaseResto");
             Log.i(TAG, "Received a resto object from ShowActitivty");
             resto =(Restaurant) bundle.getSerializable("resto");
             if(resto != null)
             {
                 Log.i(TAG, "resto obj is not null");
+                Log.i(TAG, "name " + resto.getName());
+                Log.i(TAG, "POSTAL code after being sent " + resto.getAddPostalCode());
+                //sets the field to the input froom zomato resto
+                setEditFields();
             }
             else {
                 Log.i(TAG, "resto obj is null");
-                //make our own resto obj
-                resto = new Restaurant();
             }
         }
+
     }
 
     /**
@@ -82,23 +93,42 @@ public class AddRestoActivity extends AppCompatActivity {
 
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
+        //keep the original creation time for the resto already present in database
+        if(exisitngRecord)
+            resto.setCreatedTime(resto.getCreatedTime());
+        else
         resto.setCreatedTime(timestamp);
         resto.setModifiedTime(timestamp);
         Log.i(TAG,"time " +timestamp);
 
         Log.i(TAG,""+isNameValid +" "+ isCodeValid +" " + isPriceValid +" "+ isGenreValid);
         if(isNameValid && isCodeValid && isPriceValid && isGenreValid) {
-            Log.i(TAG , "Saving resto..");
-            int id =(int) dbconn.addResto(resto);
-            resto.setDbId(id);
+            if(exisitngRecord)
+            {
+                Log.i(TAG , "Updating resto..");
+                dbconn.updateResto(resto);
+                Toast.makeText(getApplicationContext(), R.string.edit_text, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), FavoritesActivty.class);
+                startActivity(intent);
+
+            }
+            else {
+                Log.i(TAG, "Saving resto..");
+                int id = (int) dbconn.addResto(resto);
+                resto.setDbId(id);
+                Toast.makeText(getApplicationContext(), R.string.save_text, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
+                startActivity(intent);
+
+            }
             //change it to last opened page
             Intent intent = new Intent(this, MainRestoActivity.class);
             startActivity(intent);
         }
     }
+
     private boolean handleNameField(View v){
         boolean isValid=false;
-        EditText editName = (EditText) findViewById(R.id.editRestoName);
         name = editName.getText().toString();
         TextView nameErr= (TextView) findViewById(R.id.textNameError);
         if(name != null&& !(name.isEmpty())) {
@@ -114,7 +144,6 @@ public class AddRestoActivity extends AppCompatActivity {
         return isValid;
     }
     private void handleNumField(View v) {
-        EditText editNumber = (EditText) findViewById(R.id.editNum);
         String number = editNumber.getText().toString();
         if (number != null && !(number.isEmpty())) {
             num = Integer.parseInt(number);
@@ -123,7 +152,6 @@ public class AddRestoActivity extends AppCompatActivity {
         Log.i(TAG, "NUM " + num);
     }
     private void handleStreetField(View v) {
-        EditText editStreet = (EditText) findViewById(R.id.editStreet);
         street = editStreet.getText().toString();
 
         if (street != null && !(street.isEmpty())) {
@@ -132,7 +160,6 @@ public class AddRestoActivity extends AppCompatActivity {
         Log.i(TAG, "STREET " + street);
     }
     private void handleCityField(View v) {
-        EditText editCity = (EditText) findViewById(R.id.editCity);
         city = editCity.getText().toString();
 
         if (city != null && !(city.isEmpty())) {
@@ -143,28 +170,27 @@ public class AddRestoActivity extends AppCompatActivity {
 
     private boolean handleCodeField(View v) {
         boolean isValid=false;
-        EditText editCode = (EditText) findViewById(R.id.editCode);
         code = editCode.getText().toString();
         TextView codeErr= (TextView) findViewById(R.id.textCodeError);
         String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
         if (code != null && !(code.isEmpty())) {
-            if(code.matches(regex)) {
-                isValid=true;
+            if (code.matches(regex)) {
+                isValid = true;
                 codeErr.setVisibility(View.INVISIBLE);
                 resto.setAddPostalCode(code);
                 Log.i(TAG, "matches regex");
+            } else {
+                isValid = false;
+                codeErr.setVisibility(View.VISIBLE);
+                Log.i(TAG, " regex failed");
+                //editCode.setText("");
             }
-        }
-        else{
-            isValid=false;
-            codeErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "code " + code);
         return isValid;
     }
     private boolean handleGenreField(View v) {
         boolean isValid=false;
-        EditText editGenre = (EditText) findViewById(R.id.editGenre);
         genre = editGenre.getText().toString();
         TextView genreErr= (TextView) findViewById(R.id.textGenreError);
         if (genre != null && !(genre.isEmpty())) {
@@ -181,7 +207,6 @@ public class AddRestoActivity extends AppCompatActivity {
     }
     private boolean handlePriceField(View v) {
         boolean isValid=false;
-        EditText editPrice = (EditText) findViewById(R.id.editPrice);
         String priceRange = editPrice.getText().toString();
         TextView priceErr= (TextView) findViewById(R.id.textPriceError);
         String regex = "^[1-4]{1}$";
@@ -204,7 +229,6 @@ public class AddRestoActivity extends AppCompatActivity {
 
     private void handleNotesField(View v)
     {
-        EditText editNotes = (EditText) findViewById(R.id.editNotes);
         notes = editNotes.getText().toString();
         if (notes != null && !(notes.isEmpty())) {
             resto.setNotes(notes);
@@ -213,9 +237,7 @@ public class AddRestoActivity extends AppCompatActivity {
     }
 
     private void handleLongLatFields(View v) {
-        EditText editLongitude = (EditText) findViewById(R.id.editLongitude);
         String longitude = editLongitude.getText().toString();
-        EditText editLatitude = (EditText) findViewById(R.id.editLatitude);
         String latitude = editLatitude.getText().toString();
         if (longitude != null && !(longitude.isEmpty()) && latitude != null && !(latitude.isEmpty())) {
             longit = Double.parseDouble(longitude);
@@ -228,9 +250,9 @@ public class AddRestoActivity extends AppCompatActivity {
 
     }
     private void handleRatingBar(View v) {
-        RatingBar editRating = (RatingBar) findViewById(R.id.ratingBar);
-        rating = (double)editRating.getRating();
-            resto.setStarRating(rating);
+        rating = (double) editRating.getRating();
+
+        resto.setStarRating(rating);
 
         Log.i(TAG, "rating bar val" + rating);
     }
@@ -257,6 +279,38 @@ public class AddRestoActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
+    }
+    private void setEditFields(){
+        editName.setText(resto.getName());
+        //how to check for nulls
+        editNumber.setText(resto.getAddNum()+"");
+        editStreet.setText(resto.getAddStreet());
+        editCity.setText(resto.getAddCity());
+        editCode.setText(resto.getAddPostalCode());
+      //  txtphone.setText(phone);
+        editGenre.setText(resto.getGenre());
+        editPrice.setText(resto.getPriceRange()+"");
+        editNotes.setText("");
+        String lon = resto.getLongitude()+"";
+        editLongitude.setText(lon);
+        String lat = resto.getLatitude()+"";
+        editLatitude.setText(lat);
+        editRating.setRating((float) resto.getStarRating());
+
+    }
+    private void getFields() {
+        editName = (EditText) findViewById(R.id.editRestoName);
+        editNumber = (EditText) findViewById(R.id.editNum);
+        editStreet = (EditText) findViewById(R.id.editStreet);
+        editCity = (EditText) findViewById(R.id.editCity);
+        editCode = (EditText) findViewById(R.id.editCode);
+        txtphone = (EditText) findViewById(R.id.editTextPhone);
+        editGenre = (EditText) findViewById(R.id.editGenre);
+        editPrice = (EditText) findViewById(R.id.editPrice);
+        editNotes = (EditText) findViewById(R.id.editNotes);
+        editLongitude = (EditText) findViewById(R.id.editLongitude);
+        editLatitude = (EditText) findViewById(R.id.editLatitude);
+        editRating = (RatingBar) findViewById(R.id.ratingBar);
     }
 //    private void makeAllFieldsEditable() {
 //        txtname.setFocusableInTouchMode(true);
