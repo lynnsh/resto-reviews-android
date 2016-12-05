@@ -182,7 +182,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
         if (obj.has("price_range"))
         {
-            // resto.setPriceRange(obj.getInt("price_range");
+            resto.setPriceRange(obj.getInt("price_range"));
         }
 
         // user_rating is a container for more fields
@@ -192,7 +192,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
             if (sub.has("aggregate_rating"))
             {
-                //resto.setStarRating(sub.getDouble("aggregate_rating"));
+                resto.setStarRating(sub.getDouble("aggregate_rating"));
             }
         }
 

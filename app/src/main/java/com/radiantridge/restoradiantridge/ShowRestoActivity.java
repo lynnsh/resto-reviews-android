@@ -1,8 +1,11 @@
 package com.radiantridge.restoradiantridge;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -46,6 +50,9 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
+        resto = new Restaurant();
+        dbconn = DatabaseConnector.getDatabaseConnector(this);
+        getFields();
 
         Bundle bundle = getIntent().getExtras();
 
@@ -55,30 +62,86 @@ public class ShowRestoActivity  extends AppCompatActivity {
             Log.i(TAG,"is not a zomato resto");
              id = bundle.getInt("databaseId");
             Log.i(TAG, "the id os resto " + id);
+            resto = dbconn.getResto(id);
+            Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
+            setFields(resto);
+            showEditButton();
+            showDeleteButton(id);
+
+
         }
         if(isZomato)
         {
             Log.i(TAG,"is  a zomato resto");
-
+            // get each field
             showAddButton();
+            //make resto obj
+            createRestoObj(bundle);
+            setFields(resto);
+
         }
-        dbconn = DatabaseConnector.getDatabaseConnector(this);
-
-        resto = new Restaurant();
-
-        //
-
-        resto = dbconn.getResto(id);
-        Log.i(TAG, "IS RESTO PRESENT" + resto);
-        getFields();
+        handleFields();
     }
 
+    /**
+     * Allows the user to modify an existing restaurant
+     * sends the resto obj to addRestoActivity to be added to
+     */
+    private void showEditButton() {
+        Button editButton = (Button) findViewById(R.id.buttonEdit);
+        editButton.setVisibility(View.VISIBLE);
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddRestoActivity.class);
+                //sending resto obj
+                Bundle bundle = new Bundle();
+                intent.putExtra("databaseResto", true);
+                intent.putExtra("resto",resto);
+                startActivity(intent);
+            }
+        });
+    }
+    private void showDeleteButton(final int restoId) {
+        Button deleteButton = (Button) findViewById(R.id.buttonDelete);
+        deleteButton.setVisibility(View.VISIBLE);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ShowRestoActivity.this);
+                builder.setTitle(R.string.dialog_title);
+                builder.setMessage(R.string.delete_msg);
+                builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        // delete the resto
+                        dbconn.deleteResto(restoId);
+                        Toast.makeText(getApplicationContext(), R.string.delete_text, Toast.LENGTH_SHORT).show();
+                        // go back to list of restos
+                        Intent intent = new Intent(getApplicationContext(), FavoritesActivty.class);
+                        startActivity(intent);
+
+
+                    }
+                });
+                builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+    }
     private void showAddButton() {
         Button addButton = (Button) findViewById(R.id.buttonAdd);
 
         addButton.setVisibility(View.VISIBLE);
 
-        makeAllFieldsEditable();
+
+        //makeAllFieldsEditable();
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,56 +150,38 @@ public class ShowRestoActivity  extends AppCompatActivity {
                 //sending resto obj
                 Bundle bundle = new Bundle();
               //  bundle.putSerializable("resto", resto);
-
+                intent.putExtra("databaseResto", false);
                 intent.putExtra("resto",resto);
                 startActivity(intent);
             }
         });
     }
 
-    private void makeAllFieldsEditable() {
-        txtname.setFocusableInTouchMode(true);
-        txtname.setFocusable(true);
-        txtnum.setFocusableInTouchMode(true);
-        txtnum.setFocusable(true);
-        txtstreet.setFocusableInTouchMode(true);
-        txtstreet.setFocusable(true);
-        txtcity.setFocusableInTouchMode(true);
-        txtcity.setFocusable(true);
-        txtcode.setFocusableInTouchMode(true);
-        txtcode.setFocusable(true);
-        txtphone.setFocusableInTouchMode(true);
-        txtphone.setFocusable(true);
-        txtgenre.setFocusableInTouchMode(true);
-        txtgenre.setFocusable(true);
-        txtprice.setFocusableInTouchMode(true);
-        txtprice.setFocusable(true);
-        txtnotes.setFocusableInTouchMode(true);
-        txtnotes.setFocusable(true);
-        txtlongitude.setFocusableInTouchMode(true);
-        txtlongitude.setFocusable(true);
-        txtlatitude.setFocusableInTouchMode(true);
-        txtlatitude.setFocusable(true);
-        ratingBar.setIsIndicator(true);
 
+    private void getFields() {
+        txtname = (EditText) findViewById(R.id.editRestoName);
+        txtnum = (EditText) findViewById(R.id.editNum);
+        txtstreet = (EditText) findViewById(R.id.editStreet);
+        txtcity = (EditText) findViewById(R.id.editCity);
+        txtcode = (EditText) findViewById(R.id.editCode);
+        txtphone = (EditText) findViewById(R.id.editTextPhone);
+        txtgenre = (EditText) findViewById(R.id.editGenre);
+        txtprice = (EditText) findViewById(R.id.editPrice);
+        txtnotes = (EditText) findViewById(R.id.editNotes);
+        txtlongitude = (EditText) findViewById(R.id.editLongitude);
+        txtlatitude = (EditText) findViewById(R.id.editLatitude);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
     }
-
-    private void getFields(){
-         txtname = (EditText) findViewById(R.id.editRestoName);
-         txtnum = (EditText) findViewById(R.id.editNum);
-         txtstreet = (EditText) findViewById(R.id.editStreet);
-         txtcity = (EditText) findViewById(R.id.editCity);
-         txtcode = (EditText) findViewById(R.id.editCode);
-         txtphone = (EditText) findViewById(R.id.editTextPhone);
-         txtgenre = (EditText) findViewById(R.id.editGenre);
-         txtprice = (EditText) findViewById(R.id.editPrice);
-         txtnotes = (EditText) findViewById(R.id.editNotes);
-         txtlongitude = (EditText) findViewById(R.id.editLongitude);
-         txtlatitude = (EditText) findViewById(R.id.editLatitude);
-         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
-        setFields(resto);
+    private void handleFields(){
         txtname.setText(name);
-        //how to check for nulls
+        txtname.setOnClickListener(new View.OnClickListener(){
+           @Override
+             public void onClick(View v) {
+                                           String googleUrl = "http://www.google.com/#q="+name;
+             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(googleUrl));
+               startActivity(intent);
+
+           }});
         txtnum.setText(num+"");
         txtstreet.setText(street);
         txtcity.setText(city);
@@ -166,4 +211,59 @@ public class ShowRestoActivity  extends AppCompatActivity {
         latid=resto.getLatitude();
         rating=resto.getStarRating();
     }
+
+    private void createRestoObj(Bundle bundle) {
+        resto.setDbId(-1);
+        if(bundle.get("name") != null)
+        {
+            name = (String) bundle.get("name");
+            resto.setName(name);
+        }
+        if(bundle.get("addNum") != null)
+        {
+            num = (int) bundle.get("addNum");
+            resto.setAddNum(num);
+        }
+        if(bundle.get("addStreet") != null)
+        {
+            street = (String) bundle.get("addStreet");
+            resto.setAddStreet(street);
+        }
+        if(bundle.get("addCity") != null)
+        {
+            city = (String) bundle.get("addCity");
+            resto.setAddCity(city);
+        }
+        if(bundle.get("addPostalCode") != null)
+        {
+            code = (String) bundle.get("addPostalCode");
+            resto.setAddPostalCode(code);
+        }
+        if(bundle.get("genre") != null)
+        {
+            genre = (String) bundle.get("genre");
+            resto.setGenre(genre);
+        }
+        if(bundle.get("priceRange") != null)
+        {
+            price = (int) bundle.get("priceRange");
+            resto.setPriceRange(price);
+        }
+        if( bundle.get("longitude") != null)
+        {
+            longit = (double) bundle.get("longitude");
+            resto.setLongitude(longit);
+        }
+        if(bundle.get("latitude") != null)
+        {
+            latid = (double) bundle.get("latitude");
+            resto.setLatitude(latid);
+        }
+        if(bundle.get("starRating") != null)
+        {
+            rating = (double) bundle.get("starRating");
+            resto.setStarRating(rating);
+        }
+    }
+
 }

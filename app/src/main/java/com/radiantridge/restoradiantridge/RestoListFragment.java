@@ -142,6 +142,7 @@ public class RestoListFragment extends ListFragment {
         intent.putExtra("genre", resto.getGenre());
         intent.putExtra("priceRange", resto.getPriceRange());
         intent.putExtra("starRating", resto.getStarRating());
+        Log.i(TAG, "zomato rating " +resto.getStarRating());
         intent.putExtra("latitude", resto.getLatitude());
         intent.putExtra("longitude", resto.getLongitude());
         intent.putExtra("phone", resto.getPhone());

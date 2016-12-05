@@ -65,13 +65,19 @@
     <string name="name_error">Please enter a name </string>
     <string name="genre_error">Please enter a genre </string>
     <string name="price_error">Please enter a price range($-$$$) as (1-4) </string>
+    <string name="tipAmount_error">Please enter a valid amount</string>
     <string name="code_error">Please enter a valid Postal Code </string>
-    <string name="dialog_title">Alert! </string>
+    <string name="dialog_title">Confirmation Dialog! </string>
     <string name="dialog_msg">Are you sure you want to leave this page? </string>
+    <string name="delete_msg">Are you sure you want to delete the restaurant from the database? </string>
     <string name="dialog_ok">Yes </string>
     <string name="dialog_no">No </string>
     <string name="button_add">Add </string>
     <string name="button_edit">Edit </string>
     <string name="button_delete">Delete </string>
+    <string name="delete_text">Deleted! </string>
+    <string name="save_text">Saved! </string>
+    <string name="edit_text">Modified! </string>
+
 
 </resources>
