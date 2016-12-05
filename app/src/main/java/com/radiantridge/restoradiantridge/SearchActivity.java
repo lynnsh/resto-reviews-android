@@ -31,7 +31,8 @@ public class SearchActivity extends MenuActivity {
 
         // Initializing variables
         db = DatabaseConnector.getDatabaseConnector(this);
-        fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.favorites_list);
+        fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.search_list);
+        // TODO: change fav for search_list
 
         // Setting up spinner with its options
         setUpSpinner();

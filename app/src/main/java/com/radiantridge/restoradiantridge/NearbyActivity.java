@@ -67,42 +67,42 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     {
         location = getLocation();
 
-        if (!canGetLocation)
-        {
-            Log.i(TAG, "Unable to get location.");
-            showSettingsAlert();
-            // Attempt to get location again
-            getLocation();
-        }
+//        if (!canGetLocation)
+//        {
+//            Log.i(TAG, "Unable to get location.");
+//            //showSettingsAlert();
+//            // Attempt to get location again
+//            getLocation();
+//        }
     }
 
     /**
      * This method displays an alert dialog asking the user if they wish
      * to turn on their GPS through the settings.
      */
-    private void showSettingsAlert() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-
-        // Setting Dialog Fields
-        alertDialog.setTitle(R.string.dialog_GPS_title).setMessage(R.string.dialog_GPS_text);
-
-        // Setting up handlers for the buttons
-        alertDialog.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                startActivity(intent);
-            }
-        });
-
-        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        // Displays the dialog
-        alertDialog.show();
-    }
+//    private void showSettingsAlert() {
+//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+//
+//        // Setting Dialog Fields
+//        alertDialog.setTitle(R.string.dialog_GPS_title).setMessage(R.string.dialog_GPS_text);
+//
+//        // Setting up handlers for the buttons
+//        alertDialog.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//
+//        // Displays the dialog
+//        alertDialog.show();
+//    }
 
     /**
      * Event handler for the change latitude and longitude
@@ -169,6 +169,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Get new location
                 getLocation();
+                updateLatLong();
                 getListFromZomato();
             }
         }
@@ -215,11 +216,15 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
                         MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                 Log.d(TAG, "GPS Enabled");
                 if (locationManager != null) {
+                    Log.d(TAG, "LocationManager was not null");
                     location = locationManager
                             .getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     if (location != null) {
+                        Log.d(TAG, "Location was not null");
                         latitude = location.getLatitude();
                         longitude = location.getLongitude();
+                        Log.i(TAG, "Latitude: " + latitude);
+                        Log.i(TAG, "Longitude: " + longitude);
                     }
                 }
             }
