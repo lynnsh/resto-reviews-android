@@ -34,7 +34,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     // GPS Related Variables
     private Location location;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 500 * 60 * 1; // 1 minute
     private boolean isGPSEnabled = false;
     private boolean canGetLocation = false;
     private LocationManager locationManager;
@@ -65,14 +65,14 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      */
     private void setUpTracker()
     {
-        location = getLocation();
+        initLocation();
 
 //        if (!canGetLocation)
 //        {
 //            Log.i(TAG, "Unable to get location.");
 //            //showSettingsAlert();
 //            // Attempt to get location again
-//            getLocation();
+//            initLocation();
 //        }
     }
 
@@ -80,29 +80,30 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * This method displays an alert dialog asking the user if they wish
      * to turn on their GPS through the settings.
      */
-//    private void showSettingsAlert() {
-//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-//
-//        // Setting Dialog Fields
-//        alertDialog.setTitle(R.string.dialog_GPS_title).setMessage(R.string.dialog_GPS_text);
-//
-//        // Setting up handlers for the buttons
-//        alertDialog.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.cancel();
-//            }
-//        });
-//
-//        // Displays the dialog
-//        alertDialog.show();
-//    }
+    private void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Fields
+        alertDialog.setTitle(R.string.dialog_GPS_title).setMessage(R.string.dialog_GPS_text);
+
+        // Setting up handlers for the buttons
+        alertDialog.setPositiveButton(R.string.dialog_positive, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        // Displays the dialog
+        alertDialog.show();
+    }
 
     /**
      * Event handler for the change latitude and longitude
@@ -167,8 +168,9 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.i(TAG, "Permissions granted");
                 // Get new location
-                getLocation();
+                initLocation();
                 updateLatLong();
                 getListFromZomato();
             }
@@ -191,13 +193,15 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      *
      * @return The current location
      */
-    private Location getLocation() {
+    private void initLocation() {
+        Log.i(TAG, "initLocation");
         // Check if permissions were granted by user
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.i(TAG, "Requesting location permissions");
             // Request permission
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSION_REQUEST);
             // Can't continue, return
-            return null;
+            return;
         }
 
         try {
@@ -228,11 +232,13 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
                     }
                 }
             }
+            else
+            {
+                showSettingsAlert();
+            }
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
         }
-
-        return location;
     }
 
     /**
@@ -260,6 +266,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      */
     @Override
     public void onLocationChanged(Location location) {
+        Log.i(TAG, "Location changed");
         this.location = location;
         latitude = location.getLatitude();
         longitude = location.getLongitude();
@@ -285,9 +292,43 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     @Override
     protected void onPause()
     {
+        Log.i(TAG, "onPause");
         super.onPause();
         stopUsingGPS();
     }
 
-    // TODO: on resume starts listener?
+    @Override
+    protected void onResume()
+    {
+        Log.i(TAG, "onResume");
+        super.onResume();
+
+        // Getting latitude and longitude data
+        setUpTracker();
+        updateLatLong();
+
+        // Start Zomato query
+        getListFromZomato();
+    }
+
+//    private void queryLocation()
+//    {
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // Can't remove updates if its already disabled
+//            return;
+//        }
+//
+//        if (locationManager != null) {
+//            Log.d(TAG, "LocationManager was not null");
+//            location = locationManager
+//                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if (location != null) {
+//                Log.d(TAG, "Location was not null");
+//                latitude = location.getLatitude();
+//                longitude = location.getLongitude();
+//                Log.i(TAG, "Latitude: " + latitude);
+//                Log.i(TAG, "Longitude: " + longitude);
+//            }
+//        }
+//    }
 }
