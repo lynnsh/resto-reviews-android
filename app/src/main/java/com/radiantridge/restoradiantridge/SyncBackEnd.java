@@ -80,6 +80,7 @@ public class SyncBackEnd {
             try {
                 byte[] toSend = resto.getBytes();
                 conn = (HttpsURLConnection) herokuCreateRestoUrl.openConnection();
+                conn.setRequestMethod("POST");
                 conn.setDoOutput(true);
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);

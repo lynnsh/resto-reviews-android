@@ -44,6 +44,7 @@ public class AddReviewTask extends AsyncTask<JsonObject, Void, Boolean> {
         try {
             byte[] toSend = review.getBytes();
             conn = (HttpsURLConnection) herokuAddReviewUrl.openConnection();
+            conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             conn.setReadTimeout(10000);
             conn.setConnectTimeout(15000);
