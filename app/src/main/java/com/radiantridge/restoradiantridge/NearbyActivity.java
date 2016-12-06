@@ -36,6 +36,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
     private static final long MIN_TIME_BW_UPDATES = 500 * 60 * 1; // 1 minute
     private boolean isGPSEnabled = false;
+    private boolean isNetworkEnabled = false;
     private boolean canGetLocation = false;
     private LocationManager locationManager;
 
@@ -43,7 +44,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * Overriden lifecycle method.  Starts the GPS Tracker,
      * and starts the query process for the ZomatoConnector.
      *
-     * @param savedInstanceState    savedInstanceState
+     * @param savedInstanceState savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     /**
      * This method sets up the GPS Tracker and checks if the GPS is turned on.
      */
-    private void setUpTracker()
-    {
+    private void setUpTracker() {
         initLocation();
 
 //        if (!canGetLocation)
@@ -109,10 +109,9 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * Event handler for the change latitude and longitude
      * button.  Launches the LatLongActivity.
      *
-     * @param view      The view that fired the event
+     * @param view The view that fired the event
      */
-    public void launchLatLong(View view)
-    {
+    public void launchLatLong(View view) {
         Log.i(TAG, "Setting lat and long manually.");
         startActivityForResult(new Intent(this, LatLongActivity.class), CHANGE_LAT_LONG);
     }
@@ -121,8 +120,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * This method updates the latitude and longitude displayed
      * on the activity's UI.
      */
-    private void updateLatLong()
-    {
+    private void updateLatLong() {
         TextView latitudeTV = (TextView) findViewById(R.id.nearby_lat);
         TextView longitudeTV = (TextView) findViewById(R.id.nearby_long);
         String latStr = getResources().getString(R.string.latitude) + latitude;
@@ -137,14 +135,13 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * from the LatLongActivity and updates the latitude
      * and longitude to the values given.
      *
-     * @param requestCode   Code for result success
-     * @param resultCode    Code for result type
-     * @param data          Intent for the data received back
+     * @param requestCode Code for result success
+     * @param resultCode  Code for result type
+     * @param data        Intent for the data received back
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CHANGE_LAT_LONG)
-        {
+        if (requestCode == CHANGE_LAT_LONG) {
             latitude = data.getDoubleExtra("latitude", 0.0);
             longitude = data.getDoubleExtra("longitude", 0.0);
             updateLatLong();
@@ -163,8 +160,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        if (requestCode == MY_PERMISSION_REQUEST)
-        {
+        if (requestCode == MY_PERMISSION_REQUEST) {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -181,8 +177,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * This method starts the Zomato Asynchronous Task with
      * the latitude and longitude.
      */
-    private void getListFromZomato()
-    {
+    private void getListFromZomato() {
         ZomatoConnector conn = new ZomatoConnector(fragment);
         conn.execute(latitude, longitude);
     }
@@ -211,29 +206,54 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
             isGPSEnabled = locationManager
                     .isProviderEnabled(LocationManager.GPS_PROVIDER);
 
+            // getting network status
+            isNetworkEnabled = locationManager
+                    .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+
             // if GPS Enabled get lat/long using GPS Services
-            if (isGPSEnabled) {
+            if (isGPSEnabled || isNetworkEnabled) {
                 this.canGetLocation = true;
-                locationManager.requestLocationUpdates(
-                        LocationManager.GPS_PROVIDER,
-                        MIN_TIME_BW_UPDATES,
-                        MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                Log.d(TAG, "GPS Enabled");
-                if (locationManager != null) {
-                    Log.d(TAG, "LocationManager was not null");
-                    location = locationManager
-                            .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    if (location != null) {
-                        Log.d(TAG, "Location was not null");
-                        latitude = location.getLatitude();
-                        longitude = location.getLongitude();
-                        Log.i(TAG, "Latitude: " + latitude);
-                        Log.i(TAG, "Longitude: " + longitude);
+
+                // First get location from Network Provider
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+                    Log.d("Network", "Network");
+                    if (locationManager != null) {
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                        }
                     }
                 }
-            }
-            else
-            {
+
+                if (isGPSEnabled) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
+                    Log.d(TAG, "GPS Enabled");
+                    if (locationManager != null) {
+                        Log.d(TAG, "LocationManager was not null");
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+
+                        if (location != null) {
+                            Log.d(TAG, "Location was not null");
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                            Log.i(TAG, "Latitude: " + latitude);
+                            Log.i(TAG, "Longitude: " + longitude);
+                        }
+                    }
+                }
+            } else {
                 showSettingsAlert();
             }
         } catch (Exception e) {
@@ -262,7 +282,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * Overriden method.  Updates the location, latitude and longitude
      * when the location changes.
      *
-     * @param location      The new location
+     * @param location The new location
      */
     @Override
     public void onLocationChanged(Location location) {
@@ -290,16 +310,14 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * Overriden lifecycle method.  Stops the GPS listener.
      */
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         Log.i(TAG, "onPause");
         super.onPause();
         stopUsingGPS();
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         Log.i(TAG, "onResume");
         super.onResume();
 
