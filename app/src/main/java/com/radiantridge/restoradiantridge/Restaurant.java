@@ -1,5 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
+import com.google.gson.JsonObject;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -247,5 +249,15 @@ public class Restaurant implements Serializable{
                 ", source=" + dbId +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public JsonObject toJsonObject() {
+        JsonObject json = new JsonObject();
+        json.addProperty("name", name);
+        json.addProperty("address", addNum+ " " + addStreet + " " + addCity);
+        json.addProperty("postalcode", addPostalCode);
+        json.addProperty("genre", genre);
+        json.addProperty("price", priceRange);
+        return json;
     }
 }
