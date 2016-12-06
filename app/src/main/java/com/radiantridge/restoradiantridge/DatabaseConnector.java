@@ -27,6 +27,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String COLUMN_NOTES = "notes";
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_SOURCE = "source";
+    public static final String COLUMN_HEROKU_ID = "heroku";
     public static final String COLUMN_ADDRESS_NUMBER = "addressNumber";
     public static final String COLUMN_ADDRESS_STREET = "addressStreet";
     public static final String COLUMN_ADDRESS_CITY = "addressCity";
@@ -67,6 +68,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 + COLUMN_NOTES + " text, "
                 + COLUMN_PHONE + " text, "
                 + COLUMN_SOURCE + " integer, "
+                + COLUMN_HEROKU_ID + " integer, "
                 + COLUMN_ADDRESS_NUMBER + " integer, "
                 + COLUMN_ADDRESS_STREET + " text, "
                 + COLUMN_ADDRESS_CITY + " text, "
@@ -125,6 +127,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_NOTES, resto.getNotes());
         cv.put(COLUMN_PHONE, resto.getPhone());
         cv.put(COLUMN_SOURCE, resto.getSource());
+        cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
         cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
         cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
         cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
@@ -162,6 +165,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_NOTES, resto.getNotes());
         cv.put(COLUMN_PHONE, resto.getPhone());
         cv.put(COLUMN_SOURCE, resto.getSource());
+        cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
         cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
         cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
         cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
@@ -272,6 +276,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
             resto.setSource(cursor.getInt(cursor.getColumnIndex(COLUMN_SOURCE)));
+            resto.setHerokuId(cursor.getInt(cursor.getColumnIndex(COLUMN_HEROKU_ID)));
             resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));
             resto.setAddStreet(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_STREET)));
             resto.setAddCity(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_CITY)));

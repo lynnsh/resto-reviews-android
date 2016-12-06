@@ -28,6 +28,7 @@ public class Restaurant implements Serializable{
     private int dbId;
     private String phone;
     private int source; //0-direct input, 1-zomato, 2-heroku api.
+    private int herokuId; //id heroku expects in order to associate a review with it
 
     public Restaurant() {
     }
@@ -36,7 +37,15 @@ public class Restaurant implements Serializable{
         return dbId;
     }
 
-    public void setDbId(int dbId) {
+    public void setDbId(int herokuId) {
+        this.herokuId = herokuId;
+    }
+
+    public int getHerokuId() {
+        return herokuId;
+    }
+
+    public void setHerokuId(int dbId) {
         this.dbId = dbId;
     }
 
@@ -199,6 +208,7 @@ public class Restaurant implements Serializable{
             return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
         if (source != that.source) return false;
+        if (herokuId != that.herokuId) return false;
         return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
@@ -225,6 +235,7 @@ public class Restaurant implements Serializable{
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + dbId;
         result = 31 * result + source;
+        result = 31 * result + herokuId;
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
@@ -247,6 +258,7 @@ public class Restaurant implements Serializable{
                 ", latitude=" + latitude +
                 ", dbId=" + dbId +
                 ", source=" + dbId +
+                ", herokuId=" + herokuId +
                 ", phone='" + phone + '\'' +
                 '}';
     }
