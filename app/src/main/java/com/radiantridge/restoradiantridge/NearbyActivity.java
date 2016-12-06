@@ -2,12 +2,15 @@ package com.radiantridge.restoradiantridge;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
@@ -34,7 +37,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     // GPS Related Variables
     private Location location;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 500 * 60 * 1; // 1 minute
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
     private boolean isGPSEnabled = false;
     private boolean isNetworkEnabled = false;
     private boolean canGetLocation = false;
@@ -53,27 +56,16 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
 
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.nearby_list);
 
-        // Getting latitude and longitude data
-        setUpTracker();
-        updateLatLong();
-
-        // Start Zomato query
-        getListFromZomato();
-    }
-
-    /**
-     * This method sets up the GPS Tracker and checks if the GPS is turned on.
-     */
-    private void setUpTracker() {
-        initLocation();
-
-//        if (!canGetLocation)
-//        {
-//            Log.i(TAG, "Unable to get location.");
-//            //showSettingsAlert();
-//            // Attempt to get location again
-//            initLocation();
-//        }
+        // Check that network is available
+        if (!isInternetAvailable())
+        {
+            displayNetworkError();
+        }
+        else {
+            // Getting latitude and longitude data
+            initLocationTracking();
+            displayData();
+        }
     }
 
     /**
@@ -142,10 +134,10 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHANGE_LAT_LONG) {
+            Log.i(TAG, "Manual location");
             latitude = data.getDoubleExtra("latitude", 0.0);
             longitude = data.getDoubleExtra("longitude", 0.0);
-            updateLatLong();
-            getListFromZomato();
+            displayData();
         }
     }
 
@@ -166,9 +158,8 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Log.i(TAG, "Permissions granted");
                 // Get new location
-                initLocation();
-                updateLatLong();
-                getListFromZomato();
+                initLocationTracking();
+                displayData();
             }
         }
     }
@@ -178,6 +169,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * the latitude and longitude.
      */
     private void getListFromZomato() {
+        Log.i(TAG, "Getting zomato");
         ZomatoConnector conn = new ZomatoConnector(fragment);
         conn.execute(latitude, longitude);
     }
@@ -188,8 +180,8 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      *
      * @return The current location
      */
-    private void initLocation() {
-        Log.i(TAG, "initLocation");
+    private void initLocationTracking() {
+        Log.i(TAG, "initLocationTracking");
         // Check if permissions were granted by user
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.i(TAG, "Requesting location permissions");
@@ -286,12 +278,20 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      */
     @Override
     public void onLocationChanged(Location location) {
-        Log.i(TAG, "Location changed");
-        this.location = location;
-        latitude = location.getLatitude();
-        longitude = location.getLongitude();
-        updateLatLong();
-        getListFromZomato();
+        Log.i(TAG, "onLocationChanged");
+        // Make sure location has actually changed
+        if ((location.getLatitude() != latitude) || (location.getLongitude() != longitude))
+        {
+            Log.i(TAG, "Location changed");
+            this.location = location;
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+            displayData();
+        }
+        else
+        {
+            Log.i(TAG, "Location stayed the same");
+        }
     }
 
     @Override
@@ -316,37 +316,67 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         stopUsingGPS();
     }
 
-    @Override
-    protected void onResume() {
-        Log.i(TAG, "onResume");
-        super.onResume();
+//    @Override
+//    protected void onResume() {
+//        Log.i(TAG, "onResume");
+//        super.onResume();
+//
+//        // Check that network is available
+//        if (!isInternetAvailable())
+//        {
+//            // show popup and force finish
+//        }
+//        else {
+//            // Getting latitude and longitude data
+//            initLocationTracking();
+//            displayData();
+//        }
+//    }
 
-        // Getting latitude and longitude data
-        setUpTracker();
+    private void getListFromHeroku()
+    {
+//        GetRestosTask task = new GetRestosTask(fragment);
+//        task.execute(latitude, longitude);
+    }
+
+    private boolean isInternetAvailable()
+    {
+        boolean isAvailable = false;
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        if (activeNetwork != null)
+        {
+            // Not null means there is a connection
+            isAvailable = true;
+        }
+
+        return isAvailable;
+    }
+
+    private void displayData()
+    {
         updateLatLong();
 
         // Start Zomato query
         getListFromZomato();
+        getListFromHeroku();
     }
 
-//    private void queryLocation()
-//    {
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            // Can't remove updates if its already disabled
-//            return;
-//        }
-//
-//        if (locationManager != null) {
-//            Log.d(TAG, "LocationManager was not null");
-//            location = locationManager
-//                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//            if (location != null) {
-//                Log.d(TAG, "Location was not null");
-//                latitude = location.getLatitude();
-//                longitude = location.getLongitude();
-//                Log.i(TAG, "Latitude: " + latitude);
-//                Log.i(TAG, "Longitude: " + longitude);
-//            }
-//        }
-//    }
+    private void displayNetworkError()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Fields
+        alertDialog.setTitle(R.string.dialog_network_title).setMessage(R.string.dialog_network_text);
+
+        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        // Displays the dialog
+        alertDialog.show();
+    }
 }

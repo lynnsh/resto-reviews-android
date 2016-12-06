@@ -78,6 +78,7 @@
     <string name="delete_text">Deleted! </string>
     <string name="save_text">Saved! </string>
     <string name="edit_text">Modified! </string>
-
+    <string name="dialog_network_title">Network Connection</string>
+    <string name="dialog_network_text">No network detected, please connect and try again.</string>
 
 </resources>
