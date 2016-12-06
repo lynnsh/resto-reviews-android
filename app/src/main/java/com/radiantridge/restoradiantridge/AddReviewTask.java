@@ -31,11 +31,12 @@ public class AddReviewTask extends AsyncTask<JsonObject, Void, Boolean> {
             Log.e(TAG, e.getMessage());
             return false;
         }
-        JsonObject json = params[0];
-        /*SharedPreferences prefs = context.getSharedPreferences("Settings", context.MODE_PRIVATE);
-        json.addProperty("email", prefs.getString("email", ""));
-        json.addProperty("password", prefs.getString("password", ""));*/
-        return addReviewToHeroku(json.toString());
+        boolean noErrors = true;
+        for(JsonObject json : params) {
+                noErrors = noErrors && addReviewToHeroku(json.toString());
+        }
+
+        return noErrors;
     }
 
     private boolean addReviewToHeroku(String review) {
