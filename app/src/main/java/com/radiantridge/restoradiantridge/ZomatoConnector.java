@@ -258,6 +258,6 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     @Override
     protected void onPostExecute(Restaurant[] list)
     {
-        fragment.setList(list);
+        fragment.setNewList(list);
     }
 }

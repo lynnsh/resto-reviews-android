@@ -91,11 +91,14 @@ public class RestoListFragment extends ListFragment {
      *
      * @param list      The list to be displayed
      */
-    public void setList(Restaurant[] list)
+    public void setNewList(Restaurant[] list)
     {
-        Log.i(TAG, "New ListAdapter");
-        this.list = list;
-        setListAdapter(new RestaurantAdapter(getActivity(), list));
+        if (list != null)
+        {
+            Log.i(TAG, "New ListAdapter");
+            this.list = list;
+            setListAdapter(new RestaurantAdapter(getActivity(), list));
+        }
     }
 
     /**
@@ -106,6 +109,7 @@ public class RestoListFragment extends ListFragment {
      */
     private void callRestaurant(Restaurant resto)
     {
+        //TODO: validate ability to make phone calls
         // Check if the phone number exists
         if (resto.getPhone() != null)
         {
@@ -146,5 +150,45 @@ public class RestoListFragment extends ListFragment {
         intent.putExtra("latitude", resto.getLatitude());
         intent.putExtra("longitude", resto.getLongitude());
         intent.putExtra("phone", resto.getPhone());
+    }
+
+    public void addToList(Restaurant[] newList)
+    {
+        // Make sure it is not null
+        if (newList != null)
+        {
+            // Check if original list is null
+            if (list == null)
+            {
+                // No need to add, only replace
+                list = newList;
+            }
+            else
+            {
+                mergeList(newList);
+            }
+
+            setListAdapter(new RestaurantAdapter(getActivity(), list));
+        }
+    }
+
+    private void mergeList(Restaurant[] newList)
+    {
+        int size = list.length + newList.length;
+        Restaurant[] temp = new Restaurant[size];
+
+        // Add current list to new array
+        for(int i = 0; i < list.length; i++)
+        {
+            temp[i] = list[i];
+        }
+
+        // Add new list to new array
+        for (int i = 0; i < newList.length; i++)
+        {
+            temp[i + list.length] = newList[i];
+        }
+
+        list = temp;
     }
 }

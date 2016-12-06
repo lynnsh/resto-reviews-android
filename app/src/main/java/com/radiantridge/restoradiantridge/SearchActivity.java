@@ -68,7 +68,7 @@ public class SearchActivity extends MenuActivity {
         // Displaying results
         if (results != null)
         {
-            fragment.setList(results);
+            fragment.setNewList(results);
         }
     }
 
