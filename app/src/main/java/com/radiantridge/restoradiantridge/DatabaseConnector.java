@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 /**
  * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
  * @author Alena Shulzhenko
- * @version 2016-12-05
+ * @version 2016-12-06
  */
 
 public class DatabaseConnector extends SQLiteOpenHelper {
@@ -28,10 +28,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String COLUMN_PHONE = "phone";
     public static final String COLUMN_SOURCE = "source";
     public static final String COLUMN_HEROKU_ID = "heroku";
-    public static final String COLUMN_ADDRESS_NUMBER = "addressNumber";
-    public static final String COLUMN_ADDRESS_STREET = "addressStreet";
-    public static final String COLUMN_ADDRESS_CITY = "addressCity";
-    public static final String COLUMN_POSTAL_CODE = "addressPostalCode";
+    public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_LATITUDE = "latitude";
     public static final String COLUMN_LONGITUDE = "longitude";
     public static final String COLUMN_DATE_CREATED = "createdDate";
@@ -69,10 +66,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 + COLUMN_PHONE + " text, "
                 + COLUMN_SOURCE + " integer, "
                 + COLUMN_HEROKU_ID + " integer, "
-                + COLUMN_ADDRESS_NUMBER + " integer, "
-                + COLUMN_ADDRESS_STREET + " text, "
-                + COLUMN_ADDRESS_CITY + " text, "
-                + COLUMN_POSTAL_CODE + " text, "
+                + COLUMN_ADDRESS + " text, "
                 + COLUMN_LATITUDE + " real, "
                 + COLUMN_LONGITUDE + " real, "
                 + COLUMN_DATE_CREATED + " integer, "
@@ -128,10 +122,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_PHONE, resto.getPhone());
         cv.put(COLUMN_SOURCE, resto.getSource());
         cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
-        cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
-        cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
-        cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
-        cv.put(COLUMN_POSTAL_CODE, resto.getAddPostalCode());
+        cv.put(COLUMN_ADDRESS, resto.getAddress());
         cv.put(COLUMN_LATITUDE, resto.getLatitude());
         cv.put(COLUMN_LONGITUDE, resto.getLongitude());
         cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
@@ -166,10 +157,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_PHONE, resto.getPhone());
         cv.put(COLUMN_SOURCE, resto.getSource());
         cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
-        cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
-        cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
-        cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
-        cv.put(COLUMN_POSTAL_CODE, resto.getAddPostalCode());
+        cv.put(COLUMN_ADDRESS, resto.getAddress());
         cv.put(COLUMN_LATITUDE, resto.getLatitude());
         cv.put(COLUMN_LONGITUDE, resto.getLongitude());
         cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
@@ -220,7 +208,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      * @return the Restaurant objects with the city like the one provided.
      */
     public Restaurant[] searchByCity(String city) {
-        Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null, COLUMN_ADDRESS_CITY + " like ? ",
+        Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null, COLUMN_ADDRESS + " like ? ",
                 new String[] { "%"+city+"%" },
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
@@ -235,7 +223,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public Restaurant[] search(String key) {
         String searchKey = "%"+key+"%";
         Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null,
-                COLUMN_ADDRESS_CITY + " like ? or " + COLUMN_GENRE + " like ? or "
+                COLUMN_ADDRESS + " like ? or " + COLUMN_GENRE + " like ? or "
                         + COLUMN_NAME + " like ? ",
                 new String[] { searchKey, searchKey, searchKey },
                 null, null, COLUMN_NAME, null);
@@ -277,10 +265,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
             resto.setSource(cursor.getInt(cursor.getColumnIndex(COLUMN_SOURCE)));
             resto.setHerokuId(cursor.getInt(cursor.getColumnIndex(COLUMN_HEROKU_ID)));
-            resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));
-            resto.setAddStreet(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_STREET)));
-            resto.setAddCity(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_CITY)));
-            resto.setAddPostalCode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTAL_CODE)));
+            resto.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
             resto.setLatitude(cursor.getDouble(cursor.getColumnIndex(COLUMN_LATITUDE)));
             resto.setLongitude(cursor.getDouble(cursor.getColumnIndex(COLUMN_LONGITUDE)));
             resto.setCreatedTime(new Timestamp(cursor.getInt(cursor.getColumnIndex(COLUMN_DATE_CREATED))));

@@ -15,9 +15,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,11 +79,9 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
             resto.setPriceRange(row.getInt("price"));
             resto.setStarRating(row.optDouble("rating", 0));
             resto.setSource(2);
-            resto.setAddStreet(row.getString("address"));
+            resto.setAddress(row.getString("address"));
             resto.setLatitude(row.getDouble("latitude"));
             resto.setLongitude(row.getDouble("longitude"));
-            //resto.setCreatedTime(); /nothing yet since php sends a formatted string
-            //resto.setModifiedTime();
         }
 
     }
