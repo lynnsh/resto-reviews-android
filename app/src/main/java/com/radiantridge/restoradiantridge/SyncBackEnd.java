@@ -89,7 +89,7 @@ public class SyncBackEnd {
         @Override
         public Boolean doInBackground(Restaurant... restos) {
             boolean noErrors = true;
-            HttpPostSender sender = new HttpPostSender();
+            HttpsPostSender sender = new HttpsPostSender();
             for(Restaurant resto : restos) {
                 //check if this resto was not from heroku initially
                 if(resto.getSource() != 2) {

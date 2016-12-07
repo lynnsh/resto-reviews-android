@@ -10,10 +10,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * GetRestosTask class is responsible to retrieve the restaurants
@@ -41,13 +42,13 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
             //GET url to Heroku
             URL url = new URL("https://radiant-ridge-88291.herokuapp.com/api/api/restos?latitude="
                     + latitude + "&longitude=" + longitude);
-            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            HttpsURLConnection http = (HttpsURLConnection) url.openConnection();
             http.setRequestMethod("GET");
             //allow receiving data
             http.setDoInput(true);
             http.connect();
             int response = http.getResponseCode();
-            if (response == HttpURLConnection.HTTP_OK) {
+            if (response == HttpsURLConnection.HTTP_OK) {
                 InputStream is = http.getInputStream();
                 retrieveRestos(is, restos);
             }

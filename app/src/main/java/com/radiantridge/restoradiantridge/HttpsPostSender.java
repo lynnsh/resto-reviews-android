@@ -12,7 +12,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -25,7 +24,7 @@ import javax.net.ssl.HttpsURLConnection;
  * @version 2016-12-07
  */
 
-public class HttpPostSender {
+public class HttpsPostSender {
     public static final String TAG = "HttpPostSender";
 
     /**
@@ -62,7 +61,7 @@ public class HttpPostSender {
 
             int response = conn.getResponseCode();
             //check if the transmission was successful
-            if (response != HttpURLConnection.HTTP_OK) {
+            if (response != HttpsURLConnection.HTTP_OK) {
                 Log.d(TAG, "Server returned: " + response + " aborting read.");
                 return -1;
             }
