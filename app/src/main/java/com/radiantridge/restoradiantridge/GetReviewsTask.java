@@ -3,8 +3,6 @@ package com.radiantridge.restoradiantridge;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,19 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by aline on 05/12/16.
+ * Created by aline on 06/12/16.
  */
 
-public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
-    public static final String TAG = "GetRestosTask";
+public class GetReviewsTask extends AsyncTask<Integer, Void, Review[]> {
+    public static final String TAG = "GetReviewsTask";
     @Override
-    public Restaurant[] doInBackground(Double... params) {
-        List<Restaurant> restos = new ArrayList<>();
-        double latitude = params[0];
-        double longitude = params[1];
+    public Review[] doInBackground(Integer... params) {
+        List<Review> reviews = new ArrayList<>();
+        double restoId = params[0];
         try {
-            URL url = new URL("https://radiant-ridge-88291.herokuapp.com/api/api/restos?latitude="
-                    + latitude + "&longitude=" + longitude);
+            URL url = new URL("https://radiant-ridge-88291.herokuapp.com/api/api/reviews?resto_id="
+                    + restoId);
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setRequestMethod("GET");
             // specifies whether this connection allows receiving data
@@ -41,7 +38,7 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
             int response = http.getResponseCode();
             if (response == HttpURLConnection.HTTP_OK) {
                 InputStream is = http.getInputStream();
-                read(is, restos);
+                read(is, reviews);
             }
         }
         catch (IOException e) {
@@ -50,10 +47,10 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
         catch(JSONException ex) {
             Log.d(TAG, ex.getMessage());
         }
-        return restos.toArray(new Restaurant[]{});
+        return reviews.toArray(new Review[]{});
     }
 
-    private void read(InputStream is, List<Restaurant> restos) throws IOException, JSONException {
+    private void read(InputStream is, List<Review> reviews) throws IOException, JSONException {
         int bytesRead;
         byte[] buffer = new byte[1024];
 
@@ -71,17 +68,12 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
         JSONArray array = new JSONArray(new String(byteArrayOutputStream.toString()));
         for(int i = 0; i < array.length(); i++) {
             JSONObject row = array.getJSONObject(i);
-            Restaurant resto = new Restaurant();
-            resto.setHerokuId(row.getInt("id"));
-            resto.setName(row.getString("name"));
-            resto.setGenre(row.getString("genre"));
-            resto.setPriceRange(row.getInt("price"));
-            resto.setStarRating(row.optDouble("rating", 0));
-            resto.setSource(2);
-            resto.setAddress(row.getString("address"));
-            resto.setLatitude(row.getDouble("latitude"));
-            resto.setLongitude(row.getDouble("longitude"));
-            restos.add(resto);
+            Review review = new Review();
+            review.setHerokuId(row.getInt("resto_id"));
+            review.setContent(row.getString("content"));
+            review.setRating(row.getInt("rating"));
+            review.setTitle(row.getString("title"));
+            reviews.add(review);
         }
 
     }

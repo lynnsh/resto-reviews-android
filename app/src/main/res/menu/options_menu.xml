@@ -3,4 +3,5 @@
     <item android:id="@+id/about" android:title="@string/menu_about"/>
     <item android:id="@+id/dawson" android:title="@string/menu_dawson"/>
     <item android:id="@+id/settings" android:title="@string/menu_settings"/>
+    <item android:id="@+id/sync" android:title="@string/menu_sync"/>
 </menu>

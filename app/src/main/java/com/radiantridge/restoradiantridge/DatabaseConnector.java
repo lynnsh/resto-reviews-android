@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 
 /**
  * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
+ *
  * @author Alena Shulzhenko
  * @version 2016-12-06
  */
