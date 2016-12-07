@@ -42,7 +42,8 @@ public class AddReviewActivity extends AppCompatActivity {
                 json.addProperty("email", prefs.getString("email", ""));
                 json.addProperty("password", prefs.getString("password", ""));
                 Log.d(TAG, "Json object to send: " + json);
-                noErrors = noErrors && sender.send(json.toString(), herokuAddReviewUrl);
+                //there was no error if the id returned was not -1
+                noErrors = noErrors && (sender.send(json.toString(), herokuAddReviewUrl) != -1);
             }
             return noErrors;
         }

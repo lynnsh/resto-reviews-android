@@ -15,7 +15,7 @@ import com.google.gson.JsonObject;
  * to the back-end database.
  *
  * @author Alena Shulzhenko
- * @version 2016-12-06
+ * @version 2016-12-07
  */
 
 public class SyncBackEnd {
@@ -82,6 +82,7 @@ public class SyncBackEnd {
 
         /**
          * Sync local and zomato-saved resturants to Heroku database.
+         * It updates the heroku id of the local database if the transaction was successful.
          * @param restos the restaurants to save on heroku.
          * @return true if there were no errors during the sync; false otherwise.
          */
@@ -97,7 +98,13 @@ public class SyncBackEnd {
                     SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
                     json.addProperty("email", prefs.getString("email", ""));
                     json.addProperty("password", prefs.getString("password", ""));
-                    noErrors = noErrors && sender.send(json.toString(), herokuCreateRestoUrl);
+                    int herokuId = sender.send(json.toString(), herokuCreateRestoUrl);
+                    //update heroku id for this resto in local database
+                    if(herokuId != -1) {
+                        resto.setHerokuId(herokuId);
+                        dbh.updateResto(resto);
+                    }
+                    noErrors = noErrors && herokuId != -1;
                     Log.d(TAG, "Json object to send: " + json);
                 }
             }

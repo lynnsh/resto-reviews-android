@@ -30,6 +30,7 @@ public class Restaurant implements Serializable{
     private String phone;
     private int source; //0-direct input, 1-zomato, 2-heroku api.
     private int herokuId; //id heroku expects in order to associate a review with it
+    private int zomatoId;
 
     public Restaurant() {
     }
@@ -46,8 +47,16 @@ public class Restaurant implements Serializable{
         return herokuId;
     }
 
-    public void setHerokuId(int dbId) {
-        this.dbId = dbId;
+    public void setHerokuId(int herokuId) {
+        this.herokuId = herokuId;
+    }
+
+    public int getZomatoId() {
+        return zomatoId;
+    }
+
+    public void setZomatoId(int zomatoId) {
+        this.zomatoId = zomatoId;
     }
 
     public String getName() {
@@ -218,6 +227,7 @@ public class Restaurant implements Serializable{
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
         if (source != that.source) return false;
         if (herokuId != that.herokuId) return false;
+        if (zomatoId != that.zomatoId) return false;
         return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
@@ -246,6 +256,7 @@ public class Restaurant implements Serializable{
         result = 31 * result + dbId;
         result = 31 * result + source;
         result = 31 * result + herokuId;
+        result = 31 * result + zomatoId;
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
@@ -270,6 +281,7 @@ public class Restaurant implements Serializable{
                 ", dbId=" + dbId +
                 ", source=" + dbId +
                 ", herokuId=" + herokuId +
+                ", zomatoId=" + zomatoId +
                 ", phone='" + phone + '\'' +
                 '}';
     }
