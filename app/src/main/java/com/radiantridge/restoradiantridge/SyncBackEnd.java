@@ -49,7 +49,7 @@ public class SyncBackEnd {
         //no connection
         else {
             Log.d(TAG, "No connection available.");
-            Toast.makeText(context, R.string.net_error, Toast.LENGTH_SHORT);
+            Toast.makeText(context, R.string.net_error, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -65,7 +65,7 @@ public class SyncBackEnd {
          */
         @Override
         public void onPreExecute() {
-            Toast.makeText(context, R.string.sync_start, Toast.LENGTH_SHORT);
+            Toast.makeText(context, R.string.sync_start, Toast.LENGTH_SHORT).show();
         }
 
         /**
@@ -75,9 +75,9 @@ public class SyncBackEnd {
         @Override
         public void onPostExecute(Boolean noErrors) {
             if(noErrors)
-                Toast.makeText(context, R.string.sync_success, Toast.LENGTH_SHORT);
+                Toast.makeText(context, R.string.sync_success, Toast.LENGTH_SHORT).show();
             else
-                Toast.makeText(context, R.string.sync_error, Toast.LENGTH_SHORT);
+                Toast.makeText(context, R.string.sync_error, Toast.LENGTH_SHORT).show();
         }
 
         /**
@@ -94,7 +94,7 @@ public class SyncBackEnd {
                 if(resto.getSource() != 2) {
                     JsonObject json = resto.toJsonObject();
                     //add email and password to authenticate the user.
-                    SharedPreferences prefs = context.getSharedPreferences("Settings", context.MODE_PRIVATE);
+                    SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
                     json.addProperty("email", prefs.getString("email", ""));
                     json.addProperty("password", prefs.getString("password", ""));
                     noErrors = noErrors && sender.send(json.toString(), herokuCreateRestoUrl);

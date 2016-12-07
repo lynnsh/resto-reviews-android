@@ -94,4 +94,17 @@ public class Review {
         json.addProperty("rating", rating);
         return json;
     }
+
+    /**
+     * Returns the string representation of the object.
+     * @return the string representation of the object.
+     */
+    public String toString() {
+        return "Review{" +
+                "title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", rating='" + rating + '\'' +
+                ", herokuRestoId=" + herokuRestoId +
+                '}';
+    }
 }

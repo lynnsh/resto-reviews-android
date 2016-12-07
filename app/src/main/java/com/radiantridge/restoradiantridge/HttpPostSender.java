@@ -57,7 +57,6 @@ public class HttpPostSender {
                 return false;
             }
             return true;
-
         }
         catch(IOException io) {
             Log.e(TAG, io.getMessage());
