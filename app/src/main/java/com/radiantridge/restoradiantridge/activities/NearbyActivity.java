@@ -1,8 +1,7 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -19,9 +18,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.radiantridge.restoradiantridge.asynctasks.ZomatoTask;
+import com.radiantridge.restoradiantridge.asynctasks.GetRestosTask;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
+
 /**
  * This activity gets the location from the device's GPS and uses it to get and display a list of
- * nearby restaurants using the ZomatoConnector.
+ * nearby restaurants using the ZomatoTask.
  *
  * @author Erika Bourque
  * @version 01/12/2016
@@ -45,7 +49,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
 
     /**
      * Overriden lifecycle method.  Starts the GPS Tracker,
-     * and starts the query process for the ZomatoConnector.
+     * and starts the query process for the ZomatoTask.
      *
      * @param savedInstanceState savedInstanceState
      */
@@ -171,7 +175,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      */
     private void getListFromZomato() {
         Log.i(TAG, "Getting zomato");
-        ZomatoConnector conn = new ZomatoConnector(fragment);
+        ZomatoTask conn = new ZomatoTask(fragment);
         conn.execute(latitude, longitude);
     }
 
@@ -343,7 +347,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     private boolean isInternetAvailable()
     {
         boolean isAvailable = false;
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
         if (activeNetwork != null)

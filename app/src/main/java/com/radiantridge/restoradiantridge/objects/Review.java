@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.objects;
 
 import com.google.gson.JsonObject;
 

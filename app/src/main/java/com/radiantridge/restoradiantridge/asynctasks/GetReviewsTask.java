@@ -1,7 +1,9 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.asynctasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.radiantridge.restoradiantridge.objects.Review;
 
 import org.json.JSONArray;
 import org.json.JSONException;

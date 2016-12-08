@@ -1,7 +1,11 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.asynctasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +25,7 @@ import java.net.URL;
  * @author Erika Bourque
  * @version 01/12/2016
  */
-public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
+public class ZomatoTask extends AsyncTask<Double, Void, Restaurant[]>{
     private final String TAG="ZomatoConn";
     private final String userKey = "7aa3592c74a89f7580be9be959fde45b";
     private final String nearbyUrl = "https://developers.zomato.com/api/v2.1/geocode?";
@@ -33,7 +37,7 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
      *
      * @param fragment      The fragment that will display the restaurants
      */
-    public ZomatoConnector(RestoListFragment fragment)
+    public ZomatoTask(RestoListFragment fragment)
     {
         this.fragment = fragment;
     }

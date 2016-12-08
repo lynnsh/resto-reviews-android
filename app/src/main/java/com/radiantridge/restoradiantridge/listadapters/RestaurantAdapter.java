@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.listadapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 /**
  * Custom adapter for the Restaurant list fragment.  Displays only the name

@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.helpers;
 
 import android.util.Log;
 
@@ -24,7 +24,7 @@ import javax.net.ssl.HttpsURLConnection;
  * @version 2016-12-07
  */
 
-public class HttpsPostSender {
+public class HttpsPostSenderHelper {
     public static final String TAG = "HttpPostSender";
 
     /**

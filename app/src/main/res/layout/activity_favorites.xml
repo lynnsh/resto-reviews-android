@@ -8,11 +8,11 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.FavoritesActivty">
+    tools:context="com.radiantridge.restoradiantridge.activities.FavoritesActivty">
 
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.radiantridge.restoradiantridge.RestoListFragment"
+        android:name="com.radiantridge.restoradiantridge.fragments.RestoListFragment"
         android:id="@+id/favorites_list" />
 </RelativeLayout>

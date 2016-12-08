@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
-
-import java.net.URL;
+import com.radiantridge.restoradiantridge.helpers.HttpsPostSenderHelper;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.objects.Review;
 
 public class AddReviewActivity extends AppCompatActivity {
 
@@ -34,7 +35,7 @@ public class AddReviewActivity extends AppCompatActivity {
         public Boolean doInBackground(Review... reviews) {
             boolean noErrors = true;
             String herokuAddReviewUrl = "https://radiant-ridge-88291.herokuapp.com/api/api/add-review";
-            HttpsPostSender sender = new HttpsPostSender();
+            HttpsPostSenderHelper sender = new HttpsPostSenderHelper();
             for(Review review : reviews) {
                 JsonObject json = review.toJsonObject();
                 //add email and password to authenticate the user.

@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.helpers.SyncBackEndHelper;
 
 /**
  * Menu for the restaurant application. All activities extend
@@ -59,7 +62,7 @@ public class MenuActivity extends AppCompatActivity {
             }
             case R.id.sync: {
                 Log.i(TAG, "Sync selected.");
-                new SyncBackEnd(this).start();
+                new SyncBackEndHelper(this).start();
                 return true;
             }
             default:
