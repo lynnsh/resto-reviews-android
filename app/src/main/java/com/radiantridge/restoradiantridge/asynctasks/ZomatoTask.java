@@ -219,7 +219,7 @@ public class ZomatoTask extends AsyncTask<Double, Void, Restaurant[]>{
         resto.setSource(1);
 
         // TODO: should i keep these here?
-        resto.setDatabaseId(-1);
+        resto.setDbId(-1);
         resto.setHerokuId(-1);
 
         Log.i(TAG, "Built restaurant: " + resto.getName());

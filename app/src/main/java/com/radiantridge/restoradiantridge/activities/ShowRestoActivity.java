@@ -74,8 +74,8 @@ public class ShowRestoActivity  extends AppCompatActivity {
         if(source==0)
         {
             Log.i(TAG,"is not a zomato resto");
-             id = bundle.getInt("databaseId");
-            Log.i(TAG, "the id os resto " + id);
+             id =resto.getDbId();
+            Log.i(TAG, "the id of resto " + id);
             resto = dbconn.getResto(id);
             //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
             setFields(resto);
@@ -143,7 +143,8 @@ public class ShowRestoActivity  extends AppCompatActivity {
                         dbconn.deleteResto(restoId);
                         Toast.makeText(getApplicationContext(), R.string.delete_text, Toast.LENGTH_SHORT).show();
                         // go back to list of restos
-                        Intent intent = new Intent(getApplicationContext(), FavoritesActivty.class);
+                        // TODO :  SWITCH TO START ACTIVITY FOR RESULT
+                        Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
                         startActivity(intent);
 
 

@@ -72,7 +72,7 @@ public class RestoListFragment extends ListFragment {
      */
     private void displayRestoDetails(Restaurant resto)
     {
-        int id = resto.getDatabaseId();
+        int id = resto.getDbId();
         Intent intent = new Intent();
         intent.setClass(getActivity(), ShowRestoActivity.class);
 

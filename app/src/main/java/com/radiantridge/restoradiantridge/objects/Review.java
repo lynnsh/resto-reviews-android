@@ -91,7 +91,7 @@ public class Review {
         json.addProperty("resto_id", herokuRestoId);
         json.addProperty("title", title);
         json.addProperty("content", content);
-        json.addProperty("rating", rating);
+        json.addProperty("rating", rating+"");
         return json;
     }
 

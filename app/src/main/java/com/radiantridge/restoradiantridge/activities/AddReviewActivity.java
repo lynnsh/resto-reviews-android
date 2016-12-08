@@ -1,5 +1,7 @@
 package com.radiantridge.restoradiantridge.activities;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -8,21 +10,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.radiantridge.restoradiantridge.helpers.HttpsPostSenderHelper;
 import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
 import com.radiantridge.restoradiantridge.objects.Review;
 
 public class AddReviewActivity extends AppCompatActivity {
     private static final String TAG = "Add review Act";
+    private Context context;
 
     private Review review;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
+        this.context = this;
         review = new Review();
+
+        Bundle bundle = getIntent().getExtras();
+
+        Restaurant  resto = (Restaurant) bundle.getSerializable("resto");
+
+        review.setHerokuRestoId(resto.getHerokuId());
+
     }
     /**
      * This method gets all the data from input fields, validates it,
@@ -77,6 +90,21 @@ public class AddReviewActivity extends AppCompatActivity {
                 noErrors = noErrors && (sender.send(json.toString(), herokuAddReviewUrl) != -1);
             }
             return noErrors;
+        }
+
+        /**
+         * Informs the user whether the review addition was successful.
+         * @param noErrors true if there were no errors during the review addition; false otherwise.
+         */
+        @Override
+        public void onPostExecute(Boolean noErrors) {
+            //leave the activity if the addition of the review was successful
+            if(noErrors) {
+                Toast.makeText(context, R.string.review_success, Toast.LENGTH_SHORT).show();
+                ((Activity)context).finish();
+            }
+            else
+                Toast.makeText(context, R.string.review_error, Toast.LENGTH_SHORT).show();
         }
     }
 }
