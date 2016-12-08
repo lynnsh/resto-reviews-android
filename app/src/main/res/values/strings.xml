@@ -85,4 +85,5 @@
     <string name="net_error">Network connection error. Please, check your connection and try again.</string>
     <string name="dialog_network_title">Network Connection</string>
     <string name="dialog_network_text">No network detected, please connect and try again.</string>
+    <string name="toast_no_phone">Unable to dial phone number.</string>
 </resources>

@@ -3,6 +3,7 @@ package com.radiantridge.restoradiantridge;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.ListFragment;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * ListFragment for the Restaurant list.
@@ -67,22 +69,23 @@ public class RestoListFragment extends ListFragment {
      */
     private void displayRestoDetails(Restaurant resto)
     {
-        // TODO: change this to sent resto as object
         int id = resto.getDatabaseId();
         Intent intent = new Intent();
         intent.setClass(getActivity(), ShowRestoActivity.class);
 
+        intent.putExtra("resto", resto);
+
         // Check if the restaurant already exists in database
-        if (id == -1)
-        {
-            intent.putExtra("isZomato", true);
-            addRestoFields(intent, resto);
-        }
-        else
-        {
-            intent.putExtra("isZomato", false);
-            intent.putExtra("databaseId", id);
-        }
+//        if (id == -1)
+//        {
+//            intent.putExtra("isZomato", true);
+//            addRestoFields(intent, resto);
+//        }
+//        else
+//        {
+//            intent.putExtra("isZomato", false);
+//            intent.putExtra("databaseId", id);
+//        }
 
         startActivity(intent);
     }
@@ -114,7 +117,16 @@ public class RestoListFragment extends ListFragment {
         // Check if the phone number exists
         if (resto.getPhone() != null)
         {
-            startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + resto.getPhone())));
+            try
+            {
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + resto.getPhone())));
+            }
+            catch(ActivityNotFoundException e)
+            {
+                Log.i(TAG, "Device phone not found");
+                Toast.makeText(getActivity(), R.string.toast_no_phone, Toast.LENGTH_SHORT).show();
+            }
+
         }
         else
         {
