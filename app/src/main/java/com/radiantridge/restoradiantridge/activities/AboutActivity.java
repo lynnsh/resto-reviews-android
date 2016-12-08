@@ -1,5 +1,6 @@
 package com.radiantridge.restoradiantridge.activities;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,8 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.radiantridge.restoradiantridge.R;
-
 /**
 * This activity tells you what our application does.
 * It displays text and an image icon at the bottom.
@@ -24,8 +23,8 @@ import com.radiantridge.restoradiantridge.R;
 * @author Victor
 */
 
-public class AboutActivity extends MenuActivity {
-    //TODO: fix image sizes
+public class AboutActivity extends Menu {
+
 	/**
 	* Minimum override method
 	*/
@@ -74,6 +73,9 @@ public class AboutActivity extends MenuActivity {
         ll2.setOrientation(LinearLayout.HORIZONTAL);
         ImageView iv3 = new ImageView(this);
         iv3.setImageResource(R.drawable.aline);
+        iv3.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        iv3.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        iv3.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv3.setClickable(true);
         iv3.setOnClickListener(new View.OnClickListener() {
 
@@ -111,6 +113,9 @@ public class AboutActivity extends MenuActivity {
 
         ImageView iv4 = new ImageView(this);
         iv4.setImageResource(R.drawable.erika);
+        iv4.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        iv4.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        iv4.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv4.setClickable(true);
         iv4.setOnClickListener(new View.OnClickListener() {
 
@@ -148,6 +153,9 @@ public class AboutActivity extends MenuActivity {
 
         ImageView iv5 = new ImageView(this);
         iv5.setImageResource(R.drawable.rafia);
+        iv5.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        iv5.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        iv5.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv5.setClickable(true);
         iv5.setOnClickListener(new View.OnClickListener() {
 
@@ -185,6 +193,9 @@ public class AboutActivity extends MenuActivity {
 
         ImageView iv6 = new ImageView(this);
         iv6.setImageResource(R.drawable.aline);
+        iv6.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        iv6.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        iv6.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv6.setClickable(true);
         iv6.setOnClickListener(new View.OnClickListener() {
 
