@@ -39,8 +39,8 @@ public class Restaurant implements Serializable{
         return dbId;
     }
 
-    public void setDbId(int herokuId) {
-        this.herokuId = herokuId;
+    public void setDbId(int dbId) {
+        this.dbId = dbId;
     }
 
     public int getHerokuId() {
@@ -174,14 +174,6 @@ public class Restaurant implements Serializable{
         this.latitude = latitude;
     }
 
-    public void setDatabaseId(int id) {
-        this.dbId = id;
-    }
-
-    public int getDatabaseId() {
-        return this.dbId;
-    }
-
     public void setPhone(String phone) {
         this.phone = phone;
     }
@@ -279,7 +271,7 @@ public class Restaurant implements Serializable{
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", dbId=" + dbId +
-                ", source=" + dbId +
+                ", source=" + source +
                 ", herokuId=" + herokuId +
                 ", zomatoId=" + zomatoId +
                 ", phone='" + phone + '\'' +

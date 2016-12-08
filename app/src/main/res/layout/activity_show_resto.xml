@@ -249,6 +249,22 @@
             android:visibility="invisible"
 
             />
+        <Button
+            android:text="@string/button_addReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAddReview"
+            android:visibility="invisible"
+
+            />
+        <Button
+            android:text="@string/button_showReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonShowReview"
+            android:visibility="invisible"
+
+            />
 
     </LinearLayout>
 </RelativeLayout>

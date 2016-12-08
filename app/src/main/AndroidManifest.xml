@@ -31,7 +31,11 @@
         <activity android:name=".activities.ShowRestoActivity" />
         <activity android:name=".activities.LatLongActivity" />
         <activity android:name=".activities.AddReviewActivity" />
-        <activity android:name=".activities.PickSomewhereActivity"></activity>
+        <activity android:name=".activities.ShowReviewActivity" />
+
+        <activity android:name=".activities.PickSomewhereActivity">
+
+        </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAN7fU3cpMb6pdHAn7uG42xByIIr4rewEo"/>
