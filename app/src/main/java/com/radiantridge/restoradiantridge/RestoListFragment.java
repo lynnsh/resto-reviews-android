@@ -113,7 +113,6 @@ public class RestoListFragment extends ListFragment {
      */
     private void callRestaurant(Restaurant resto)
     {
-        //TODO: validate ability to make phone calls
         // Check if the phone number exists
         if (resto.getPhone() != null)
         {

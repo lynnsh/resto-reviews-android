@@ -207,8 +207,11 @@ public class ShowRestoActivity  extends AppCompatActivity {
         //num=resto.getAddNum();
         String[] address = resto.getAddress().split(",", 2);
 
+        // TODO: make address one big field
         addLineOne = address[0];
-        addLineTwo = address[1];
+        if (address.length == 2) {
+            addLineTwo = address[1];
+        }
         //code=resto.getAddPostalCode();
         genre=resto.getGenre();
         price=resto.getPriceRange();
