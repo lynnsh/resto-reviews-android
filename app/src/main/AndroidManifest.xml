@@ -28,7 +28,8 @@
         <activity android:name=".TipCalcActivity" />
         <activity android:name=".AddRestoActivity" />
         <activity android:name=".ShowRestoActivity" />
-        <activity android:name=".LatLongActivity"></activity>
+        <activity android:name=".LatLongActivity" />
+        <activity android:name=".AddReviewActivity"></activity>
     </application>
 
 </manifest>

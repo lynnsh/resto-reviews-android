@@ -1,5 +1,7 @@
 package com.radiantridge.restoradiantridge;
 
+import com.google.gson.JsonObject;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -11,10 +13,11 @@ import java.sql.Timestamp;
 public class Restaurant implements Serializable{
 
     private String name;
-    private int addNum;
-    private String addStreet;
-    private String addCity;
-    private String addPostalCode;
+    //private int addNum;
+    //private String addStreet;
+    //private String addCity;
+    //private String addPostalCode;
+    private String address;
     private String genre;
     private int priceRange; //the range is 1 to 4
     private Timestamp createdTime;  // ?? creation time of what
@@ -25,6 +28,9 @@ public class Restaurant implements Serializable{
     private double latitude;
     private int dbId;
     private String phone;
+    private int source; //0-direct input, 1-zomato, 2-heroku api.
+    private int herokuId; //id heroku expects in order to associate a review with it
+    private int zomatoId;
 
     public Restaurant() {
     }
@@ -33,8 +39,24 @@ public class Restaurant implements Serializable{
         return dbId;
     }
 
-    public void setDbId(int dbId) {
-        this.dbId = dbId;
+    public void setDbId(int herokuId) {
+        this.herokuId = herokuId;
+    }
+
+    public int getHerokuId() {
+        return herokuId;
+    }
+
+    public void setHerokuId(int herokuId) {
+        this.herokuId = herokuId;
+    }
+
+    public int getZomatoId() {
+        return zomatoId;
+    }
+
+    public void setZomatoId(int zomatoId) {
+        this.zomatoId = zomatoId;
     }
 
     public String getName() {
@@ -45,7 +67,7 @@ public class Restaurant implements Serializable{
         this.name = name;
     }
 
-    public String getAddStreet() {
+    /*public String getAddStreet() {
         return addStreet;
     }
 
@@ -78,6 +100,14 @@ public class Restaurant implements Serializable{
 
     public void setAddPostalCode(String addPostalCode) {
         this.addPostalCode = addPostalCode;
+    }
+*/
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getGenre() {
@@ -160,6 +190,16 @@ public class Restaurant implements Serializable{
         return this.phone;
     }
 
+    public int getSource() {
+        return this.source;
+    }
+
+    public void setSource(int source) {
+        if(source != 0 && source != 1 && source != 2)
+            throw new IllegalArgumentException("Invalid source value: " + source);
+        this.source = source;
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -168,23 +208,26 @@ public class Restaurant implements Serializable{
 
         Restaurant that = (Restaurant) o;
 
-        if (addNum != that.addNum) return false;
+        //if (addNum != that.addNum) return false;
         if (priceRange != that.priceRange) return false;
         if (Double.compare(that.starRating, starRating) != 0) return false;
         if (Double.compare(that.longitude, longitude) != 0) return false;
         if (Double.compare(that.latitude, latitude) != 0) return false;
         if (dbId != that.dbId) return false;
         if (!name.equals(that.name)) return false;
-        if (addStreet != null ? !addStreet.equals(that.addStreet) : that.addStreet != null)
-            return false;
-        if (addCity != null ? !addCity.equals(that.addCity) : that.addCity != null) return false;
-        if (!addPostalCode.equals(that.addPostalCode)) return false;
+        //if (addStreet != null ? !addStreet.equals(that.addStreet) : that.addStreet != null) return false;
+        //if (addCity != null ? !addCity.equals(that.addCity) : that.addCity != null) return false;
+        //if (!addPostalCode.equals(that.addPostalCode)) return false;
+        if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (!genre.equals(that.genre)) return false;
         if (createdTime != null ? !createdTime.equals(that.createdTime) : that.createdTime != null)
             return false;
         if (modifiedTime != null ? !modifiedTime.equals(that.modifiedTime) : that.modifiedTime != null)
             return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
+        if (source != that.source) return false;
+        if (herokuId != that.herokuId) return false;
+        if (zomatoId != that.zomatoId) return false;
         return phone != null ? phone.equals(that.phone) : that.phone == null;
 
     }
@@ -194,10 +237,11 @@ public class Restaurant implements Serializable{
         int result;
         long temp;
         result = name.hashCode();
-        result = 31 * result + addNum;
-        result = 31 * result + (addStreet != null ? addStreet.hashCode() : 0);
-        result = 31 * result + (addCity != null ? addCity.hashCode() : 0);
-        result = 31 * result + addPostalCode.hashCode();
+        //result = 31 * result + addNum;
+        //result = 31 * result + (addStreet != null ? addStreet.hashCode() : 0);
+        //result = 31 * result + (addCity != null ? addCity.hashCode() : 0);
+        //result = 31 * result + addPostalCode.hashCode();
+        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + genre.hashCode();
         result = 31 * result + priceRange;
         result = 31 * result + (createdTime != null ? createdTime.hashCode() : 0);
@@ -210,6 +254,9 @@ public class Restaurant implements Serializable{
         temp = Double.doubleToLongBits(latitude);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + dbId;
+        result = 31 * result + source;
+        result = 31 * result + herokuId;
+        result = 31 * result + zomatoId;
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
     }
@@ -218,10 +265,11 @@ public class Restaurant implements Serializable{
     public String toString() {
         return "Restaurant{" +
                 "name='" + name + '\'' +
-                ", addNum=" + addNum +
-                ", addStreet='" + addStreet + '\'' +
-                ", addCity='" + addCity + '\'' +
-                ", addPostalCode='" + addPostalCode + '\'' +
+                //", addNum=" + addNum +
+               // ", addStreet='" + addStreet + '\'' +
+               // ", addCity='" + addCity + '\'' +
+               // ", addPostalCode='" + addPostalCode + '\'' +
+                ", address='" + address + '\'' +
                 ", genre='" + genre + '\'' +
                 ", priceRange=" + priceRange +
                 ", createdTime=" + createdTime +
@@ -231,7 +279,20 @@ public class Restaurant implements Serializable{
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", dbId=" + dbId +
+                ", source=" + dbId +
+                ", herokuId=" + herokuId +
+                ", zomatoId=" + zomatoId +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public JsonObject toJsonObject() {
+        //rating is not sent since in php it is determined based on reviews
+        JsonObject json = new JsonObject();
+        json.addProperty("name", name);
+        json.addProperty("address", address);
+        json.addProperty("genre", genre);
+        json.addProperty("price", priceRange);
+        return json;
     }
 }

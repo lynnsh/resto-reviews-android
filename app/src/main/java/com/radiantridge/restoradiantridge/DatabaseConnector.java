@@ -10,8 +10,9 @@ import java.sql.Timestamp;
 
 /**
  * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
+ *
  * @author Alena Shulzhenko
- * @version 2016-12-01
+ * @version 2016-12-06
  */
 
 public class DatabaseConnector extends SQLiteOpenHelper {
@@ -26,10 +27,10 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public static final String COLUMN_RATING = "rating";
     public static final String COLUMN_NOTES = "notes";
     public static final String COLUMN_PHONE = "phone";
-    public static final String COLUMN_ADDRESS_NUMBER = "addressNumber";
-    public static final String COLUMN_ADDRESS_STREET = "addressStreet";
-    public static final String COLUMN_ADDRESS_CITY = "addressCity";
-    public static final String COLUMN_POSTAL_CODE = "addressPostalCode";
+    public static final String COLUMN_SOURCE = "source";
+    public static final String COLUMN_HEROKU_ID = "heroku";
+    public static final String COLUMN_ZOMATO_ID = "zomato";
+    public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_LATITUDE = "latitude";
     public static final String COLUMN_LONGITUDE = "longitude";
     public static final String COLUMN_DATE_CREATED = "createdDate";
@@ -65,10 +66,10 @@ public class DatabaseConnector extends SQLiteOpenHelper {
                 + COLUMN_RATING + " real, "
                 + COLUMN_NOTES + " text, "
                 + COLUMN_PHONE + " text, "
-                + COLUMN_ADDRESS_NUMBER + " integer, "
-                + COLUMN_ADDRESS_STREET + " text, "
-                + COLUMN_ADDRESS_CITY + " text, "
-                + COLUMN_POSTAL_CODE + " text, "
+                + COLUMN_SOURCE + " integer, "
+                + COLUMN_HEROKU_ID + " integer, "
+                + COLUMN_ZOMATO_ID + " integer, "
+                + COLUMN_ADDRESS + " text, "
                 + COLUMN_LATITUDE + " real, "
                 + COLUMN_LONGITUDE + " real, "
                 + COLUMN_DATE_CREATED + " integer, "
@@ -112,28 +113,31 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     /**
      * Adds the Restaurant object to the database.
      * @param resto the Restaurant object to add to the database.
-     * @return the id of the added Restaurant object.
+     * @return the id of the added Restaurant object or -1 if this resto was a duplicate.
      */
     public long addResto(Restaurant resto) {
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_NAME, resto.getName());
-        cv.put(COLUMN_GENRE, resto.getGenre());
-        cv.put(COLUMN_PRICE, resto.getPriceRange());
-        cv.put(COLUMN_RATING, resto.getStarRating());
-        cv.put(COLUMN_NOTES, resto.getNotes());
-        cv.put(COLUMN_PHONE, resto.getPhone());
-        cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
-        cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
-        cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
-        cv.put(COLUMN_POSTAL_CODE, resto.getAddPostalCode());
-        cv.put(COLUMN_LATITUDE, resto.getLatitude());
-        cv.put(COLUMN_LONGITUDE, resto.getLongitude());
-        cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
-        cv.put(COLUMN_DATE_MODIFIED, resto.getModifiedTime().getTime());
+        if(!checkDuplicate(resto)) {
+            ContentValues cv = new ContentValues();
+            cv.put(COLUMN_NAME, resto.getName());
+            cv.put(COLUMN_GENRE, resto.getGenre());
+            cv.put(COLUMN_PRICE, resto.getPriceRange());
+            cv.put(COLUMN_RATING, resto.getStarRating());
+            cv.put(COLUMN_NOTES, resto.getNotes());
+            cv.put(COLUMN_PHONE, resto.getPhone());
+            cv.put(COLUMN_SOURCE, resto.getSource());
+            cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
+            cv.put(COLUMN_ZOMATO_ID, resto.getZomatoId());
+            cv.put(COLUMN_ADDRESS, resto.getAddress());
+            cv.put(COLUMN_LATITUDE, resto.getLatitude());
+            cv.put(COLUMN_LONGITUDE, resto.getLongitude());
+            cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
+            cv.put(COLUMN_DATE_MODIFIED, resto.getModifiedTime().getTime());
 
-        long id = getWritableDatabase().insert(TABLE_RESTOS, null, cv);
-        Log.d(TAG, "Inserted resto, name: " + resto.getName() + ", id: " + id);
-        return id;
+            long id = getWritableDatabase().insert(TABLE_RESTOS, null, cv);
+            Log.d(TAG, "Inserted resto, name: " + resto.getName() + ", id: " + id);
+            return id;
+        }
+        return -1;
     }
 
     /**
@@ -158,10 +162,10 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         cv.put(COLUMN_RATING, resto.getStarRating());
         cv.put(COLUMN_NOTES, resto.getNotes());
         cv.put(COLUMN_PHONE, resto.getPhone());
-        cv.put(COLUMN_ADDRESS_NUMBER, resto.getAddNum());
-        cv.put(COLUMN_ADDRESS_STREET, resto.getAddStreet());
-        cv.put(COLUMN_ADDRESS_CITY, resto.getAddCity());
-        cv.put(COLUMN_POSTAL_CODE, resto.getAddPostalCode());
+        cv.put(COLUMN_SOURCE, resto.getSource());
+        cv.put(COLUMN_HEROKU_ID, resto.getHerokuId());
+        cv.put(COLUMN_ZOMATO_ID, resto.getZomatoId());
+        cv.put(COLUMN_ADDRESS, resto.getAddress());
         cv.put(COLUMN_LATITUDE, resto.getLatitude());
         cv.put(COLUMN_LONGITUDE, resto.getLongitude());
         cv.put(COLUMN_DATE_CREATED, resto.getCreatedTime().getTime());
@@ -212,7 +216,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      * @return the Restaurant objects with the city like the one provided.
      */
     public Restaurant[] searchByCity(String city) {
-        Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null, COLUMN_ADDRESS_CITY + " like ? ",
+        Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null, COLUMN_ADDRESS + " like ? ",
                 new String[] { "%"+city+"%" },
                 null, null, COLUMN_NAME, null);
         return getRestosFromCursor(cursor);
@@ -227,7 +231,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     public Restaurant[] search(String key) {
         String searchKey = "%"+key+"%";
         Cursor cursor = getReadableDatabase().query(TABLE_RESTOS, null,
-                COLUMN_ADDRESS_CITY + " like ? or " + COLUMN_GENRE + " like ? or "
+                COLUMN_ADDRESS + " like ? or " + COLUMN_GENRE + " like ? or "
                         + COLUMN_NAME + " like ? ",
                 new String[] { searchKey, searchKey, searchKey },
                 null, null, COLUMN_NAME, null);
@@ -267,10 +271,10 @@ public class DatabaseConnector extends SQLiteOpenHelper {
             resto.setStarRating(cursor.getDouble(cursor.getColumnIndex(COLUMN_RATING)));
             resto.setNotes(cursor.getString(cursor.getColumnIndex(COLUMN_NOTES)));
             resto.setPhone(cursor.getString(cursor.getColumnIndex(COLUMN_PHONE)));
-            resto.setAddNum(cursor.getInt(cursor.getColumnIndex(COLUMN_ADDRESS_NUMBER)));
-            resto.setAddStreet(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_STREET)));
-            resto.setAddCity(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS_CITY)));
-            resto.setAddPostalCode(cursor.getString(cursor.getColumnIndex(COLUMN_POSTAL_CODE)));
+            resto.setSource(cursor.getInt(cursor.getColumnIndex(COLUMN_SOURCE)));
+            resto.setHerokuId(cursor.getInt(cursor.getColumnIndex(COLUMN_HEROKU_ID)));
+            resto.setZomatoId(cursor.getInt(cursor.getColumnIndex(COLUMN_ZOMATO_ID)));
+            resto.setAddress(cursor.getString(cursor.getColumnIndex(COLUMN_ADDRESS)));
             resto.setLatitude(cursor.getDouble(cursor.getColumnIndex(COLUMN_LATITUDE)));
             resto.setLongitude(cursor.getDouble(cursor.getColumnIndex(COLUMN_LONGITUDE)));
             resto.setCreatedTime(new Timestamp(cursor.getInt(cursor.getColumnIndex(COLUMN_DATE_CREATED))));
@@ -281,5 +285,24 @@ public class DatabaseConnector extends SQLiteOpenHelper {
         }
         cursor.close();
         return restos;
+    }
+
+    /**
+     * Verifies that the new restaurant to add is not already in the database.
+     * @param resto Restaurant to add to the database.
+     * @return true if this resto is already in the database; false otherwise.
+     */
+    private boolean checkDuplicate(Restaurant resto) {
+        int herokuId = resto.getHerokuId();
+        int zomatoId = resto.getZomatoId();
+        Restaurant[] restos = getAllRestos();
+        for(Restaurant dbResto : restos) {
+            int dbHerokuId = dbResto.getHerokuId();
+            int dbZomatoId = dbResto.getZomatoId();
+            if((herokuId == dbHerokuId && herokuId != 0 && herokuId != -1) ||
+                (zomatoId == dbZomatoId && zomatoId != 0 && zomatoId != -1))
+                return true;
+        }
+        return false;
     }
 }
