@@ -210,7 +210,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
         showReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ShowReviewActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ShowReviewsActivity.class);
                 //sending resto obj
                 Bundle bundle = new Bundle();
                 //  bundle.putSerializable("resto", resto);

@@ -94,13 +94,14 @@ public class SyncBackEndHelper {
             HttpsPostSenderHelper sender = new HttpsPostSenderHelper();
             for(Restaurant resto : restos) {
                 //check if this resto was not from heroku initially
-                if(resto.getSource() != 2) {
+                int herokuId = resto.getHerokuId();
+                if(resto.getSource() != 2 && (herokuId == 0 || herokuId == -1)) {
                     JsonObject json = resto.toJsonObject();
                     //add email and password to authenticate the user.
                     SharedPreferences prefs = context.getSharedPreferences("Settings", Context.MODE_PRIVATE);
                     json.addProperty("email", prefs.getString("email", ""));
                     json.addProperty("password", prefs.getString("password", ""));
-                    int herokuId = sender.send(json.toString(), herokuCreateRestoUrl);
+                    herokuId = sender.send(json.toString(), herokuCreateRestoUrl);
                     //update heroku id for this resto in local database
                     if(herokuId != -1) {
                         resto.setHerokuId(herokuId);
