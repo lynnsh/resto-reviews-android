@@ -11,10 +11,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.radiantridge.restoradiantridge.R;
 
 /**
 * This activity tells you what our application does.
@@ -23,7 +26,7 @@ import android.widget.TextView;
 * @author Victor
 */
 
-public class AboutActivity extends Menu {
+public class AboutActivity extends MenuActivity {
 
 	/**
 	* Minimum override method
@@ -68,14 +71,10 @@ public class AboutActivity extends Menu {
 
         final Context context = AboutActivity.this;
 
-        LinearLayout ll2 = new LinearLayout(this);
+        LinearLayout ll2 = (LinearLayout)findViewById(R.id.linearlayout2);
 
-        ll2.setOrientation(LinearLayout.HORIZONTAL);
-        ImageView iv3 = new ImageView(this);
-        iv3.setImageResource(R.drawable.aline);
+        ImageView iv3 = (ImageView)findViewById(R.id.aline);
         iv3.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        iv3.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        iv3.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv3.setClickable(true);
         iv3.setOnClickListener(new View.OnClickListener() {
 
@@ -109,13 +108,9 @@ public class AboutActivity extends Menu {
                 ad.show();
             }
         });
-        ll2.addView(iv3);
 
-        ImageView iv4 = new ImageView(this);
-        iv4.setImageResource(R.drawable.erika);
+        ImageView iv4 = (ImageView)findViewById(R.id.erika);
         iv4.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        iv4.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        iv4.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv4.setClickable(true);
         iv4.setOnClickListener(new View.OnClickListener() {
 
@@ -149,13 +144,9 @@ public class AboutActivity extends Menu {
                 ad.show();
             }
         });
-        ll2.addView(iv4);
 
-        ImageView iv5 = new ImageView(this);
-        iv5.setImageResource(R.drawable.rafia);
+        ImageView iv5 = (ImageView)findViewById(R.id.rafia);
         iv5.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        iv5.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        iv5.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv5.setClickable(true);
         iv5.setOnClickListener(new View.OnClickListener() {
 
@@ -189,13 +180,9 @@ public class AboutActivity extends Menu {
                 ad.show();
             }
         });
-        ll2.addView(iv5);
 
-        ImageView iv6 = new ImageView(this);
-        iv6.setImageResource(R.drawable.aline);
+        ImageView iv6 = (ImageView)findViewById(R.id.victor);
         iv6.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        iv6.getLayoutParams().width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        iv6.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
         iv6.setClickable(true);
         iv6.setOnClickListener(new View.OnClickListener() {
 
@@ -229,9 +216,6 @@ public class AboutActivity extends Menu {
                 ad.show();
             }
         });
-        ll2.addView(iv6);
-
-        ll.addView(ll2);
 
     }
 }
