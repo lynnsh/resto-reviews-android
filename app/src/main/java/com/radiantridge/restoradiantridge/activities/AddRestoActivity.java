@@ -341,31 +341,6 @@ public class AddRestoActivity extends AppCompatActivity {
         editLatitude = (EditText) findViewById(R.id.editLatitude);
         editRating = (RatingBar) findViewById(R.id.ratingBar);
     }
-//    private void makeAllFieldsEditable() {
-//        txtname.setFocusableInTouchMode(true);
-//        txtname.setFocusable(true);
-//        txtnum.setFocusableInTouchMode(true);
-//        txtnum.setFocusable(true);
-//        txtstreet.setFocusableInTouchMode(true);
-//        txtstreet.setFocusable(true);
-//        txtcity.setFocusableInTouchMode(true);
-//        txtcity.setFocusable(true);
-//        txtcode.setFocusableInTouchMode(true);
-//        txtcode.setFocusable(true);
-//        txtphone.setFocusableInTouchMode(true);
-//        txtphone.setFocusable(true);
-//        txtgenre.setFocusableInTouchMode(true);
-//        txtgenre.setFocusable(true);
-//        txtprice.setFocusableInTouchMode(true);
-//        txtprice.setFocusable(true);
-//        txtnotes.setFocusableInTouchMode(true);
-//        txtnotes.setFocusable(true);
-//        txtlongitude.setFocusableInTouchMode(true);
-//        txtlongitude.setFocusable(true);
-//        txtlatitude.setFocusableInTouchMode(true);
-//        txtlatitude.setFocusable(true);
-//        ratingBar.setIsIndicator(true);
-//
-//    }
+
 
 }

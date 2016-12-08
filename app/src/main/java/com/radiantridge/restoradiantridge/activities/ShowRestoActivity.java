@@ -49,13 +49,14 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
-        //resto = new Restaurant();
+
+        resto = new Restaurant();
         dbconn = DatabaseHelper.getDatabaseConnector(this);
         getFields();
 
         Bundle bundle = getIntent().getExtras();
 
-        //boolean isZomato = bundle.getBoolean("isZomato");
+       // boolean isZomato = bundle.getBoolean("isZomato");
 
         resto = (Restaurant) bundle.getSerializable("resto");
         if (resto == null)
@@ -63,33 +64,40 @@ public class ShowRestoActivity  extends AppCompatActivity {
             Log.e(TAG, "resto is null");
         }
         setFields(resto);
-        showAddButton();
+
+        int source = resto.getSource();
+        //showAddButton();
 
         // TODO: change this to receive objs only
         // TODO: check to show appropriate buttons (zomato, local db, heroku)
-//        if(!isZomato)
-//        {
-//            Log.i(TAG,"is not a zomato resto");
-//             id = bundle.getInt("databaseId");
-//            Log.i(TAG, "the id os resto " + id);
-//            resto = dbconn.getResto(id);
-//            //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
-//            setFields(resto);
-//            showEditButton();
-//            showDeleteButton(id);
-//
-//
-//        }
-//        if(isZomato)
-//        {
-//            Log.i(TAG,"is  a zomato resto");
-//            // get each field
-//            showAddButton();
-//            //make resto obj
-//            //createRestoObj(bundle);
-//            setFields(resto);
-//
-//        }
+        //local db
+        if(source==0)
+        {
+            Log.i(TAG,"is not a zomato resto");
+             id = bundle.getInt("databaseId");
+            Log.i(TAG, "the id os resto " + id);
+            resto = dbconn.getResto(id);
+            //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
+            setFields(resto);
+            showEditButton();
+            showDeleteButton(id);
+
+
+        }
+        //zomato
+        if(source==1)
+        {
+            Log.i(TAG,"is  a zomato resto");
+            // get each field
+            showAddButton();
+            //make resto obj
+            //createRestoObj(bundle);
+            setFields(resto);
+
+        }
+        //heroku
+        if(source==2)
+        {}
         handleFields();
     }
 
@@ -207,18 +215,23 @@ public class ShowRestoActivity  extends AppCompatActivity {
     }
     private void setFields(Restaurant resto)
     {
+        if(resto.getName()!=null)
         name = resto.getName();
         //num=resto.getAddNum();
-        String[] address = resto.getAddress().split(",", 2);
+        if(resto.getAddress()!=null) {
+            String[] address = resto.getAddress().split(",", 2);
 
-        // TODO: make address one big field
-        addLineOne = address[0];
-        if (address.length == 2) {
-            addLineTwo = address[1];
+            // TODO: make address one big field
+            addLineOne = address[0];
+            if (address.length == 2) {
+                addLineTwo = address[1];
+            }
         }
         //code=resto.getAddPostalCode();
+        if(resto.getGenre()!=null)
         genre=resto.getGenre();
         price=resto.getPriceRange();
+        if(resto.getNotes()!=null)
         notes=resto.getNotes();
         longit=resto.getLongitude();
         latid=resto.getLatitude();
