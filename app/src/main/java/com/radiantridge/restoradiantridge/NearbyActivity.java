@@ -335,8 +335,8 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
 
     private void getListFromHeroku()
     {
-//        GetRestosTask task = new GetRestosTask(fragment);
-//        task.execute(latitude, longitude);
+        GetRestosTask task = new GetRestosTask(fragment);
+        task.execute(latitude, longitude);
     }
 
     private boolean isInternetAvailable()

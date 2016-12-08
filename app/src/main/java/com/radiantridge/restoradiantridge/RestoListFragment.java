@@ -67,6 +67,7 @@ public class RestoListFragment extends ListFragment {
      */
     private void displayRestoDetails(Restaurant resto)
     {
+        // TODO: change this to sent resto as object
         int id = resto.getDatabaseId();
         Intent intent = new Intent();
         intent.setClass(getActivity(), ShowRestoActivity.class);
@@ -139,10 +140,10 @@ public class RestoListFragment extends ListFragment {
     {
         // Zomato does not have fields for notes, createdTime, modifiedTime or dbId
         intent.putExtra("name", resto.getName());
-        intent.putExtra("addNum", resto.getAddNum());
-        intent.putExtra("addStreet", resto.getAddStreet());
-        intent.putExtra("addCity", resto.getAddCity());
-        intent.putExtra("addPostalCode", resto.getAddPostalCode());
+//        intent.putExtra("addNum", resto.getAddNum());
+//        intent.putExtra("addStreet", resto.getAddStreet());
+//        intent.putExtra("addCity", resto.getAddCity());
+//        intent.putExtra("addPostalCode", resto.getAddPostalCode());
         intent.putExtra("genre", resto.getGenre());
         intent.putExtra("priceRange", resto.getPriceRange());
         intent.putExtra("starRating", resto.getStarRating());

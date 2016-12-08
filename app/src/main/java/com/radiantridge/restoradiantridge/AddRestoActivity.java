@@ -34,7 +34,7 @@ public class AddRestoActivity extends AppCompatActivity {
     private Double latid;
     private Double rating;
    private  DatabaseConnector dbconn;
-    private EditText editName,editNumber, editStreet,editCity,editCode,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
+    private EditText editName,editAddLineOne, editAddLineTwo,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
     private RatingBar editRating;
     private boolean exisitngRecord;
     private boolean save; //keeps check of valid inputs
@@ -59,7 +59,7 @@ public class AddRestoActivity extends AppCompatActivity {
             {
                 Log.i(TAG, "resto obj is not null");
                 Log.i(TAG, "name " + resto.getName());
-                Log.i(TAG, "POSTAL code after being sent " + resto.getAddPostalCode());
+                //Log.i(TAG, "POSTAL code after being sent " + resto.getAddPostalCode());
                 //sets the field to the input froom zomato resto
                 setEditFields();
             }
@@ -79,12 +79,13 @@ public class AddRestoActivity extends AppCompatActivity {
         //make labels work, stop eveyrhitng until valid input
         //getting the text values from fields
         //gets the name field and save it to name string
-        boolean isNameValid,isCodeValid,isPriceValid,isGenreValid;
+        boolean isNameValid,isAddressValid,isPriceValid,isGenreValid;
         isNameValid =  handleNameField(v);
-        handleNumField(v);
-        handleStreetField(v);
-        handleCityField(v);
-        isCodeValid= handleCodeField(v);
+//        handleNumField(v);
+//        handleStreetField(v);
+//        handleCityField(v);
+//        isAddressValid= handleCodeField(v);
+        isAddressValid = handleAddress(v);
         isGenreValid = handleGenreField(v);
         isPriceValid = handlePriceField(v);
         handleNotesField(v);
@@ -105,8 +106,8 @@ public class AddRestoActivity extends AppCompatActivity {
         resto.setModifiedTime(timestamp);
         Log.i(TAG,"time " +timestamp);
 
-        Log.i(TAG,""+isNameValid +" "+ isCodeValid +" " + isPriceValid +" "+ isGenreValid);
-        if(isNameValid && isCodeValid && isPriceValid && isGenreValid) {
+        Log.i(TAG,""+isNameValid +" "+ isAddressValid +" " + isPriceValid +" "+ isGenreValid);
+        if(isNameValid && isAddressValid && isPriceValid && isGenreValid) {
             if(exisitngRecord)
             {
                 Log.i(TAG , "Updating resto..");
@@ -147,52 +148,72 @@ public class AddRestoActivity extends AppCompatActivity {
         }
         return isValid;
     }
-    private void handleNumField(View v) {
-        String number = editNumber.getText().toString();
-        if (number != null && !(number.isEmpty())) {
-            num = Integer.parseInt(number);
-            resto.setAddNum(num);
-        }
-        Log.i(TAG, "NUM " + num);
-    }
-    private void handleStreetField(View v) {
-        street = editStreet.getText().toString();
 
-        if (street != null && !(street.isEmpty())) {
-            resto.setAddStreet(street);
-        }
-        Log.i(TAG, "STREET " + street);
-    }
-    private void handleCityField(View v) {
-        city = editCity.getText().toString();
+    private boolean handleAddress(View v)
+    {
+        boolean isValid;
+        String addOne = editAddLineOne.getText().toString();
+        String addTwo = editAddLineTwo.getText().toString();
 
-        if (city != null && !(city.isEmpty())) {
-            resto.setAddCity(city);
+        if (!addOne.isEmpty() && !addTwo.isEmpty())
+        {
+            isValid = true;
+            resto.setAddress(addOne + "," + addTwo);
         }
-        Log.i(TAG, "city " + city);
-    }
+        else
+        {
+            // make error bar visible
+            isValid = false;
+        }
 
-    private boolean handleCodeField(View v) {
-        boolean isValid=false;
-        code = editCode.getText().toString();
-        TextView codeErr= (TextView) findViewById(R.id.textCodeError);
-        String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
-        if (code != null && !(code.isEmpty())) {
-            if (code.matches(regex)) {
-                isValid = true;
-                codeErr.setVisibility(View.INVISIBLE);
-                resto.setAddPostalCode(code);
-                Log.i(TAG, "matches regex");
-            } else {
-                isValid = false;
-                codeErr.setVisibility(View.VISIBLE);
-                Log.i(TAG, " regex failed");
-                //editCode.setText("");
-            }
-        }
-        Log.i(TAG, "code " + code);
         return isValid;
     }
+//    private void handleNumField(View v) {
+//        String number = editNumber.getText().toString();
+//        if (number != null && !(number.isEmpty())) {
+//            num = Integer.parseInt(number);
+//            resto.setAddNum(num);
+//        }
+//        Log.i(TAG, "NUM " + num);
+//    }
+//    private void handleStreetField(View v) {
+//        street = editStreet.getText().toString();
+//
+//        if (street != null && !(street.isEmpty())) {
+//            resto.setAddStreet(street);
+//        }
+//        Log.i(TAG, "STREET " + street);
+//    }
+//    private void handleCityField(View v) {
+//        city = editCity.getText().toString();
+//
+//        if (city != null && !(city.isEmpty())) {
+//            resto.setAddCity(city);
+//        }
+//        Log.i(TAG, "city " + city);
+//    }
+
+//    private boolean handleCodeField(View v) {
+//        boolean isValid=false;
+//        code = editCode.getText().toString();
+//        TextView codeErr= (TextView) findViewById(R.id.textCodeError);
+//        String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
+//        if (code != null && !(code.isEmpty())) {
+//            if (code.matches(regex)) {
+//                isValid = true;
+//                codeErr.setVisibility(View.INVISIBLE);
+//                resto.setAddPostalCode(code);
+//                Log.i(TAG, "matches regex");
+//            } else {
+//                isValid = false;
+//                codeErr.setVisibility(View.VISIBLE);
+//                Log.i(TAG, " regex failed");
+//                //editCode.setText("");
+//            }
+//        }
+//        Log.i(TAG, "code " + code);
+//        return isValid;
+//    }
     private boolean handleGenreField(View v) {
         boolean isValid=false;
         genre = editGenre.getText().toString();
@@ -289,10 +310,10 @@ public class AddRestoActivity extends AppCompatActivity {
     private void setEditFields(){
         editName.setText(resto.getName());
         //how to check for nulls
-        editNumber.setText(resto.getAddNum()+"");
-        editStreet.setText(resto.getAddStreet());
-        editCity.setText(resto.getAddCity());
-        editCode.setText(resto.getAddPostalCode());
+        String[] address = resto.getAddress().split(",", 2);
+
+        editAddLineOne.setText(address[0]);
+        editAddLineTwo.setText(address[1]);
         txtphone.setText(resto.getPhone());
         editGenre.setText(resto.getGenre());
         editPrice.setText(resto.getPriceRange()+"");
@@ -306,10 +327,8 @@ public class AddRestoActivity extends AppCompatActivity {
     }
     private void getFields() {
         editName = (EditText) findViewById(R.id.editRestoName);
-        editNumber = (EditText) findViewById(R.id.editNum);
-        editStreet = (EditText) findViewById(R.id.editStreet);
-        editCity = (EditText) findViewById(R.id.editCity);
-        editCode = (EditText) findViewById(R.id.editCode);
+        editAddLineOne = (EditText) findViewById(R.id.editAddLineOne);
+        editAddLineTwo = (EditText) findViewById(R.id.editAddLineTwo);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         editGenre = (EditText) findViewById(R.id.editGenre);
         editPrice = (EditText) findViewById(R.id.editPrice);
