@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.radiantridge.restoradiantridge.R;
+
 /**
 * This activity tells you what our application does.
 * It displays text and an image icon at the bottom.
@@ -22,7 +24,7 @@ import android.widget.TextView;
 * @author Victor
 */
 
-public class AboutActivity extends Menu {
+public class AboutActivity extends MenuActivity {
 
 	/**
 	* Minimum override method
