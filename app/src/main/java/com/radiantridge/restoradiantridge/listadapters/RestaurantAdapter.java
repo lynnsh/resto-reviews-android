@@ -38,6 +38,5 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
         tvName.setText(resto.getName());
         // Return the completed view to render on screen
         return convertView;
-
     }
 }
