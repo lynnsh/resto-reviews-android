@@ -91,6 +91,7 @@
     <string name="sync_error">The sync failed.</string>
     <string name="review_success">The review was added successfully!</string>
     <string name="review_error">The review addition failed.</string>
+    <string name="duplicate_error">This restaurant is already in favourites.</string>
     <string name="net_error">Network connection error. Please, check your connection and try again.</string>
     <string name="dialog_network_title">Network Connection</string>
     <string name="dialog_network_text">No network detected, please connect and try again.</string>

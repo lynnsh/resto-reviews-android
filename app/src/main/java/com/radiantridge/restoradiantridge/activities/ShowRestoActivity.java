@@ -50,7 +50,6 @@ public class ShowRestoActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
 
-        resto = new Restaurant();
         dbconn = DatabaseHelper.getDatabaseConnector(this);
         getFields();
 
@@ -212,9 +211,6 @@ public class ShowRestoActivity  extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ShowReviewsActivity.class);
                 //sending resto obj
-                Bundle bundle = new Bundle();
-                //  bundle.putSerializable("resto", resto);
-                //  intent.putExtra("databaseResto", false);
                 intent.putExtra("resto",resto);
                 startActivity(intent);
             }

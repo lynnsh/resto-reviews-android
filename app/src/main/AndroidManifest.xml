@@ -31,7 +31,7 @@
         <activity android:name=".activities.ShowRestoActivity" />
         <activity android:name=".activities.LatLongActivity" />
         <activity android:name=".activities.AddReviewActivity" />
-        <activity android:name=".activities.ShowReviewActivity" />
+        <activity android:name=".activities.ShowReviewsActivity" />
 
         <activity android:name=".activities.PickSomewhereActivity">
 

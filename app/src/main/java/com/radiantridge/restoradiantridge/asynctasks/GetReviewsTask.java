@@ -59,7 +59,8 @@ public class GetReviewsTask extends AsyncTask<Integer, Void, Review[]> {
     @Override
     public Review[] doInBackground(Integer... params) {
         List<Review> reviews = new ArrayList<>();
-        double restoId = params[0];
+        int restoId = params[0];
+        Log.d(TAG, "heroku_resto_id: " + restoId);
         try {
             //GET url to Heroku
             URL url = new URL("https://radiant-ridge-88291.herokuapp.com/api/api/reviews?resto_id="

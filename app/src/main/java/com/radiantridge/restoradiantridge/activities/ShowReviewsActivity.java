@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.radiantridge.restoradiantridge.R;
@@ -25,16 +26,18 @@ import com.radiantridge.restoradiantridge.objects.Review;
 
 public class ShowReviewsActivity extends MenuActivity {
     private static final String TAG = "ShowReviewsActivity";
-    private Review[] list;
+    private ListAdapter adapter;
+
     /**
      * Overridden Lifecycle method.
-     * @param bundle stores the value when screen rotated
+     * @param savedInstanceState stores the value when screen rotated
      */
     @Override
-    protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        setContentView(R.layout.activity_show_review);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_reviews);
 
+        Bundle bundle = getIntent().getExtras();
         Restaurant resto = (Restaurant) bundle.getSerializable("resto");
         if (resto == null)
         {
@@ -61,7 +64,9 @@ public class ShowReviewsActivity extends MenuActivity {
     public void setListAdapter(Review[] list) {
         if (list != null)  {
             Log.i(TAG, "creating review adapter");
-            ListAdapter aa = new ReviewAdapter(this, list);
+            ListView lv=(ListView) findViewById(R.id.review_list);
+            ListAdapter adapter = new ReviewAdapter(this, list);
+            lv.setAdapter(adapter);
         }
     }
 }
