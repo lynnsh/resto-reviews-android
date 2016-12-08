@@ -45,39 +45,47 @@ public class ShowRestoActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_resto);
-        resto = new Restaurant();
+        //resto = new Restaurant();
         dbconn = DatabaseConnector.getDatabaseConnector(this);
         getFields();
 
         Bundle bundle = getIntent().getExtras();
 
-        boolean isZomato = bundle.getBoolean("isZomato");
+        //boolean isZomato = bundle.getBoolean("isZomato");
+
+        resto = (Restaurant) bundle.getSerializable("resto");
+        if (resto == null)
+        {
+            Log.e(TAG, "resto is null");
+        }
+        setFields(resto);
+        showAddButton();
 
         // TODO: change this to receive objs only
         // TODO: check to show appropriate buttons (zomato, local db, heroku)
-        if(!isZomato)
-        {
-            Log.i(TAG,"is not a zomato resto");
-             id = bundle.getInt("databaseId");
-            Log.i(TAG, "the id os resto " + id);
-            resto = dbconn.getResto(id);
-            //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
-            setFields(resto);
-            showEditButton();
-            showDeleteButton(id);
-
-
-        }
-        if(isZomato)
-        {
-            Log.i(TAG,"is  a zomato resto");
-            // get each field
-            showAddButton();
-            //make resto obj
-            //createRestoObj(bundle);
-            setFields(resto);
-
-        }
+//        if(!isZomato)
+//        {
+//            Log.i(TAG,"is not a zomato resto");
+//             id = bundle.getInt("databaseId");
+//            Log.i(TAG, "the id os resto " + id);
+//            resto = dbconn.getResto(id);
+//            //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
+//            setFields(resto);
+//            showEditButton();
+//            showDeleteButton(id);
+//
+//
+//        }
+//        if(isZomato)
+//        {
+//            Log.i(TAG,"is  a zomato resto");
+//            // get each field
+//            showAddButton();
+//            //make resto obj
+//            //createRestoObj(bundle);
+//            setFields(resto);
+//
+//        }
         handleFields();
     }
 

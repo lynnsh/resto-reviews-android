@@ -34,7 +34,7 @@ public class AddReviewActivity extends AppCompatActivity {
         public Boolean doInBackground(Review... reviews) {
             boolean noErrors = true;
             String herokuAddReviewUrl = "https://radiant-ridge-88291.herokuapp.com/api/api/add-review";
-            HttpPostSender sender = new HttpPostSender();
+            HttpsPostSender sender = new HttpsPostSender();
             for(Review review : reviews) {
                 JsonObject json = review.toJsonObject();
                 //add email and password to authenticate the user.

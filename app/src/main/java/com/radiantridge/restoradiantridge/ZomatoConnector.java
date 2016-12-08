@@ -145,6 +145,11 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     private Restaurant buildRestaurant(JSONObject obj) throws JSONException {
         Restaurant resto = new Restaurant();
 
+        if (obj.has("id"))
+        {
+            resto.setZomatoId(obj.getInt("id"));
+        }
+
         // Verify each key exists before saving it to the Restaurant
         if (obj.has("name"))
         {
@@ -207,7 +212,11 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
             resto.setPhone(obj.getString("phone_numbers"));
         }
 
+        resto.setSource(1);
+
+        // TODO: should i keep these here?
         resto.setDatabaseId(-1);
+        resto.setHerokuId(-1);
 
         Log.i(TAG, "Built restaurant: " + resto.getName());
         return resto;
