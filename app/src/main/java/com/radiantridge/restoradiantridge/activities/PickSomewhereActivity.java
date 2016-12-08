@@ -35,16 +35,20 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
                 .enableAutoManage(this, this)
                 .build();
 
+        fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.picker_list);
+
         startPlacePicker();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        // TODO: implement this
+        Log.e(TAG, "Connection to google play services failed.");
+        // TODO: implement this?
     }
 
     private void startPlacePicker()
     {
+        Log.i(TAG, "Starting PlacePicker");
         try {
             PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
             startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
@@ -65,6 +69,7 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
 
     private void getData(Double latitude, Double longitude)
     {
+        Log.i(TAG, "Retrieving data from Zomato and Heroku");
         ZomatoTask conn = new ZomatoTask(fragment);
         conn.execute(latitude, longitude);
 
