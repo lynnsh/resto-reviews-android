@@ -1,10 +1,15 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 /**
  * This activity provides a search functionality for the
@@ -15,7 +20,7 @@ import android.widget.Spinner;
  */
 public class SearchActivity extends MenuActivity {
     private Spinner spinner;
-    DatabaseConnector db;
+    DatabaseHelper db;
     RestoListFragment fragment;
 
     /**
@@ -30,7 +35,7 @@ public class SearchActivity extends MenuActivity {
         setContentView(R.layout.activity_search);
 
         // Initializing variables
-        db = DatabaseConnector.getDatabaseConnector(this);
+        db = DatabaseHelper.getDatabaseConnector(this);
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.search_list);
 
         // Setting up spinner with its options

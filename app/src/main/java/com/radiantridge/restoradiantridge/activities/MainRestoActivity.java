@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.radiantridge.restoradiantridge.R;
 
 /**
  * This activity represents the main activity, where users can decide
@@ -113,5 +115,10 @@ public class MainRestoActivity extends MenuActivity {
     public void launchAbout(View view)
     {
         startActivity(new Intent(this, AboutActivity.class));
+    }
+
+    public void launchPicker(View view)
+    {
+        startActivity(new Intent(this, PickSomewhereActivity.class));
     }
 }

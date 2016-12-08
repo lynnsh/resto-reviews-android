@@ -1,7 +1,11 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.asynctasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

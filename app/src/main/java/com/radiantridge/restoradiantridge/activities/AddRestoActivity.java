@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 import java.sql.Timestamp;
 
@@ -33,7 +37,7 @@ public class AddRestoActivity extends AppCompatActivity {
     private Double longit;
     private Double latid;
     private Double rating;
-   private  DatabaseConnector dbconn;
+   private DatabaseHelper dbconn;
     private EditText editName,editAddLineOne, editAddLineTwo,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
     private RatingBar editRating;
     private boolean exisitngRecord;
@@ -46,7 +50,7 @@ public class AddRestoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_resto);
-        dbconn = DatabaseConnector.getDatabaseConnector(this);
+        dbconn = DatabaseHelper.getDatabaseConnector(this);
         resto = new Restaurant();
         getFields();
         Bundle bundle = this.getIntent().getExtras();

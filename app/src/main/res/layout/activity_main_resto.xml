@@ -9,7 +9,7 @@ android:paddingLeft="@dimen/activity_horizontal_margin"
 android:paddingRight="@dimen/activity_horizontal_margin"
 android:paddingTop="@dimen/activity_vertical_margin"
 android:paddingBottom="@dimen/activity_vertical_margin"
-tools:context="com.radiantridge.restoradiantridge.MainRestoActivity"
+tools:context="com.radiantridge.restoradiantridge.activities.MainRestoActivity"
 android:orientation="vertical">
 
 <!-- TODO: These buttons will be image buttons in the future -->
@@ -49,6 +49,10 @@ android:orientation="vertical">
             android:id="@+id/addRestoBtn"
             android:text="add restaurant button"
             android:onClick="launchAddResto"/>
+        <Button
+            android:id="@+id/pickerBtn"
+            android:text="place picker button"
+            android:onClick="launchPicker"/>
     </TableRow>
 </TableLayout>
 

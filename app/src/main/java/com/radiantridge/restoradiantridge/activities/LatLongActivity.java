@@ -1,11 +1,12 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.radiantridge.restoradiantridge.R;
 
 /**
  * This activity provides the user with a method to set

@@ -1,7 +1,11 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
 
 /**
  * This activity displays all the restaurants saved
@@ -25,7 +29,7 @@ public class FavoritesActivty extends MenuActivity {
         setContentView(R.layout.activity_favorites);
 
         // Initialize the variables
-        DatabaseConnector db = DatabaseConnector.getDatabaseConnector(this);
+        DatabaseHelper db = DatabaseHelper.getDatabaseConnector(this);
         RestoListFragment fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.favorites_list);
 
         // Displaying the restaurants

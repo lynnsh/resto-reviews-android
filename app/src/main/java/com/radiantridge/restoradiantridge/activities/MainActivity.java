@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.radiantridge.restoradiantridge.R;
 
 import java.util.Calendar;
 

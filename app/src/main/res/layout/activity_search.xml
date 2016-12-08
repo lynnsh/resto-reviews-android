@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.SearchActivity"
+    tools:context="com.radiantridge.restoradiantridge.activities.SearchActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -35,7 +35,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.radiantridge.restoradiantridge.RestoListFragment"
+        android:name="com.radiantridge.restoradiantridge.fragments.RestoListFragment"
         android:id="@+id/search_list" />
 
 </LinearLayout>

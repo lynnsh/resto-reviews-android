@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.helpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,16 +6,19 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.radiantridge.restoradiantridge.objects.Restaurant;
+
 import java.sql.Timestamp;
 
 /**
- * A DatabaseConnector class that implements CRUD methods for the Restaurant object.
+ * A DatabaseHelper class that implements CRUD methods for the Restaurant object.
  *
  * @author Alena Shulzhenko
  * @version 2016-12-06
  */
 
-public class DatabaseConnector extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG = "DBConnector";
     // table name
     public static final String TABLE_RESTOS = "restos";
@@ -40,13 +43,13 @@ public class DatabaseConnector extends SQLiteOpenHelper {
     // if the version number is increased the onUpdate() will be called
     private static final int DATABASE_VERSION = 1;
     // static instance to share DBHelper
-    private static DatabaseConnector dbh = null;
+    private static DatabaseHelper dbh = null;
 
     /**
-     * Private constructor for DatabaseConnector
+     * Private constructor for DatabaseHelper
      * @param context the reference to the Context class.
      */
-    private DatabaseConnector(Context context) {
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
 
     }
@@ -84,11 +87,11 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      * in app.
      * @param context the reference to the Context object
      *                (the class where this helper is initialized).
-     * @return DatabaseConnector instance.
+     * @return DatabaseHelper instance.
      */
-    public static DatabaseConnector getDatabaseConnector(Context context) {
+    public static DatabaseHelper getDatabaseConnector(Context context) {
         if (dbh == null) {
-            dbh = new DatabaseConnector(context.getApplicationContext());
+            dbh = new DatabaseHelper(context.getApplicationContext());
             Log.i(TAG, "getDatabaseConnector, dbh == null");
         }
         Log.i(TAG, "getDatabaseConnector()");
@@ -103,7 +106,7 @@ public class DatabaseConnector extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(TAG, DatabaseConnector.class.getName() + "Upgrading database from version "
+        Log.w(TAG, DatabaseHelper.class.getName() + "Upgrading database from version "
                 + oldVersion + " to " + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESTOS);
         onCreate(db);

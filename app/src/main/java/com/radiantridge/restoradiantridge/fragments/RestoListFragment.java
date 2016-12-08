@@ -1,7 +1,6 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.fragments;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
 import android.app.ListFragment;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -11,9 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.listadapters.RestaurantAdapter;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
+import com.radiantridge.restoradiantridge.activities.ShowRestoActivity;
 
 /**
  * ListFragment for the Restaurant list.
@@ -113,7 +116,6 @@ public class RestoListFragment extends ListFragment {
      */
     private void callRestaurant(Restaurant resto)
     {
-        //TODO: validate ability to make phone calls
         // Check if the phone number exists
         if (resto.getPhone() != null)
         {

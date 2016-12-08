@@ -1,4 +1,4 @@
-package com.radiantridge.restoradiantridge;
+package com.radiantridge.restoradiantridge.helpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,28 +9,30 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
+import com.radiantridge.restoradiantridge.R;
+import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 /**
- * SyncBackEnd class is responsible to sync all locally saved restos
+ * SyncBackEndHelper class is responsible to sync all locally saved restos
  * to the back-end database.
  *
  * @author Alena Shulzhenko
  * @version 2016-12-07
  */
 
-public class SyncBackEnd {
-    public static final String TAG = "SyncBackEnd";
-    private DatabaseConnector dbh;
+public class SyncBackEndHelper {
+    public static final String TAG = "SyncBackEndHelper";
+    private DatabaseHelper dbh;
     private Context context;
     private String herokuCreateRestoUrl;
 
     /**
-     * Instantiates SyncBackEnd object.
+     * Instantiates SyncBackEndHelper object.
      * @param context the Context object.
      */
-    public SyncBackEnd(Context context) {
+    public SyncBackEndHelper(Context context) {
         this.context = context;
-        this.dbh = DatabaseConnector.getDatabaseConnector(context);
+        this.dbh = DatabaseHelper.getDatabaseConnector(context);
     }
 
     /**
@@ -89,7 +91,7 @@ public class SyncBackEnd {
         @Override
         public Boolean doInBackground(Restaurant... restos) {
             boolean noErrors = true;
-            HttpsPostSender sender = new HttpsPostSender();
+            HttpsPostSenderHelper sender = new HttpsPostSenderHelper();
             for(Restaurant resto : restos) {
                 //check if this resto was not from heroku initially
                 if(resto.getSource() != 2) {
