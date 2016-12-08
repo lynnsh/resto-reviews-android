@@ -4,19 +4,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Rafia on 2016-12-02.
@@ -27,8 +22,8 @@ public class ShowRestoActivity  extends AppCompatActivity {
     private Restaurant resto;
     private String name;
     private int num;
-    private String street;
-    private String city;
+    private String addLineOne;
+    private String addLineTwo;
     private String code;
     private String genre;
     private int price;
@@ -39,7 +34,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
     private double rating;
     private int id;  // get it
     private  DatabaseConnector dbconn;
-    private EditText txtname,txtnum, txtstreet,txtcity,txtcode,txtphone,txtgenre,txtprice,txtnotes,txtlongitude,txtlatitude;
+    private EditText txtname,txtaddone,txtaddtwo,txtphone,txtgenre,txtprice,txtnotes,txtlongitude,txtlatitude;
     private RatingBar ratingBar;
 
     /**
@@ -57,13 +52,16 @@ public class ShowRestoActivity  extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         boolean isZomato = bundle.getBoolean("isZomato");
+
+        // TODO: change this to receive objs only
+        // TODO: check to show appropriate buttons (zomato, local db, heroku)
         if(!isZomato)
         {
             Log.i(TAG,"is not a zomato resto");
              id = bundle.getInt("databaseId");
             Log.i(TAG, "the id os resto " + id);
             resto = dbconn.getResto(id);
-            Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
+            //Log.i(TAG , "postal code before being sent " + resto.getAddPostalCode());
             setFields(resto);
             showEditButton();
             showDeleteButton(id);
@@ -76,7 +74,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
             // get each field
             showAddButton();
             //make resto obj
-            createRestoObj(bundle);
+            //createRestoObj(bundle);
             setFields(resto);
 
         }
@@ -160,10 +158,8 @@ public class ShowRestoActivity  extends AppCompatActivity {
 
     private void getFields() {
         txtname = (EditText) findViewById(R.id.editRestoName);
-        txtnum = (EditText) findViewById(R.id.editNum);
-        txtstreet = (EditText) findViewById(R.id.editStreet);
-        txtcity = (EditText) findViewById(R.id.editCity);
-        txtcode = (EditText) findViewById(R.id.editCode);
+        txtaddone = (EditText) findViewById(R.id.editAddLineOne);
+        txtaddtwo = (EditText) findViewById(R.id.editAddLineTwo);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         txtgenre = (EditText) findViewById(R.id.editGenre);
         txtprice = (EditText) findViewById(R.id.editPrice);
@@ -182,10 +178,10 @@ public class ShowRestoActivity  extends AppCompatActivity {
                startActivity(intent);
 
            }});
-        txtnum.setText(num+"");
-        txtstreet.setText(street);
-        txtcity.setText(city);
-        txtcode.setText(code);
+        //txtnum.setText(num+"");
+        txtaddone.setText(addLineOne);
+        txtaddtwo.setText(addLineTwo);
+        //txtcode.setText(code);
         txtphone.setText(phone);
         txtgenre.setText(genre);
         txtprice.setText(price+"");
@@ -200,10 +196,12 @@ public class ShowRestoActivity  extends AppCompatActivity {
     private void setFields(Restaurant resto)
     {
         name = resto.getName();
-        num=resto.getAddNum();
-        street=resto.getAddStreet();
-        city=resto.getAddCity();
-        code=resto.getAddPostalCode();
+        //num=resto.getAddNum();
+        String[] address = resto.getAddress().split(",", 2);
+
+        addLineOne = address[0];
+        addLineTwo = address[1];
+        //code=resto.getAddPostalCode();
         genre=resto.getGenre();
         price=resto.getPriceRange();
         notes=resto.getNotes();
@@ -212,58 +210,58 @@ public class ShowRestoActivity  extends AppCompatActivity {
         rating=resto.getStarRating();
     }
 
-    private void createRestoObj(Bundle bundle) {
-        resto.setDbId(-1);
-        if(bundle.get("name") != null)
-        {
-            name = (String) bundle.get("name");
-            resto.setName(name);
-        }
-        if(bundle.get("addNum") != null)
-        {
-            num = (int) bundle.get("addNum");
-            resto.setAddNum(num);
-        }
-        if(bundle.get("addStreet") != null)
-        {
-            street = (String) bundle.get("addStreet");
-            resto.setAddStreet(street);
-        }
-        if(bundle.get("addCity") != null)
-        {
-            city = (String) bundle.get("addCity");
-            resto.setAddCity(city);
-        }
-        if(bundle.get("addPostalCode") != null)
-        {
-            code = (String) bundle.get("addPostalCode");
-            resto.setAddPostalCode(code);
-        }
-        if(bundle.get("genre") != null)
-        {
-            genre = (String) bundle.get("genre");
-            resto.setGenre(genre);
-        }
-        if(bundle.get("priceRange") != null)
-        {
-            price = (int) bundle.get("priceRange");
-            resto.setPriceRange(price);
-        }
-        if( bundle.get("longitude") != null)
-        {
-            longit = (double) bundle.get("longitude");
-            resto.setLongitude(longit);
-        }
-        if(bundle.get("latitude") != null)
-        {
-            latid = (double) bundle.get("latitude");
-            resto.setLatitude(latid);
-        }
-        if(bundle.get("starRating") != null)
-        {
-            rating = (double) bundle.get("starRating");
-            resto.setStarRating(rating);
-        }
-    }
+//    private void createRestoObj(Bundle bundle) {
+//        resto.setDbId(-1);
+//        if(bundle.get("name") != null)
+//        {
+//            name = (String) bundle.get("name");
+//            resto.setName(name);
+//        }
+//        if(bundle.get("addNum") != null)
+//        {
+//            num = (int) bundle.get("addNum");
+//            resto.setAddNum(num);
+//        }
+//        if(bundle.get("addStreet") != null)
+//        {
+//            addLineOne = (String) bundle.get("addStreet");
+//            resto.setAddStreet(addLineOne);
+//        }
+//        if(bundle.get("addCity") != null)
+//        {
+//            addLineTwo = (String) bundle.get("addCity");
+//            resto.setAddCity(addLineTwo);
+//        }
+//        if(bundle.get("addPostalCode") != null)
+//        {
+//            code = (String) bundle.get("addPostalCode");
+//            resto.setAddPostalCode(code);
+//        }
+//        if(bundle.get("genre") != null)
+//        {
+//            genre = (String) bundle.get("genre");
+//            resto.setGenre(genre);
+//        }
+//        if(bundle.get("priceRange") != null)
+//        {
+//            price = (int) bundle.get("priceRange");
+//            resto.setPriceRange(price);
+//        }
+//        if( bundle.get("longitude") != null)
+//        {
+//            longit = (double) bundle.get("longitude");
+//            resto.setLongitude(longit);
+//        }
+//        if(bundle.get("latitude") != null)
+//        {
+//            latid = (double) bundle.get("latitude");
+//            resto.setLatitude(latid);
+//        }
+//        if(bundle.get("starRating") != null)
+//        {
+//            rating = (double) bundle.get("starRating");
+//            resto.setStarRating(rating);
+//        }
+//    }
 
 }
