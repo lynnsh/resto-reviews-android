@@ -42,101 +42,42 @@
         </LinearLayout>
 
 
-        <TextView
-            android:text="@string/resto_add"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:id="@+id/textRestoAdd" />
-
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="41dp">
-
+            android:layout_height="32dp"
+            android:orientation="horizontal">
             <TextView
-                android:text="@string/resto_num"
+                android:id="@+id/textRestoAdd"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textNum"
+                android:layout_height="20dp"
                 android:layout_weight="0.5"
-                />
+                android:text="@string/resto_add" />
 
             <EditText
+                android:id="@+id/editAddLineOne"
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:ems="10"
                 android:background="@drawable/edittextborders"
-                android:id="@+id/editNum"
-                />
+                android:ems="10"
+                android:inputType="number" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="38dp">
-
-            <TextView
-                android:text="@string/resto_street"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/textStreet"
-                android:layout_weight="0.5" />
+            android:layout_height="32dp"
+            android:orientation="horizontal">
 
             <EditText
+                android:id="@+id/editAddLineTwo"
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:ems="10"
                 android:background="@drawable/edittextborders"
-                android:id="@+id/editStreet" />
+                android:ems="10"
+                android:inputType="text"
+                android:gravity="right"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="38dp">
-
-            <TextView
-                android:text="@string/resto_city"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/textCity"
-                android:layout_weight="0.5" />
-
-            <EditText
-                android:layout_width="@dimen/editTextWidth"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:ems="10"
-                android:background="@drawable/edittextborders"
-                android:id="@+id/editCity" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="38dp">
-
-            <TextView
-                android:text="@string/resto_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textCode"
-                android:layout_weight="0.5" />
-
-            <EditText
-                android:layout_width="@dimen/editTextWidth"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:ems="10"
-                android:background="@drawable/edittextborders"
-                android:id="@+id/editCode" />
-        </LinearLayout>
+        <!-- there will be an error bar here -->
 
         <LinearLayout
             android:orientation="horizontal"

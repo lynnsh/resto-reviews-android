@@ -158,13 +158,19 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
 
             if (sub.has("address"))
             {
+                if (sub.has("zipcode"))
+                {
+                    resto.setAddress(sub.getString("address") + " " + sub.getString("zipcode"));
+                    //resto.setAddPostalCode(sub.getString("zipcode"));
+                }
+                else
+                {
+                    resto.setAddress(sub.getString("address"));
+                }
                 // Split address into various fields
-                parseAddress(resto, sub.getString("address"));
+                //parseAddress(resto, sub.getString("address"));
             }
-            if (sub.has("zipcode"))
-            {
-                resto.setAddPostalCode(sub.getString("zipcode"));
-            }
+
             if (sub.has("latitude"))
             {
                 resto.setLatitude(sub.getDouble("latitude"));
@@ -214,40 +220,40 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
      * @param resto     The Restaurant the address will be added to
      * @param address   The address to be split
      */
-    private void parseAddress(Restaurant resto, String address)
-    {
-        String regex = "\\d+";
-        String[] split = address.split(",");
-        String[] numAndName = split[0].split(" ", 2);
-
-        // Getting Street Number
-        String num = numAndName[0];
-
-        // Verify street number exists
-        if (num.matches(regex))
-        {
-            resto.setAddNum(Integer.parseInt(num));
-
-            // Getting Street Name
-            if (numAndName.length == 1)
-            {
-                // They had a comma for num
-                resto.setAddStreet(split[1]);
-                resto.setAddCity(split[2]);
-            }
-            else
-            {
-                resto.setAddStreet(numAndName[1]);
-                resto.setAddCity(split[1]);
-            }
-        }
-        else
-        {
-            // No street number
-            resto.setAddStreet(split[0]);
-            resto.setAddCity(split[1]);
-        }
-    }
+//    private void parseAddress(Restaurant resto, String address)
+//    {
+//        String regex = "\\d+";
+//        String[] split = address.split(",");
+//        String[] numAndName = split[0].split(" ", 2);
+//
+//        // Getting Street Number
+//        String num = numAndName[0];
+//
+//        // Verify street number exists
+//        if (num.matches(regex))
+//        {
+//            resto.setAddNum(Integer.parseInt(num));
+//
+//            // Getting Street Name
+//            if (numAndName.length == 1)
+//            {
+//                // They had a comma for num
+//                resto.setAddStreet(split[1]);
+//                resto.setAddCity(split[2]);
+//            }
+//            else
+//            {
+//                resto.setAddStreet(numAndName[1]);
+//                resto.setAddCity(split[1]);
+//            }
+//        }
+//        else
+//        {
+//            // No street number
+//            resto.setAddStreet(split[0]);
+//            resto.setAddCity(split[1]);
+//        }
+//    }
 
     /**
      * Overriden method.  Gives the list of Restaurants to
@@ -258,6 +264,6 @@ public class ZomatoConnector extends AsyncTask<Double, Void, Restaurant[]>{
     @Override
     protected void onPostExecute(Restaurant[] list)
     {
-        fragment.setList(list);
+        fragment.setNewList(list);
     }
 }

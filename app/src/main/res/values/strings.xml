@@ -83,6 +83,6 @@
     <string name="sync_success">The sync was successful!</string>
     <string name="sync_error">The sync failed.</string>
     <string name="net_error">Network connection error. Please, check your connection and try again.</string>
-
-
+    <string name="dialog_network_title">Network Connection</string>
+    <string name="dialog_network_text">No network detected, please connect and try again.</string>
 </resources>

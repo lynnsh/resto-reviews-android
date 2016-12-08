@@ -26,6 +26,18 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
     public static final String TAG = "GetRestosTask";
+    RestoListFragment fragment;
+
+    /**
+     * Constructor.  Requires the fragment that will display the
+     * list of restaurants.
+     *
+     * @param fragment      The fragment that will display the restaurants
+     */
+    public GetRestosTask(RestoListFragment fragment)
+    {
+        this.fragment = fragment;
+    }
 
     /**
      * Using the provided latitude and logitude, retrieves the list
@@ -110,5 +122,17 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
             restos.add(resto);
             Log.d(TAG, "Added resto: " + resto);
         }
+    }
+
+    /**
+     * Overriden method.  Gives the list of Restaurants to
+     * the fragment for display.
+     *
+     * @param list      The list of Restaurants to be displayed
+     */
+    @Override
+    protected void onPostExecute(Restaurant[] list)
+    {
+        fragment.addToList(list);
     }
 }
