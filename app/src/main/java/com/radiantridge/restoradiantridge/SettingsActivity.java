@@ -69,7 +69,7 @@ public class SettingsActivity extends MenuActivity {
 
         if (dataIsValid) {
             saveValidatedData();
-            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT);
+            Toast.makeText(this, R.string.settings_saved, Toast.LENGTH_SHORT).show();
             finish();
         }
     }

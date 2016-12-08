@@ -57,6 +57,11 @@ public class MenuActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             }
+            case R.id.sync: {
+                Log.i(TAG, "Sync selected.");
+                new SyncBackEnd(this).start();
+                return true;
+            }
             default:
                 return super.onOptionsItemSelected(menuOption);
         }
