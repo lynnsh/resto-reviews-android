@@ -25,7 +25,7 @@ import com.radiantridge.restoradiantridge.R;
 */
 
 public class AboutActivity extends MenuActivity {
-
+    //TODO: fix image sizes
 	/**
 	* Minimum override method
 	*/
