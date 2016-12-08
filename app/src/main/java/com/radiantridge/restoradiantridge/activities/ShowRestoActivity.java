@@ -97,7 +97,14 @@ public class ShowRestoActivity  extends AppCompatActivity {
         }
         //heroku
         if(source==2)
-        {}
+        {
+            showAddButton();
+            showAddReviewButton();
+            showReviewButton();
+            setFields(resto);
+
+
+        }
         handleFields();
     }
 
@@ -175,6 +182,43 @@ public class ShowRestoActivity  extends AppCompatActivity {
         });
     }
 
+    private void showAddReviewButton() {
+        Button addReviewButton = (Button) findViewById(R.id.buttonAddReview);
+
+        addReviewButton.setVisibility(View.VISIBLE);
+
+
+        addReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddReviewActivity.class);
+                //sending resto obj
+                Bundle bundle = new Bundle();
+                //  bundle.putSerializable("resto", resto);
+              //  intent.putExtra("databaseResto", false);
+                intent.putExtra("resto",resto);
+                startActivity(intent);
+            }
+        });
+    }
+    private void showReviewButton() {
+        Button showReviewButton = (Button) findViewById(R.id.buttonShowReview);
+
+        showReviewButton.setVisibility(View.VISIBLE);
+
+        showReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ShowReviewActivity.class);
+                //sending resto obj
+                Bundle bundle = new Bundle();
+                //  bundle.putSerializable("resto", resto);
+                //  intent.putExtra("databaseResto", false);
+                intent.putExtra("resto",resto);
+                startActivity(intent);
+            }
+        });
+    }
 
     private void getFields() {
         txtname = (EditText) findViewById(R.id.editRestoName);

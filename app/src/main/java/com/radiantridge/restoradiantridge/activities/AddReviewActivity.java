@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.RatingBar;
 
 import com.google.gson.JsonObject;
 import com.radiantridge.restoradiantridge.helpers.HttpsPostSenderHelper;
@@ -12,13 +15,40 @@ import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Review;
 
 public class AddReviewActivity extends AppCompatActivity {
+    private static final String TAG = "Add review Act";
 
+    private Review review;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
+        review = new Review();
     }
+    /**
+     * This method gets all the data from input fields, validates it,
+     * and sends it to heroku.
+     * @param v
+     */
+    public void handleSaveReview(View v){
+        EditText editTitle =(EditText) findViewById(R.id.editTitle);
+        String title = editTitle.getText().toString();
+        if(title != null&& !(title.isEmpty())) {
+            review.setTitle(title);
+        }
+        EditText editContent =(EditText) findViewById(R.id.editContent);
+        String content = editContent.getText().toString();
+        if(content != null&& !(content.isEmpty())) {
+            review.setContent(content);
+        }
+        RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarReview);
+        Double rating = (double) ratingBar.getRating();
+        review.setRating(rating);
+        Log.i(TAG,"rating " + rating);
+        AddReviewTask addReviewTask = new AddReviewTask();
+        addReviewTask.execute(review);
+        Log.i(TAG,"review added.. " + review);
 
+        }
     /**
      * AddReviewTask is the AsyncTask class that is responsible to
      * saves the reviews to the back-end database on heroku.
