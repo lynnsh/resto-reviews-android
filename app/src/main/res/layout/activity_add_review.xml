@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_review"
     android:layout_width="match_parent"
@@ -8,12 +8,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.AddReviewActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.AddReviewActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_add_review"
+        style="@style/titleStyle"
+        android:textColor="@color/add"/>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
+        android:layout_height="match_parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -24,7 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textTitle"
-                android:layout_span="1"/>
+                android:layout_span="1"
+                style="@style/formStyle"/>
 
             <EditText
                 android:layout_width="wrap_content"
@@ -32,7 +41,8 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:id="@+id/editTitle"
-                android:layout_span="1"/>
+                android:layout_span="1"
+                style="@style/editText"/>
         </TableRow>
 
         <TableRow
@@ -43,14 +53,16 @@
                 android:text="@string/content_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textContent" />
+                android:id="@+id/textContent"
+                style="@style/formStyle"/>
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editContent" />
+                android:id="@+id/editContent"
+                style="@style/editText"/>
         </TableRow>
 
         <TableRow
@@ -61,7 +73,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:id="@+id/ratingBarReview" />
+                android:id="@+id/ratingBarReview"
+                android:background="@color/add"/>
+
         </TableRow>
 
         <TableRow
@@ -76,4 +90,4 @@
                 android:id="@+id/btnSaveReview" />
         </TableRow>
     </TableLayout>
-</RelativeLayout>
+</LinearLayout>

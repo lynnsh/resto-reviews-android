@@ -20,15 +20,13 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
 /**
  * Created by Rafia on 2016-12-02.
  */
-
-public class ShowRestoActivity  extends AppCompatActivity {
+public class ShowRestoActivity  extends MenuActivity {
     private static final String TAG = "Show resto Act";
     private Restaurant resto;
     private String name;
-    private int num;
-    private String addLineOne;
-    private String addLineTwo;
-    private String code;
+//    private int num;
+    private String address;
+//    private String code;
     private String genre;
     private int price;
     private String phone;
@@ -38,7 +36,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
     private double rating;
     private int id;  // get it
     private DatabaseHelper dbconn;
-    private EditText txtname,txtaddone,txtaddtwo,txtphone,txtgenre,txtprice,txtnotes,txtlongitude,txtlatitude;
+    private EditText txtname, txtaddress,txtphone,txtgenre,txtprice,txtnotes,txtlongitude,txtlatitude;
     private RatingBar ratingBar;
 
     /**
@@ -221,8 +219,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
 
     private void getFields() {
         txtname = (EditText) findViewById(R.id.editRestoName);
-        txtaddone = (EditText) findViewById(R.id.editAddLineOne);
-        txtaddtwo = (EditText) findViewById(R.id.editAddLineTwo);
+        txtaddress = (EditText) findViewById(R.id.editAddress);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         txtgenre = (EditText) findViewById(R.id.editGenre);
         txtprice = (EditText) findViewById(R.id.editPrice);
@@ -242,8 +239,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
 
            }});
         //txtnum.setText(num+"");
-        txtaddone.setText(addLineOne);
-        txtaddtwo.setText(addLineTwo);
+        txtaddress.setText(address);
         //txtcode.setText(code);
         txtphone.setText(phone);
         txtgenre.setText(genre);
@@ -262,13 +258,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
         name = resto.getName();
         //num=resto.getAddNum();
         if(resto.getAddress()!=null) {
-            String[] address = resto.getAddress().split(",", 2);
-
-            // TODO: make address one big field
-            addLineOne = address[0];
-            if (address.length == 2) {
-                addLineTwo = address[1];
-            }
+            this.address = resto.getAddress();
         }
         //code=resto.getAddPostalCode();
         if(resto.getGenre()!=null)
@@ -279,6 +269,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
         longit=resto.getLongitude();
         latid=resto.getLatitude();
         rating=resto.getStarRating();
+        phone=resto.getPhone();
     }
 
 //    private void createRestoObj(Bundle bundle) {
@@ -295,8 +286,8 @@ public class ShowRestoActivity  extends AppCompatActivity {
 //        }
 //        if(bundle.get("addStreet") != null)
 //        {
-//            addLineOne = (String) bundle.get("addStreet");
-//            resto.setAddStreet(addLineOne);
+//            address = (String) bundle.get("addStreet");
+//            resto.setAddStreet(address);
 //        }
 //        if(bundle.get("addCity") != null)
 //        {
