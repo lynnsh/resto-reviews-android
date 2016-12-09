@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,8 +35,8 @@ public class AboutActivity extends MenuActivity {
         LinearLayout ll = (LinearLayout) findViewById(R.id.LL);
         TextView schoolName = new TextView(this);
         schoolName.setText(R.string.about_header);
-        schoolName.setTextSize(40);
-        schoolName.setTextColor(ContextCompat.getColor(this, R.color.forest_green));
+        schoolName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60);
+        schoolName.setTextColor(ContextCompat.getColor(this, R.color.about_and_calc));
         schoolName.setClickable(true);
         schoolName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,9 +50,9 @@ public class AboutActivity extends MenuActivity {
         ll.addView(schoolName);
 
         TextView courseName = new TextView(this);
-        courseName.setText(R.string.course_desc);
-        courseName.setTextSize(24);
-        courseName.setTextColor(ContextCompat.getColor(this, R.color.teal));
+        courseName.setText(R.string.about_course_desc);
+        courseName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        courseName.setTextColor(ContextCompat.getColor(this, R.color.text));
         courseName.setClickable(true);
         courseName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +83,8 @@ public class AboutActivity extends MenuActivity {
     private void popup() {
         //New alert dialog based on this current context
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.alertbox_text);
-        builder.setTitle(R.string.alertbox_title);
+        builder.setMessage(R.string.dialog_about_text);
+        builder.setTitle(R.string.dialog_about_title);
         builder.setCancelable(true);
 
         /*When clicked, this will simply close the dialog and display what was shown on the AboutActivity Screen.*/

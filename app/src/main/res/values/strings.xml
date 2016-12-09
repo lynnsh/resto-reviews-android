@@ -30,23 +30,22 @@
     <string name="button_search">Search</string>
     <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
     <string name="dialog_phone_title">Call Restaurant</string>
-    <string name="about_menu_text">
-        This app allows you to search a database for popular restaurants.
-        You can specify a genre, specify a city (where the nearest restaurants within 50km of that location will be shown),
-        or you can search for a restaurant by name. This app also allows you to ADD a new restaurant to the database.
-        Furthermore, we even provide you with a tip calculator that you can use to find out how much of a tip you should give your waiter following
-        your visit.
-    </string>
+    <!--<string name="about_menu_text">-->
+        <!--This app allows you to search a database for popular restaurants.-->
+        <!--You can specify a genre, specify a city (where the nearest restaurants within 50km of that location will be shown),-->
+        <!--or you can search for a restaurant by name. This app also allows you to ADD a new restaurant to the database.-->
+        <!--Furthermore, we even provide you with a tip calculator that you can use to find out how much of a tip you should give your waiter following-->
+        <!--your visit.-->
+    <!--</string>-->
     <string name="about_header">Dawson College</string>
-    <string name="course_desc">420-518-DW</string>
-    <string name="alertbox_title">Our group</string>
-    <string name="alertbox_text">Android-PHP Project Group Members\n\n
-                                Erika Bourque\n
-                                Rafia Anwar\n
-                                Victor Ruggi\n
-                                Alena Shulzhenko\n
-                                Theodore Acco-Thomas\n\n
-                                Fifth semester of six</string>
+    <string name="about_course_desc">420–518–DW</string>
+    <string name="dialog_about_title">Our group</string>
+    <string name="dialog_about_text">Android-PHP Project Group Members\n\n
+        Victor Ruggi\n
+        Rafia Anwar\n
+        Erika Bourque\n
+        Alena Shulzhenko\n\n
+        Fifth semester of six</string>
     <string name="close">Close</string>
     <string name="to_main_menu">Back To Main Menu</string>
     <string name="resto_name">Enter Restaurant Name: </string>
@@ -80,12 +79,10 @@
     <string name="button_showReview">Delete </string>
     <string name="title_text">Add a title: </string>
     <string name="content_text">Add your comment:  </string>
-
     <string name="delete_text">Deleted! </string>
     <string name="save_text">Saved! </string>
     <string name="edit_text">Modified! </string>
     <string name="saveReview_text">Save Review! </string>
-
     <string name="sync_start">Starting the sync...</string>
     <string name="sync_success">The sync was successful!</string>
     <string name="sync_error">The sync failed.</string>
@@ -96,4 +93,10 @@
     <string name="dialog_network_title">Network Connection</string>
     <string name="dialog_network_text">No network detected, please connect and try again.</string>
     <string name="toast_no_phone">Unable to dial phone number.</string>
+    <string name="title_favorites">Favorite Restaurants</string>
+    <string name="title_search">Search</string>
+    <string name="title_nearby">Restaurants Nearby</string>
+    <string name="title_calculator">Tip Calculator</string>
+    <string name="title_add">Add New Favorite</string>
+    <string name="title_picker">Restaurants Around Somewhere</string>
 </resources>

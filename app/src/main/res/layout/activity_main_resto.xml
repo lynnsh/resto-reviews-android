@@ -14,7 +14,6 @@ android:orientation="vertical"
 android:background="@color/background">
 
 <!-- TODO: These buttons will be image buttons in the future -->
-<!-- The strings are temporary, they will be replaced with the images -->
 <Button
     android:id="@+id/logoBtn"
     android:layout_width="match_parent"
@@ -103,6 +102,7 @@ android:background="@color/background">
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    android:textColor="@color/text"/>
+    android:gravity="center"
+    style="@style/textStyle" />
 </LinearLayout>
 
