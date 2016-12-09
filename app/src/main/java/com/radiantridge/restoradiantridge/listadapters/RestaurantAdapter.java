@@ -29,6 +29,9 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public RestaurantAdapter(Context context, Restaurant[] restos)
     {
         super(context, 0, restos);
+
+        // Change color of divider
+
     }
 
     /**
