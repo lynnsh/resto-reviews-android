@@ -4,208 +4,192 @@
     android:id="@+id/activity_add_resto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.AddRestoActivity"
-    android:background="@color/background"
-    android:orientation="vertical">
+    tools:context="com.radiantridge.restoradiantridge.activities.AddRestoActivity">
 
     <TextView
+        style="@style/titleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_add_resto"
-        style="@style/titleStyle"
-        android:textColor="@color/add"/>
+        android:textColor="@color/add" />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="0,1">
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textRestoName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_name"
-                style="@style/formStyle"/>
+                style="@style/formStyle"
+                android:text="@string/resto_name" />
+
             <EditText
                 android:id="@+id/editRestoName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:inputType="textPersonName" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textNameError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_span="2"
                 android:text="@string/name_error"
                 android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:layout_span="2"/>
+                android:visibility="invisible" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textRestoAdd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_add"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_add" />
+
             <EditText
                 android:id="@+id/editAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 style="@style/editText"
-                android:lines="3"/>
+                android:inputType="textMultiLine"
+                android:lines="3" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textAddressError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_span="2"
                 android:text="@string/genre_error"
                 android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:layout_span="2"/>
+                android:visibility="invisible" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_phone"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_phone" />
+
             <EditText
                 android:id="@+id/editTextPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:inputType="phone" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_genre"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_genre" />
+
             <EditText
                 android:id="@+id/editGenre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:inputType="textPersonName" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textGenreError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_span="2"
                 android:text="@string/genre_error"
                 android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:layout_span="2"/>
+                android:visibility="invisible" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_price"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_price" />
+
             <EditText
                 android:id="@+id/editPrice"
+                style="@style/editText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                style="@style/editText"/>
+                android:inputType="number" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textPriceError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_span="2"
                 android:text="@string/price_error"
                 android:textColor="@color/colorAccent"
-                android:visibility="invisible"
-                android:layout_span="2"/>
+                android:visibility="invisible" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textNotes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_notes"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_notes" />
+
             <EditText
                 android:id="@+id/editNotes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
                 style="@style/editText"
-                android:lines="3"/>
+                android:inputType="textMultiLine"
+                android:lines="3" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textLongitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_longitude"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_longitude" />
+
             <EditText
                 android:id="@+id/editLongitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberSigned"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:inputType="numberSigned" />
         </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
                 android:id="@+id/textLatitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_latitude"
-                style="@style/formStyle" />
+                style="@style/formStyle"
+                android:text="@string/resto_latitude" />
+
             <EditText
                 android:id="@+id/editLatitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="numberSigned"
-                style="@style/editText"/>
-        </TableRow>
-        <TableRow
-            android:layout_margin="5dp">
-            <TextView
-                android:id="@+id/textRating"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_rating"
-                style="@style/formStyle" />
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/Widget.AppCompat.RatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="43dp"
-                android:isIndicator="false"
-                android:numStars="5"
-                android:background="@color/add"/>
+                style="@style/editText"
+                android:inputType="numberSigned" />
         </TableRow>
     </TableLayout>
+
+    <TextView
+        android:id="@+id/textRating"
+        style="@style/formStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/resto_rating"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:rating="1.0"
+        />
+
     <Button
         android:id="@+id/buttonSave"
         android:layout_width="match_parent"

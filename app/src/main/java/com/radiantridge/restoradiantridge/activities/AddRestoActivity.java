@@ -23,7 +23,7 @@ import java.sql.Timestamp;
  *
  * @author Rafia Anwar
  */
-public class AddRestoActivity extends AppCompatActivity {
+public class AddRestoActivity extends MenuActivity {
     private static final String TAG = "Add resto Act";
     private Restaurant resto;
     private String name;

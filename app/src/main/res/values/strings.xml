@@ -100,4 +100,5 @@
     <string name="title_add_resto">Add New Favorite</string>
     <string name="title_picker">Restaurants Around Somewhere</string>
     <string name="title_add_review">Add New Review</string>
+    <string name="title_show_resto">Restaurant Details</string>
 </resources>
