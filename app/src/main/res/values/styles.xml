@@ -17,4 +17,13 @@
         <item name="android:textSize">60sp</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="formStyle" parent="AppTheme">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="editText" parent="AppTheme">
+        <item name="android:background">@color/editText</item>
+    </style>
 </resources>

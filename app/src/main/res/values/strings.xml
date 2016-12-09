@@ -75,8 +75,8 @@
     <string name="button_add">Add </string>
     <string name="button_edit">Edit </string>
     <string name="button_delete">Delete </string>
-    <string name="button_addReview">Delete </string>
-    <string name="button_showReview">Delete </string>
+    <string name="button_addReview">Add Review </string>
+    <string name="button_showReview">Show Reviews </string>
     <string name="title_text">Add a title: </string>
     <string name="content_text">Add your comment:  </string>
     <string name="delete_text">Deleted! </string>
@@ -97,6 +97,7 @@
     <string name="title_search">Search</string>
     <string name="title_nearby">Restaurants Nearby</string>
     <string name="title_calculator">Tip Calculator</string>
-    <string name="title_add">Add New Favorite</string>
+    <string name="title_add_resto">Add New Favorite</string>
     <string name="title_picker">Restaurants Around Somewhere</string>
+    <string name="title_add_review">Add New Review</string>
 </resources>

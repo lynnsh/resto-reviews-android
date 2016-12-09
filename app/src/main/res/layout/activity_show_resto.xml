@@ -54,7 +54,7 @@
                 android:text="@string/resto_add" />
 
             <EditText
-                android:id="@+id/editAddLineOne"
+                android:id="@+id/editAddress"
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"

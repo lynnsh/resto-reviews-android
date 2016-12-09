@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_add_resto"
     android:layout_width="match_parent"
@@ -8,8 +8,16 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.AddRestoActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.AddRestoActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_add_resto"
+        style="@style/titleStyle"
+        android:textColor="@color/add"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +36,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.5"
-                android:text="@string/resto_name" />
+                android:text="@string/resto_name"
+                style="@style/formStyle"/>
 
             <EditText
                 android:id="@+id/editRestoName"
@@ -36,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                style="@style/editText"/>
 
         </LinearLayout>
 
@@ -64,30 +74,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_weight="0.5"
-                android:text="@string/resto_add" />
+                android:text="@string/resto_add"
+                style="@style/formStyle" />
 
             <EditText
-                android:id="@+id/editAddLineOne"
+                android:id="@+id/editAddress"
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="number" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/editAddLineTwo"
-                android:layout_width="@dimen/editTextWidth"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edittextborders"
-                android:ems="10"
-                android:inputType="text"
-                android:gravity="right"/>
+                android:inputType="number"
+                style="@style/editText"/>
         </LinearLayout>
 
         <!-- there will be an error bar here -->
@@ -103,7 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:text="@string/resto_phone" />
+                android:text="@string/resto_phone"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editTextPhone"
@@ -111,7 +109,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="phone" />
+                android:inputType="phone"
+                style="@style/editText"/>
 
 
         </LinearLayout>
@@ -126,7 +125,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/resto_genre" />
+                android:text="@string/resto_genre"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editGenre"
@@ -134,7 +134,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                style="@style/editText"/>
         </LinearLayout>
 
         <LinearLayout
@@ -162,7 +163,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/resto_price" />
+                android:text="@string/resto_price"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editPrice"
@@ -170,7 +172,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                style="@style/editText"/>
 
         </LinearLayout>
 
@@ -199,7 +202,8 @@
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/resto_notes" />
+                android:text="@string/resto_notes"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editNotes"
@@ -207,7 +211,8 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                style="@style/editText"/>
         </LinearLayout>
 
         <LinearLayout
@@ -220,7 +225,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/resto_longitude" />
+                android:text="@string/resto_longitude"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editLongitude"
@@ -228,7 +234,8 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittextborders"
                 android:ems="10"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                style="@style/editText"/>
         </LinearLayout>
 
         <LinearLayout
@@ -241,22 +248,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/resto_latitude" />
+                android:text="@string/resto_latitude"
+                style="@style/formStyle" />
 
             <EditText
                 android:id="@+id/editLatitude"
                 android:layout_width="@dimen/editTextWidth"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edittextborders"
+
                 android:ems="10"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                style="@style/editText"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/textRating"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:text="@string/resto_rating" />
+            android:text="@string/resto_rating"
+            style="@style/formStyle" />
 
         <RatingBar
             android:id="@+id/ratingBar"
@@ -264,7 +274,8 @@
             android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:isIndicator="false"
-            android:numStars="5" />
+            android:numStars="5"
+            android:background="@color/add"/>
 
         <Button
             android:id="@+id/buttonSave"
@@ -273,4 +284,4 @@
             android:onClick="saveResto"
             android:text="@string/button_save" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

@@ -221,7 +221,7 @@ public class ShowRestoActivity  extends AppCompatActivity {
 
     private void getFields() {
         txtname = (EditText) findViewById(R.id.editRestoName);
-        txtaddone = (EditText) findViewById(R.id.editAddLineOne);
+        txtaddone = (EditText) findViewById(R.id.editAddress);
         txtaddtwo = (EditText) findViewById(R.id.editAddLineTwo);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         txtgenre = (EditText) findViewById(R.id.editGenre);

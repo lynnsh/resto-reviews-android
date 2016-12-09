@@ -27,10 +27,10 @@ public class AddRestoActivity extends AppCompatActivity {
     private static final String TAG = "Add resto Act";
     private Restaurant resto;
     private String name;
-    private int num;
-    private String street;
-    private String city;
-    private String code;
+//    private int num;
+//    private String street;
+//    private String city;
+//    private String code;
     private String genre;
     private int price;
     private String notes;
@@ -38,7 +38,7 @@ public class AddRestoActivity extends AppCompatActivity {
     private Double latid;
     private Double rating;
    private DatabaseHelper dbconn;
-    private EditText editName,editAddLineOne, editAddLineTwo,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
+    private EditText editName, editAddress,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
     private RatingBar editRating;
     private boolean exisitngRecord;
     private boolean save; //keeps check of valid inputs
@@ -159,13 +159,12 @@ public class AddRestoActivity extends AppCompatActivity {
     private boolean handleAddress(View v)
     {
         boolean isValid;
-        String addOne = editAddLineOne.getText().toString();
-        String addTwo = editAddLineTwo.getText().toString();
+        String address = editAddress.getText().toString();
 
-        if (!addOne.isEmpty() && !addTwo.isEmpty())
+        if (!address.isEmpty())
         {
             isValid = true;
-            resto.setAddress(addOne + "," + addTwo);
+            resto.setAddress(address);
         }
         else
         {
@@ -317,10 +316,7 @@ public class AddRestoActivity extends AppCompatActivity {
     private void setEditFields(){
         editName.setText(resto.getName());
         //how to check for nulls
-        String[] address = resto.getAddress().split(",", 2);
-
-        editAddLineOne.setText(address[0]);
-        editAddLineTwo.setText(address[1]);
+        editAddress.setText(resto.getAddress());
         txtphone.setText(resto.getPhone());
         editGenre.setText(resto.getGenre());
         editPrice.setText(resto.getPriceRange()+"");
@@ -334,8 +330,7 @@ public class AddRestoActivity extends AppCompatActivity {
     }
     private void getFields() {
         editName = (EditText) findViewById(R.id.editRestoName);
-        editAddLineOne = (EditText) findViewById(R.id.editAddLineOne);
-        editAddLineTwo = (EditText) findViewById(R.id.editAddLineTwo);
+        editAddress = (EditText) findViewById(R.id.editAddress);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         editGenre = (EditText) findViewById(R.id.editGenre);
         editPrice = (EditText) findViewById(R.id.editPrice);
