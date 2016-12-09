@@ -9,23 +9,37 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.radiantridge.restoradiantridge.activities.SearchActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_search"
+        android:textColor="@color/search"
+        style="@style/titleStyle"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+        <!-- TODO: style spinner-->
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/searchType"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="@color/editText"
+            style="@style/spinnerStyle"
+            />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/search_ET"
-            android:layout_weight="3"/>
+            android:layout_weight="3"
+            style="@style/editText"/>
     </LinearLayout>
+    <!-- TODO : style buttons -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

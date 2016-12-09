@@ -29,4 +29,17 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text</item>
     </style>
+
+    <style name="spinnerStyle" parent="android:Theme">
+        <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
+    </style>
+
+    <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
+    </style>
+
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">30sp</item>
+    </style>
 </resources>
