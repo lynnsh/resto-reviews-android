@@ -117,6 +117,12 @@ public class MainRestoActivity extends MenuActivity {
         startActivity(new Intent(this, AboutActivity.class));
     }
 
+    /**
+     * Event handler for the logo button.  Launches
+     * the place picker activity.
+     *
+     * @param view      The view that fired the event
+     */
     public void launchPicker(View view)
     {
         startActivity(new Intent(this, PickSomewhereActivity.class));
