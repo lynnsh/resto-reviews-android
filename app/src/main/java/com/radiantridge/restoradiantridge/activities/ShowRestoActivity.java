@@ -98,11 +98,13 @@ public class ShowRestoActivity  extends AppCompatActivity {
         if(source==2)
         {
             showAddButton();
+            setFields(resto);
+        }
+        //to allow to add/view reviews for restos from heroku
+        int herokuId = resto.getHerokuId();
+        if(herokuId != 0 && herokuId != -1) {
             showAddReviewButton();
             showReviewButton();
-            setFields(resto);
-
-
         }
         handleFields();
     }
