@@ -19,46 +19,76 @@ android:orientation="vertical">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="this will be our logo"
-    android:onClick="launchAbout"/>
+    android:onClick="launchAbout"
+    android:layout_weight="1"/>
 
 <TableLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TableRow>
-        <Button
+    android:layout_height="0dp"
+    android:layout_weight="6">
+    <TableRow
+        android:layout_weight="1">
+        <ImageButton
             android:id="@+id/favoritesBtn"
-            android:text="favorites button"
-            android:onClick="launchFavorites"/>
-        <Button
+            android:src="@drawable/favorites_icon"
+            android:onClick="launchFavorites"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <ImageButton
             android:id="@+id/searchBtn"
-            android:text="search button"
-            android:onClick="launchSearch"/>
+            android:src="@drawable/search_icon"
+            android:onClick="launchSearch"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
     </TableRow>
-    <TableRow>
-        <Button
+    <TableRow
+        android:layout_weight="1">
+        <ImageButton
             android:id="@+id/nearbyBtn"
-            android:text="nearby button"
-            android:onClick="launchNearby"/>
-        <Button
+            android:src="@drawable/nearby_icon"
+            android:onClick="launchNearby"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <ImageButton
             android:id="@+id/tipCalcBtn"
-            android:text="tip calculator button"
-            android:onClick="launchTipCalc"/>
+            android:src="@drawable/calculator_icon"
+            android:onClick="launchTipCalc"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
     </TableRow>
-    <TableRow>
-        <Button
+    <TableRow
+        android:layout_weight="1">
+        <ImageButton
             android:id="@+id/addRestoBtn"
-            android:text="add restaurant button"
-            android:onClick="launchAddResto"/>
-        <Button
+            android:src="@drawable/add_icon"
+            android:onClick="launchAddResto"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+        <ImageButton
             android:id="@+id/pickerBtn"
-            android:text="place picker button"
-            android:onClick="launchPicker"/>
+            android:src="@drawable/places_icon"
+            android:onClick="launchPicker"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
     </TableRow>
 </TableLayout>
 
 <TextView
     android:id="@+id/main_greeting"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
 </LinearLayout>
 
