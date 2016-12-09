@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_lat_long"
     android:layout_width="match_parent"
@@ -8,27 +8,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.LatLongActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.LatLongActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
 
+    <!--TODO: fix table-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:stretchColumns="0,1">
         <TableRow>
             <TextView
-                android:text="@string/latitude"/>
+                android:text="@string/latitude"
+                style="@style/textStyle"/>
             <EditText
                 android:id="@+id/latitude_ET"
-                android:inputType="numberDecimal|numberSigned"/>
+                android:inputType="numberDecimal|numberSigned"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/longitude"/>
+                android:text="@string/longitude"
+                style="@style/textStyle"/>
             <EditText
                 android:id="@+id/longitude_ET"
-                android:inputType="numberDecimal|numberSigned"/>
+                android:inputType="numberDecimal|numberSigned"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
+            <!-- TODO: style button-->
             <Button
                 android:text="@string/button_save"
                 android:onClick="save"
@@ -36,4 +44,4 @@
         </TableRow>
     </TableLayout>
 
-</RelativeLayout>
+</LinearLayout>
