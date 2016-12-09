@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 import java.sql.Timestamp;
@@ -20,6 +22,7 @@ import java.sql.Timestamp;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG = "DBConnector";
+    private Context context;
     // table name
     public static final String TABLE_RESTOS = "restos";
     //column names
@@ -51,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
+        this.context = context;
     }
 
     /**
@@ -120,6 +123,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public long addResto(Restaurant resto) {
         if(!checkDuplicate(resto)) {
+            //change source to local database
+            resto.setSource(0);
             ContentValues cv = new ContentValues();
             cv.put(COLUMN_NAME, resto.getName());
             cv.put(COLUMN_GENRE, resto.getGenre());
@@ -139,6 +144,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             long id = getWritableDatabase().insert(TABLE_RESTOS, null, cv);
             Log.d(TAG, "Inserted resto, name: " + resto.getName() + ", id: " + id);
             return id;
+        }
+        else {
+            Toast.makeText(context, R.string.duplicate_error, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "It is a duplicate resto: " + resto.getName());
         }
         return -1;
     }
@@ -175,7 +184,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DATE_MODIFIED, resto.getModifiedTime().getTime());
 
         long id = getWritableDatabase().update(TABLE_RESTOS, cv, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(resto.getDatabaseId()) });
+                new String[] { String.valueOf(resto.getDbId()) });
         Log.d(TAG, "Updated resto, name: " + resto.getName() + ", id: " + id);
     }
 
@@ -267,7 +276,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int index = 0;
         while(cursor.moveToNext()) {
             resto = new Restaurant();
-            resto.setDatabaseId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            resto.setDbId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
             resto.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
             resto.setGenre(cursor.getString(cursor.getColumnIndex(COLUMN_GENRE)));
             resto.setPriceRange(cursor.getInt(cursor.getColumnIndex(COLUMN_PRICE)));
@@ -283,7 +292,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             resto.setCreatedTime(new Timestamp(cursor.getInt(cursor.getColumnIndex(COLUMN_DATE_CREATED))));
             resto.setModifiedTime(new Timestamp(cursor.getInt(cursor.getColumnIndex(COLUMN_DATE_MODIFIED))));
             restos[index] = resto;
-            Log.d(TAG, "Queried resto, name: " + resto.getName() + ", id: " + resto.getDatabaseId());
+            Log.d(TAG, "Queried resto, name: " + resto.getName() + ", id: " + resto.getDbId());
             index++;
         }
         cursor.close();

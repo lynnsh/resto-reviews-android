@@ -76,12 +76,22 @@
     <string name="button_add">Add </string>
     <string name="button_edit">Edit </string>
     <string name="button_delete">Delete </string>
+    <string name="button_addReview">Delete </string>
+    <string name="button_showReview">Delete </string>
+    <string name="title_text">Add a title: </string>
+    <string name="content_text">Add your comment:  </string>
+
     <string name="delete_text">Deleted! </string>
     <string name="save_text">Saved! </string>
     <string name="edit_text">Modified! </string>
+    <string name="saveReview_text">Save Review! </string>
+
     <string name="sync_start">Starting the sync...</string>
     <string name="sync_success">The sync was successful!</string>
     <string name="sync_error">The sync failed.</string>
+    <string name="review_success">The review was added successfully!</string>
+    <string name="review_error">The review addition failed.</string>
+    <string name="duplicate_error">This restaurant is already in favourites.</string>
     <string name="net_error">Network connection error. Please, check your connection and try again.</string>
     <string name="dialog_network_title">Network Connection</string>
     <string name="dialog_network_text">No network detected, please connect and try again.</string>
