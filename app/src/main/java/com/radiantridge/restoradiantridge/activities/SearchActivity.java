@@ -72,7 +72,7 @@ public class SearchActivity extends MenuActivity {
         // Displaying results
         if (results != null)
         {
-            fragment.setNewList(results);
+            fragment.addToList(results, true);
         }
     }
 
