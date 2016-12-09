@@ -138,7 +138,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == CHANGE_LAT_LONG) {
+        if (requestCode == CHANGE_LAT_LONG && data != null) {
             Log.i(TAG, "Manual location");
             latitude = data.getDoubleExtra("latitude", 0.0);
             longitude = data.getDoubleExtra("longitude", 0.0);
