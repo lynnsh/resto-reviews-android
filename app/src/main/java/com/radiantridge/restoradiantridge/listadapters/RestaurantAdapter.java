@@ -18,11 +18,28 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
  * @version 02/12/2016
  */
 public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
+
+    /**
+     * Constructor.  Requires the context and array of reviews for creation in
+     * the super class.
+     *
+     * @param context   The context for the list
+     * @param restos   The array of restaurants for the list
+     */
     public RestaurantAdapter(Context context, Restaurant[] restos)
     {
         super(context, 0, restos);
     }
 
+    /**
+     * Overriden method.  Sets the name of the restaurant in the item_restaurant, and
+     * returns it.
+     *
+     * @param position      The position of the restaurant in the list
+     * @param convertView   The item_restaurant, if it already exists
+     * @param parent        The parent
+     * @return              The item_restaurant
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
