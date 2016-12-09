@@ -8,7 +8,7 @@
     <string name="title_login">Log In</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
-    <string name="email">Email Address:</string>
+    <string name="email">Username (Email):</string>
     <string name="password">Password:</string>
     <string name="button_login">Log In</string>
     <string name="button_save">Save</string>
@@ -101,4 +101,5 @@
     <string name="title_picker">Restaurants Around Somewhere</string>
     <string name="title_add_review">Add New Review</string>
     <string name="title_show_resto">Restaurant Details</string>
+    <string name="title_settings">Settings</string>
 </resources>

@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void saveData(String fname, String lname, String email, String pw)
     {
-        // TODO: verify that Alena is using same format of timestamp
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor

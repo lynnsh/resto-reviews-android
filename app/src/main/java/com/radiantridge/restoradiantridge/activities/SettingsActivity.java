@@ -114,7 +114,6 @@ public class SettingsActivity extends MenuActivity {
      * SharedPrefs.
      */
     private void saveValidatedData() {
-        // TODO: also verify timestamp format with Alena
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
