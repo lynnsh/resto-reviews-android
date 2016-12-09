@@ -124,8 +124,11 @@ public class AddRestoActivity extends AppCompatActivity {
             else {
                 Log.i(TAG, "Saving resto..");
                 int id = (int) dbconn.addResto(resto);
-                resto.setDbId(id);
-                Toast.makeText(getApplicationContext(), R.string.save_text, Toast.LENGTH_SHORT).show();
+                //check that there was no errors during the addition
+                if(id != -1) {
+                    resto.setDbId(id);
+                    Toast.makeText(getApplicationContext(), R.string.save_text, Toast.LENGTH_SHORT).show();
+                }
                 Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
                 startActivity(intent);
 

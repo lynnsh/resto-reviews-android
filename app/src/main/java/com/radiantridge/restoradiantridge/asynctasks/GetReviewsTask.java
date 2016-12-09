@@ -2,7 +2,7 @@ package com.radiantridge.restoradiantridge.asynctasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
+import com.radiantridge.restoradiantridge.activities.ShowReviewsActivity;
 import com.radiantridge.restoradiantridge.objects.Review;
 
 import org.json.JSONArray;
@@ -26,10 +26,29 @@ import javax.net.ssl.HttpsURLConnection;
  * restaurant.
  *
  * @author Alena Shulzhenko
- * @version 2016-12-06
+ * @version 2016-12-08
  */
 public class GetReviewsTask extends AsyncTask<Integer, Void, Review[]> {
     public static final String TAG = "GetReviewsTask";
+    private ShowReviewsActivity context;
+
+    /**
+     * Instantiates GetReviewsTask object.
+     * @param context the Context object where this AsyncTask is instantiated.
+     */
+    public GetReviewsTask(ShowReviewsActivity context) {
+        super();
+        this.context = context;
+    }
+
+    /**
+     * Passes the array of reviews to the ShowReviewsActivity.
+     * @param reviews the array of reviews to return.
+     */
+    @Override
+    public void onPostExecute(Review[] reviews) {
+        context.setListAdapter(reviews);
+    }
 
     /**
      * Using the provided restaurant id, retrieves the list
@@ -40,7 +59,8 @@ public class GetReviewsTask extends AsyncTask<Integer, Void, Review[]> {
     @Override
     public Review[] doInBackground(Integer... params) {
         List<Review> reviews = new ArrayList<>();
-        double restoId = params[0];
+        int restoId = params[0];
+        Log.d(TAG, "heroku_resto_id: " + restoId);
         try {
             //GET url to Heroku
             URL url = new URL("https://radiant-ridge-88291.herokuapp.com/api/api/reviews?resto_id="

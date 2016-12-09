@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 import java.sql.Timestamp;
@@ -20,6 +22,7 @@ import java.sql.Timestamp;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG = "DBConnector";
+    private Context context;
     // table name
     public static final String TABLE_RESTOS = "restos";
     //column names
@@ -51,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-
+        this.context = context;
     }
 
     /**
@@ -141,6 +144,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             long id = getWritableDatabase().insert(TABLE_RESTOS, null, cv);
             Log.d(TAG, "Inserted resto, name: " + resto.getName() + ", id: " + id);
             return id;
+        }
+        else {
+            Toast.makeText(context, R.string.duplicate_error, Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "It is a duplicate resto: " + resto.getName());
         }
         return -1;
     }
