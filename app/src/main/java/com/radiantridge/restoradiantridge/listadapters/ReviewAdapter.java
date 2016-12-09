@@ -11,15 +11,35 @@ import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Review;
 
 /**
- * Created by Panda on 07/12/2016.
+ * Custom adapter for a list of Reviews.  Displays the entire contents of the review
+ * in the item.
+ *
+ * @author Erika Bourque
+ * @version 08/12/2016
  */
-
 public class ReviewAdapter extends ArrayAdapter<Review> {
+
+    /**
+     * Constructor.  Requires the context and array of reviews for creation in
+     * the super class.
+     *
+     * @param context   The context for the list
+     * @param reviews   The array of reviews for the list
+     */
     public ReviewAdapter(Context context, Review[] reviews)
     {
         super(context, 0, reviews);
     }
 
+    /**
+     * Overriden method.  Sets the details of the review in the item_review, and
+     * returns it.
+     *
+     * @param position      The position of the review in the list
+     * @param convertView   The item_review, if it already exists
+     * @param parent        The parent
+     * @return              The item_review
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
