@@ -5,4 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="forest_green">#03CA00</color>
     <color name="teal">#00A080</color>
+    <color name="background">#000000</color>
+    <color name="text">#FFFFFF</color>
 </resources>
