@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
                 android:gravity="center"
-                android:onClick="onCalculateTip"
+                android:onClick="calculateTip"
 
                 android:layout_weight="0.53" />
         </LinearLayout>
