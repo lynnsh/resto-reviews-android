@@ -7,10 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
-
 import java.sql.Timestamp;
 
 /**
@@ -19,7 +17,6 @@ import java.sql.Timestamp;
  * @author Alena Shulzhenko
  * @version 2016-12-06
  */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TAG = "DBConnector";
     private Context context;

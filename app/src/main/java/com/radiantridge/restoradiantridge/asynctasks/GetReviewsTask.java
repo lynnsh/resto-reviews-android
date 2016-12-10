@@ -4,11 +4,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.radiantridge.restoradiantridge.activities.ShowReviewsActivity;
 import com.radiantridge.restoradiantridge.objects.Review;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -17,7 +15,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.net.ssl.HttpsURLConnection;
 
 /**

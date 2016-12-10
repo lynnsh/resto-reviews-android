@@ -1,10 +1,8 @@
 package com.radiantridge.restoradiantridge.helpers;
 
 import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-
 import javax.net.ssl.HttpsURLConnection;
 
 /**
@@ -23,7 +20,6 @@ import javax.net.ssl.HttpsURLConnection;
  * @author Alena Shulzhenko
  * @version 2016-12-07
  */
-
 public class HttpsPostSenderHelper {
     public static final String TAG = "HttpsPostSender";
 

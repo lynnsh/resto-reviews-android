@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.helpers.SyncBackEndHelper;
 
@@ -16,6 +15,7 @@ import com.radiantridge.restoradiantridge.helpers.SyncBackEndHelper;
  *
  * @author Erika Bourque
  * @author Victor Ruggi
+ * @version 8/12/2016
  */
 public class MenuActivity extends AppCompatActivity {
     private static final String TAG = "Menu";

@@ -2,10 +2,8 @@ package com.radiantridge.restoradiantridge.asynctasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +15,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.net.ssl.HttpsURLConnection;
 
 /**

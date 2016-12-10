@@ -18,7 +18,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import com.radiantridge.restoradiantridge.asynctasks.ZomatoTask;
 import com.radiantridge.restoradiantridge.asynctasks.GetRestosTask;
 import com.radiantridge.restoradiantridge.R;

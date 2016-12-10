@@ -8,7 +8,6 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.asynctasks.GetReviewsTask;
 import com.radiantridge.restoradiantridge.listadapters.ReviewAdapter;
@@ -21,7 +20,6 @@ import com.radiantridge.restoradiantridge.objects.Review;
  * @author Rafia Anwar
  * @version 08-12-2016
  */
-
 public class ShowReviewsActivity extends MenuActivity {
     private static final String TAG = "ShowReviewsActivity";
     private ListAdapter adapter;

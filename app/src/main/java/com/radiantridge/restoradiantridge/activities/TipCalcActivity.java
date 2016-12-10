@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.radiantridge.restoradiantridge.R;
 
 /**
@@ -18,7 +17,6 @@ import com.radiantridge.restoradiantridge.R;
  * @author Rafia Anwar
  * @version 30/11/2016
  */
-
 public class TipCalcActivity extends AppCompatActivity {
     private static final String TAG = "TipCalculatorActivity";
 
