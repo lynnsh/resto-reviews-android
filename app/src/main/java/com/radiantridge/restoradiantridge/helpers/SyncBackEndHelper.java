@@ -46,7 +46,10 @@ public class SyncBackEndHelper {
         if (networkInfo != null && networkInfo.isConnected()) {
             herokuCreateRestoUrl = "https://radiant-ridge-88291.herokuapp.com/api/api/create";
             Restaurant[] restos = dbh.getAllRestos();
-            new SyncHerokuTask().execute(restos);
+            if(restos.length != 0)
+                new SyncHerokuTask().execute(restos);
+            else
+                Toast.makeText(context, R.string.sync_nodata, Toast.LENGTH_SHORT).show();
         }
         //no connection
         else {
