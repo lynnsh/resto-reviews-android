@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_calculator"
-        android:textColor="@color/about_and_calc" />
+        android:textColor="@color/green" />
 
     <LinearLayout
         android:layout_width="match_parent"

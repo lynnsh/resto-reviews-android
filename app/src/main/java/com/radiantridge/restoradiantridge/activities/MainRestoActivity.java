@@ -103,7 +103,7 @@ public class MainRestoActivity extends MenuActivity {
         SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
         TextView greetingTV = (TextView) findViewById(R.id.main_greeting);
 
-        String greetingMess = getResources().getString(R.string.greeting)
+        String greetingMess = getResources().getString(R.string.greeting) + " "
                 + prefs.getString("fname", null) + " " + prefs.getString("lname", null);
 
         greetingTV.setText(greetingMess);
