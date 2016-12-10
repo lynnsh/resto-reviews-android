@@ -10,7 +10,6 @@ import com.google.gson.JsonObject;
  * @author Alena Shulzhenko
  * @version 2016-12-06
  */
-
 public class Review {
     private String title;
     private String content;

@@ -11,12 +11,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
-
 import com.google.gson.JsonObject;
 import com.radiantridge.restoradiantridge.helpers.HttpsPostSenderHelper;
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
 import com.radiantridge.restoradiantridge.objects.Review;
+
 /**
  * This activity shows the reviews for a restaurant.
  * It uses AddReviewTask to sync review to heroku.

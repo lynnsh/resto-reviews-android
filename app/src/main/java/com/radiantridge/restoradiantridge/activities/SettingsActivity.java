@@ -8,10 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.radiantridge.restoradiantridge.R;
-import com.radiantridge.restoradiantridge.activities.MenuActivity;
-
 import java.util.Calendar;
 
 /**

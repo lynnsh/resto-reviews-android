@@ -3,15 +3,11 @@ package com.radiantridge.restoradiantridge.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
-
-import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
+import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
 
 /**

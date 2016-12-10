@@ -1,7 +1,6 @@
 package com.radiantridge.restoradiantridge.objects;
 
 import com.google.gson.JsonObject;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,7 +15,6 @@ import java.sql.Timestamp;
  * @version 02/12/2016
  */
 public class Restaurant implements Serializable{
-
     private String name;
     private String address;
     private String genre;
@@ -304,7 +302,7 @@ public class Restaurant implements Serializable{
 
     /**
      * Overridden hashCode method
-     * @return
+     * @return  The hashcode of the restaurant
      */
     @Override
     public int hashCode() {
@@ -333,7 +331,7 @@ public class Restaurant implements Serializable{
 
     /**
      * Overridden toString method
-     * @return
+     * @return  The restaurant in String format
      */
     @Override
     public String toString() {
@@ -358,7 +356,7 @@ public class Restaurant implements Serializable{
 
     /**
      * Converts the fields to a Json property
-     * @return
+     * @return  The restaurant inside of a JsonObject
      */
     public JsonObject toJsonObject() {
         //rating is not sent since in php it is determined based on reviews

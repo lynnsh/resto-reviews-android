@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.listadapters.RestaurantAdapter;
 import com.radiantridge.restoradiantridge.objects.Restaurant;

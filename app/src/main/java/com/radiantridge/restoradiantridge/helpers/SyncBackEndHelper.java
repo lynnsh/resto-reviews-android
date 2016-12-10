@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.google.gson.JsonObject;
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
@@ -19,7 +18,6 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
  * @author Alena Shulzhenko
  * @version 2016-12-07
  */
-
 public class SyncBackEndHelper {
     public static final String TAG = "SyncBackEndHelper";
     private DatabaseHelper dbh;

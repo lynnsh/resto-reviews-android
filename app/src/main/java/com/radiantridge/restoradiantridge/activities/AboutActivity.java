@@ -21,11 +21,13 @@ import com.radiantridge.restoradiantridge.R;
  *
  * @author Victor Ruggi
  * @author Erika Bourque
+ * @version 10/12/2016
  */
 public class AboutActivity extends MenuActivity {
 
     /**
-     * Minimum override method
+     * Overriden lifecycle method.  Creates various views inside the
+     * activity.
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

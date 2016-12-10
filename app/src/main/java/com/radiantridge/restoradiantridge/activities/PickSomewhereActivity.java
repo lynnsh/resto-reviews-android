@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -26,6 +25,7 @@ import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
  * and search Zomato and Heroku for restaurants near that place.
  *
  * @author Erika Bourque
+ * @version 8/12/2016
  */
 public class PickSomewhereActivity extends MenuActivity implements GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mGoogleApiClient;
