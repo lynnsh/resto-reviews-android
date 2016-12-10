@@ -19,7 +19,7 @@ import com.radiantridge.restoradiantridge.R;
  */
 public class MainRestoActivity extends MenuActivity {
     private static final String TAG = "Resto Main Activity";
-
+// TODO: requires new layout on rotation
     /**
      * Overriden lifecycle method.  Displays the user's name
      * in the greeting.

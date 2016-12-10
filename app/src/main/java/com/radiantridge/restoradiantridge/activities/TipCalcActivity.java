@@ -1,5 +1,5 @@
 package com.radiantridge.restoradiantridge.activities;
-
+//TODO: fix rotation losing tip and total bill
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;

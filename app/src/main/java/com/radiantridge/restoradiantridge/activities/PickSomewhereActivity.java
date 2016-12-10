@@ -1,6 +1,10 @@
 package com.radiantridge.restoradiantridge.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +25,9 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
     private GoogleApiClient mGoogleApiClient;
     private final int PLACE_PICKER_REQUEST = 1;
     private final String TAG = "PickSomewhere";
-    RestoListFragment fragment;
+    private RestoListFragment fragment;
+    private double latitude;
+    private double longitude;
 
     /**
      * Overriden lifecycle method.  Immediately launches
@@ -44,7 +50,26 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
 
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.picker_list);
 
-        startPlacePicker();
+        // When rotating, do not want to restart place picker, list saved automatically
+        if ((savedInstanceState == null) || (savedInstanceState.getDouble("latitude") == 0.0)
+                || (savedInstanceState.getDouble("longitude") == 0.0))
+        {
+            // Check that network is available
+            if (!isInternetAvailable())
+            {
+                // TODO: force close even if back pressed
+                displayNetworkError();
+            }
+            else {
+                startPlacePicker();
+            }
+        }
+        else
+        {
+            latitude = savedInstanceState.getDouble("latitude");
+            longitude = savedInstanceState.getDouble("longitude");
+            getData();
+        }
     }
 
     /**
@@ -85,20 +110,19 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Place place = PlacePicker.getPlace(this, data);
-                getData(place.getLatLng().latitude, place.getLatLng().longitude);
+                latitude = place.getLatLng().latitude;
+                longitude = place.getLatLng().longitude;
+                getData();
             }
         }
     }
 
     /**
-     * This method uses the given latitude and longitude to
+     * This method uses the latitude and longitude to
      * request restaurants near that location from
      * Zomato and Heroku.
-     *
-     * @param latitude      The latitude to be used
-     * @param longitude     The longitude to be used
      */
-    private void getData(Double latitude, Double longitude)
+    private void getData()
     {
         Log.i(TAG, "Retrieving data from Zomato and Heroku");
         ZomatoTask conn = new ZomatoTask(fragment);
@@ -106,5 +130,62 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
 
         GetRestosTask task = new GetRestosTask(fragment);
         task.execute(latitude, longitude);
+    }
+
+    /**
+     * Overriden lifecycle method.  Saves the latitude and longitude
+     * chosen.
+     *
+     * @param outstate  The outgoing saved instance state
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outstate)
+    {
+        super.onSaveInstanceState(outstate);
+        outstate.putDouble("latitude", latitude);
+        outstate.putDouble("longitude", longitude);
+    }
+
+    /**
+     * This method checks if the device has access to the internet.
+     *
+     * @return      True if the device is connected to the internet
+     */
+    private boolean isInternetAvailable()
+    {
+        boolean isAvailable = false;
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        if ((activeNetwork != null) &&
+                activeNetwork.isConnectedOrConnecting())
+        {
+            // There is an internet connection
+            isAvailable = true;
+        }
+
+        return isAvailable;
+    }
+
+    /**
+     * This method displays an error alert dialog to inform
+     * the user that the device is not connected to the internet,
+     * and closes the activity.
+     */
+    private void displayNetworkError()
+    {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+
+        // Setting Dialog Fields
+        alertDialog.setTitle(R.string.dialog_network_title).setMessage(R.string.dialog_network_text);
+
+        alertDialog.setNegativeButton(R.string.dialog_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        // Displays the dialog
+        alertDialog.show();
     }
 }
