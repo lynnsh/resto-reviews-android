@@ -26,11 +26,11 @@ import javax.net.ssl.HttpsURLConnection;
  * latitude and longitude.
  *
  * @author Alena Shulzhenko
- * @version 2016-12-06
+ * @version 2016-12-09
  */
 public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
     public static final String TAG = "GetRestosTask";
-    RestoListFragment fragment;
+    private RestoListFragment fragment;
 
     /**
      * Constructor.  Requires the fragment that will display the
@@ -51,6 +51,7 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
      */
     @Override
     public Restaurant[] doInBackground(Double... params) {
+        Log.d(TAG, "in doInBackground()");
         List<Restaurant> restos = new ArrayList<>();
         double latitude = params[0];
         double longitude = params[1];
@@ -87,8 +88,8 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
      */
     private void retrieveRestos(InputStream is, List<Restaurant> restos) throws IOException, JSONException {
         int bytesRead;
-        byte[] buffer = new byte[1024];
-
+        byte[] buffer = new byte[3072];
+        Log.d(TAG, "in retrieveRestos()");
         //for data from the server
         BufferedInputStream bufferedInStream = new BufferedInputStream(is);
         //to collect data in output stream
