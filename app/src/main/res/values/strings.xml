@@ -8,7 +8,7 @@
     <string name="title_login">Log In</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
-    <string name="email">Username (Email):</string>
+    <string name="email">Email Address:</string>
     <string name="password">Password:</string>
     <string name="button_login">Log In</string>
     <string name="button_save">Save</string>
@@ -24,9 +24,9 @@
     <string name="button_lat_long">Change Lat and Long</string>
     <string name="longitude">Longitude: </string>
     <string name="latitude">Latitude: </string>
-    <string name="search_city">City</string>
-    <string name="search_name">Name</string>
-    <string name="search_genre">Genre</string>
+    <string name="search_city">City: </string>
+    <string name="search_name">Name: </string>
+    <string name="search_genre">Genre: </string>
     <string name="button_search">Search</string>
     <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
     <string name="dialog_phone_title">Call Restaurant</string>
@@ -101,12 +101,13 @@
     <string name="title_picker">Restaurants Around Somewhere</string>
     <string name="title_add_review">Add New Review</string>
     <string name="title_show_resto">Restaurant Details</string>
+    <string name="calc_bill">Enter the bill amount:</string>
+    <string name="button_calc">Calculate!</string>
+    <string name="calc_title">Tip Calculator</string>
+    <string name="calc_10">10%</string>
+    <string name="calc_15">15%</string>
+    <string name="calc_20">20%</string>
+    <string name="calc_tip">Amount of tip is: </string>
+    <string name="calc_total">Total amount is: </string>
     <string name="title_settings">Settings</string>
-    <string name="button_calc_tip">Calculate Tip</string>
-    <string name="calc_tip">Tip:</string>
-    <string name="calc_total">Total Bill with Tip:</string>
-    <string name="calc_bill">Bill:</string>
-    <string name="calc_ten">10%</string>
-    <string name="calc_fifteen">15%</string>
-    <string name="calc_twenty">20%</string>
 </resources>
