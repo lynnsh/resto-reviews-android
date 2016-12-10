@@ -25,7 +25,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 
 public class HttpsPostSenderHelper {
-    public static final String TAG = "HttpPostSender";
+    public static final String TAG = "HttpsPostSender";
 
     /**
      * Sends the string to the specified url using POST method.

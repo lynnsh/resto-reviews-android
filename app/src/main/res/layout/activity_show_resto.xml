@@ -185,7 +185,6 @@
                 </TableRow>
             </TableLayout>
 
-            <!-- TODO: finish stars, alignment still a bit off-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -211,14 +210,13 @@
                     android:isIndicator="true"/>
             </LinearLayout>
 
-            <!-- enable/disable buttons-->
             <Button
                 android:id="@+id/buttonAdd"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_add"
-                android:enabled="false" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/buttonEdit"
@@ -226,7 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_edit"
-                android:enabled="false" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/buttonDelete"
@@ -234,7 +232,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_delete"
-                android:enabled="false" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/buttonAddReview"
@@ -242,7 +240,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_addReview"
-                android:enabled="false" />
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/buttonShowReview"
@@ -250,7 +248,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_showReview"
-                android:enabled="false" />
+                android:visibility="invisible" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

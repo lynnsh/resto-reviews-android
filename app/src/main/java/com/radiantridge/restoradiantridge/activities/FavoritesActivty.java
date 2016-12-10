@@ -17,7 +17,6 @@ import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
  */
 public class FavoritesActivty extends MenuActivity {
     private final String TAG = "Favorites";
-    private final int SHOW_RESTO = 1;
     RestoListFragment fragment;
     DatabaseHelper db;
 
@@ -39,25 +38,5 @@ public class FavoritesActivty extends MenuActivity {
         // Displaying the restaurants
         Log.i(TAG, "Displaying all restaurants");
         fragment.addToList(db.getAllRestos(), true);
-    }
-
-    /**
-     * Overriden lifecycle method.  Activites launched
-     * by the fragment, and return, will update the db list.
-     *
-     * @param requestCode   The request code
-     * @param resultCode    The result code
-     * @param data          The data
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data)
-    {
-        Log.i(TAG, "Received result");
-        if (requestCode == SHOW_RESTO)
-        {
-            if (resultCode == RESULT_OK) {
-                fragment.addToList(db.getAllRestos(), true);
-            }
-        }
     }
 }

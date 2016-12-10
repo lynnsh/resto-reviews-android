@@ -16,7 +16,6 @@ public class Review {
     private String content;
     private double rating;
     private int herokuRestoId;
-    //the user? php returns an id.
 
     /**
      * Returns the title of the review.
