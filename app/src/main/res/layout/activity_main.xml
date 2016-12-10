@@ -57,11 +57,11 @@
                 style="@style/editText"/>
         </TableRow>
         <TableRow>
-            <!--TODO: fix button style -->
             <Button
                 android:text="@string/button_login"
                 android:layout_span="2"
-                android:onClick="login"/>
+                android:onClick="login"
+                style="@style/buttonStyle"/>
         </TableRow>
     </TableLayout>
 

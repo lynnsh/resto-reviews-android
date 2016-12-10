@@ -36,11 +36,11 @@
                 style="@style/editText"/>
         </TableRow>
         <TableRow>
-            <!-- TODO: style button-->
             <Button
                 android:text="@string/button_save"
                 android:onClick="save"
-                android:layout_span="2"/>
+                android:layout_span="2"
+                style="@style/buttonStyle"/>
         </TableRow>
     </TableLayout>
 

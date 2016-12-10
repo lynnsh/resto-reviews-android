@@ -28,12 +28,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/nearby_long"
         style="@style/textStyle"/>
-    <!-- TODO : style buttons -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_lat_long"
-        android:onClick="launchLatLong"/>
+        android:onClick="launchLatLong"
+        style="@style/buttonStyle"/>
     <fragment
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

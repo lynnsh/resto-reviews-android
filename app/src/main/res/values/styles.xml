@@ -43,7 +43,7 @@
         <item name="android:textSize">30sp</item>
     </style>
 
-    <!--<style name="buttonStyle" parent="AppTheme">-->
-        <!---->
-    <!--</style>-->
+    <style name="buttonStyle" parent="AppTheme">
+        <item name="android:textSize">30sp</item>
+    </style>
 </resources>
