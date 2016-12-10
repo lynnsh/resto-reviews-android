@@ -212,7 +212,6 @@
             </LinearLayout>
 
             <!-- TODO: enable/disable buttons-->
-            <!-- TODO: prevent keyboard popup-->
             <Button
                 android:id="@+id/buttonAdd"
                 style="@style/buttonStyle"

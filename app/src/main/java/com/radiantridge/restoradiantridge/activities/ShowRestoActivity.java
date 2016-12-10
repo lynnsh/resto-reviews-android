@@ -52,6 +52,8 @@ public class ShowRestoActivity  extends MenuActivity {
         getFields();
 
         Bundle bundle = getIntent().getExtras();
+        // Not using intent, only marker for updating lists
+        setResult(RESULT_OK, null);
 
        // boolean isZomato = bundle.getBoolean("isZomato");
 
@@ -138,13 +140,8 @@ public class ShowRestoActivity  extends MenuActivity {
                         // User clicked OK button
                         // delete the resto
                         dbconn.deleteResto(restoId);
-                        Toast.makeText(getApplicationContext(), R.string.delete_text, Toast.LENGTH_SHORT).show();
-                        // go back to list of restos
-                        // TODO :  SWITCH TO START ACTIVITY FOR RESULT
-                        Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
-                        startActivity(intent);
-
-
+                        setResult(RESULT_OK, null);
+                        finish();
                     }
                 });
                 builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
