@@ -21,7 +21,8 @@ import com.radiantridge.restoradiantridge.objects.Review;
  * This activity shows the reviews for a restaurant.
  * It uses AddReviewTask to sync review to heroku.
  *
- * @author Rafia Anwar, Alena Shulzhenko
+ * @author Rafia Anwar
+ * @author Alena Shulzhenko
  * @version 06-12-2016
  */
 public class AddReviewActivity extends AppCompatActivity {
