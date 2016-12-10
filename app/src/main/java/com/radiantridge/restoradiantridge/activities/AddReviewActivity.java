@@ -65,6 +65,9 @@ public class AddReviewActivity extends AppCompatActivity {
         }
         RatingBar ratingBar = (RatingBar) findViewById(R.id.ratingBarReview);
         Double rating = (double) ratingBar.getRating();
+        //added for php compatibility
+        if(rating < 1)
+            rating = 1.0;
         review.setRating(rating);
         Log.i(TAG,"rating " + rating);
         AddReviewTask addReviewTask = new AddReviewTask();
