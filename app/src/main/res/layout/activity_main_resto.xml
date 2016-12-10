@@ -13,14 +13,15 @@ tools:context="com.radiantridge.restoradiantridge.activities.MainRestoActivity"
 android:orientation="vertical"
 android:background="@color/background">
 
-<!-- TODO: These buttons will be image buttons in the future -->
-<Button
+<ImageButton
     android:id="@+id/logoBtn"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="this will be our logo"
+    android:layout_width="wrap_content"
+    android:layout_height="0dp"
+    android:scaleType="fitCenter"
     android:onClick="launchAbout"
-    android:layout_weight="1"/>
+    android:src="@drawable/logo"
+    android:layout_weight="2"
+    android:background="@color/background"/>
 
 <TableLayout
     android:layout_width="match_parent"

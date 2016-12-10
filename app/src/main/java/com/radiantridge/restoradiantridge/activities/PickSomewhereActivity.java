@@ -57,7 +57,6 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
             // Check that network is available
             if (!isInternetAvailable())
             {
-                // TODO: force close even if back pressed
                 displayNetworkError();
             }
             else {
@@ -80,7 +79,6 @@ public class PickSomewhereActivity extends MenuActivity implements GoogleApiClie
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.e(TAG, "Connection to google play services failed.");
-        // TODO: implement this?
     }
 
     /**

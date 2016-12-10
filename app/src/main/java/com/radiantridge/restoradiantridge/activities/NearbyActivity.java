@@ -61,7 +61,6 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         // Check that network is available
         if (!isInternetAvailable())
         {
-            // TODO: force close even if back pressed
             displayNetworkError();
         }
         else {
