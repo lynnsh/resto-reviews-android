@@ -17,23 +17,32 @@ import com.radiantridge.restoradiantridge.helpers.HttpsPostSenderHelper;
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.objects.Restaurant;
 import com.radiantridge.restoradiantridge.objects.Review;
-
+/**
+ * This activity shows the reviews for a restaurant.
+ * It uses AddReviewTask to sync review to heroku.
+ *
+ * @author Rafia Anwar, Alena Shulzhenko
+ * @version 06-12-2016
+ */
 public class AddReviewActivity extends AppCompatActivity {
     private static final String TAG = "Add review Act";
     private Context context;
-
     private Review review;
+
+    /**
+     * Overridden Life Cycle method
+     * Receives a resto object and gets the heroku id
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
         this.context = this;
         review = new Review();
-
         Bundle bundle = getIntent().getExtras();
-
         Restaurant  resto = (Restaurant) bundle.getSerializable("resto");
-
         review.setHerokuRestoId(resto.getHerokuId());
 
     }
@@ -42,7 +51,7 @@ public class AddReviewActivity extends AppCompatActivity {
      * and sends it to heroku.
      * @param v
      */
-    public void handleSaveReview(View v){
+     public void handleSaveReview(View v){
         EditText editTitle =(EditText) findViewById(R.id.editTitle);
         String title = editTitle.getText().toString();
         if(title != null&& !(title.isEmpty())) {
@@ -60,7 +69,6 @@ public class AddReviewActivity extends AppCompatActivity {
         AddReviewTask addReviewTask = new AddReviewTask();
         addReviewTask.execute(review);
         Log.i(TAG,"review added.. " + review);
-
         }
     /**
      * AddReviewTask is the AsyncTask class that is responsible to
