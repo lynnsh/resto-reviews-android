@@ -5,8 +5,10 @@ import android.app.ListFragment;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -72,23 +74,11 @@ public class RestoListFragment extends ListFragment {
      */
     private void displayRestoDetails(Restaurant resto)
     {
-        int id = resto.getDbId();
         Intent intent = new Intent();
         intent.setClass(getActivity(), ShowRestoActivity.class);
 
+        // Add resto to be displayed
         intent.putExtra("resto", resto);
-
-        // Check if the restaurant already exists in database
-//        if (id == -1)
-//        {
-//            intent.putExtra("isZomato", true);
-//            addRestoFields(intent, resto);
-//        }
-//        else
-//        {
-//            intent.putExtra("isZomato", false);
-//            intent.putExtra("databaseId", id);
-//        }
 
         startActivity(intent);
     }
@@ -96,15 +86,27 @@ public class RestoListFragment extends ListFragment {
     /**
      * This method sets the list to the adapter for the ListFragment to display.
      *
-     * @param list      The list to be displayed
+     * @param newList      The list to be displayed
      */
-    public void setNewList(Restaurant[] list)
+    public void addToList(Restaurant[] newList, boolean isNewList)
     {
-        if (list != null)
+        if (newList != null)
         {
+            // Check if original list is null
+            if (list == null || isNewList)
+            {
+                // No need to add, only replace
+                list = newList;
+            }
+            else
+            {
+                mergeList(newList);
+            }
+
             Log.i(TAG, "New ListAdapter");
-            this.list = list;
             setListAdapter(new RestaurantAdapter(getActivity(), list));
+            getListView().setDivider(new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.editText)));
+            getListView().setDividerHeight(1);
         }
     }
 
@@ -145,48 +147,10 @@ public class RestoListFragment extends ListFragment {
     }
 
     /**
-     * This method adds the fields of a restaurant to an intent.
+     * This method adds the new list to the end of the current list.
      *
-     * @param intent    The intent to add the fields to
-     * @param resto     The restaurant whose fields are being added
+     * @param newList   The new list to be added
      */
-    private void addRestoFields(Intent intent, Restaurant resto)
-    {
-        // Zomato does not have fields for notes, createdTime, modifiedTime or dbId
-        intent.putExtra("name", resto.getName());
-//        intent.putExtra("addNum", resto.getAddNum());
-//        intent.putExtra("addStreet", resto.getAddStreet());
-//        intent.putExtra("addCity", resto.getAddCity());
-//        intent.putExtra("addPostalCode", resto.getAddPostalCode());
-        intent.putExtra("genre", resto.getGenre());
-        intent.putExtra("priceRange", resto.getPriceRange());
-        intent.putExtra("starRating", resto.getStarRating());
-        Log.i(TAG, "zomato rating " +resto.getStarRating());
-        intent.putExtra("latitude", resto.getLatitude());
-        intent.putExtra("longitude", resto.getLongitude());
-        intent.putExtra("phone", resto.getPhone());
-    }
-
-    public void addToList(Restaurant[] newList)
-    {
-        // Make sure it is not null
-        if (newList != null)
-        {
-            // Check if original list is null
-            if (list == null)
-            {
-                // No need to add, only replace
-                list = newList;
-            }
-            else
-            {
-                mergeList(newList);
-            }
-
-            setListAdapter(new RestaurantAdapter(getActivity(), list));
-        }
-    }
-
     private void mergeList(Restaurant[] newList)
     {
         int size = list.length + newList.length;

@@ -137,6 +137,6 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
     @Override
     protected void onPostExecute(Restaurant[] list)
     {
-        fragment.addToList(list);
+        fragment.addToList(list, false);
     }
 }

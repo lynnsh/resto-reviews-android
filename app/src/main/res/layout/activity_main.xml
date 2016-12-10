@@ -8,8 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.MainActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.MainActivity"
+    android:background="@color/background">
 
+    <!--TODO: fix table-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,38 +19,49 @@
         <TableRow>
             <TextView
                 android:text="@string/title_login"
-                android:layout_span="2"/>
+                android:layout_span="2"
+                style="@style/titleStyle"
+                android:textColor="@color/text"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/first_name"/>
+                android:text="@string/first_name"
+                style="@style/textStyle"/>
             <EditText
-                android:id="@+id/login_fname_et"/>
+                android:id="@+id/login_fname_et"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/last_name"/>
+                android:text="@string/last_name"
+                style="@style/textStyle"/>
             <EditText
-                android:id="@+id/login_lname_et"/>
+                android:id="@+id/login_lname_et"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/email"/>
+                android:text="@string/email"
+                style="@style/textStyle"/>
             <EditText
-                android:id="@+id/login_email_et"/>
+                android:id="@+id/login_email_et"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
             <TextView
-                android:text="@string/password"/>
+                android:text="@string/password"
+                style="@style/textStyle"/>
             <EditText
                 android:id="@+id/login_pw_et"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                style="@style/editText"/>
         </TableRow>
         <TableRow>
             <Button
                 android:text="@string/button_login"
                 android:layout_span="2"
-                android:onClick="login"/>
+                android:onClick="login"
+                style="@style/buttonStyle"/>
         </TableRow>
     </TableLayout>
 
