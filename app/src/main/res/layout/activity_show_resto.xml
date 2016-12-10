@@ -192,19 +192,22 @@
             android:theme="@style/ratingStyle" />
     </LinearLayout>
 
+    <!-- TODO: enable/disable buttons-->
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_add"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        style="@style/buttonStyle" />
 
     <Button
         android:id="@+id/buttonEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_edit"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        style="@style/buttonStyle" />
 
     <Button
         android:id="@+id/buttonDelete"
@@ -212,8 +215,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_delete"
         android:visibility="invisible"
-
-        />
+        style="@style/buttonStyle"/>
 
     <Button
         android:id="@+id/buttonAddReview"
@@ -221,8 +223,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_addReview"
         android:visibility="invisible"
-
-        />
+        style="@style/buttonStyle"/>
 
     <Button
         android:id="@+id/buttonShowReview"
@@ -230,7 +231,6 @@
         android:layout_height="wrap_content"
         android:text="@string/button_showReview"
         android:visibility="invisible"
-
-        />
+        style="@style/buttonStyle"/>
 
 </LinearLayout>

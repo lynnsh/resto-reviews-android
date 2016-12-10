@@ -4,90 +4,86 @@
     android:id="@+id/activity_add_review"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.AddReviewActivity"
-    android:background="@color/background"
-    android:orientation="vertical">
+    tools:context="com.radiantridge.restoradiantridge.activities.AddReviewActivity">
 
     <TextView
+        style="@style/titleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_add_review"
-        style="@style/titleStyle"
-        android:textColor="@color/purple"/>
+        android:textColor="@color/purple" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+        <TableRow android:layout_margin="5dp">
 
             <TextView
-                android:text="@string/title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/textTitle"
-                android:layout_span="1"
-                style="@style/formStyle"/>
+                style="@style/formStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/title_text" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
                 android:id="@+id/editTitle"
-                android:layout_span="1"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
         </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+        <TableRow android:layout_margin="5dp">
 
             <TextView
-                android:text="@string/content_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textContent"
-                style="@style/formStyle"/>
+                style="@style/formStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/content_text" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
                 android:id="@+id/editContent"
-                style="@style/editText"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:id="@+id/ratingBarReview"
-                android:background="@color/purple"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:text="@string/saveReview_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="handleSaveReview"
-                android:id="@+id/btnSaveReview" />
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="textPersonName" />
         </TableRow>
     </TableLayout>
+
+    <!-- TODO: finish stars, alignment still a bit off-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/textRating"
+            style="@style/formStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resto_rating"
+            android:layout_weight="1"/>
+        <RatingBar
+            android:id="@+id/ratingBarReview"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="1.0"
+            android:theme="@style/ratingStyle" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="handleSaveReview"
+        android:text="@string/saveReview_text"
+        style="@style/buttonStyle"/>
 </LinearLayout>
