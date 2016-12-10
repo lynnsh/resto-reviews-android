@@ -28,7 +28,6 @@ import com.radiantridge.restoradiantridge.activities.ShowRestoActivity;
  */
 public class RestoListFragment extends ListFragment {
     private static final String TAG = "ListFrag";
-    private final int SHOW_RESTO = 1;
     Restaurant[] list;
 
     /**
@@ -81,7 +80,7 @@ public class RestoListFragment extends ListFragment {
         // Add resto to be displayed
         intent.putExtra("resto", resto);
 
-        startActivityForResult(intent, SHOW_RESTO);
+        startActivity(intent);
     }
 
     /**
