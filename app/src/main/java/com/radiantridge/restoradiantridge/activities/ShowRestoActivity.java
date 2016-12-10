@@ -94,7 +94,7 @@ public class ShowRestoActivity extends MenuActivity {
      */
     private void showEditButton() {
         Button editButton = (Button) findViewById(R.id.buttonEdit);
-        editButton.setVisibility(View.VISIBLE);
+        editButton.setEnabled(true);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +116,7 @@ public class ShowRestoActivity extends MenuActivity {
      */
     private void showDeleteButton(final int restoId) {
         Button deleteButton = (Button) findViewById(R.id.buttonDelete);
-        deleteButton.setVisibility(View.VISIBLE);
+        deleteButton.setEnabled(true);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +155,7 @@ public class ShowRestoActivity extends MenuActivity {
      */
     private void showAddButton() {
         Button addButton = (Button) findViewById(R.id.buttonAdd);
-        addButton.setVisibility(View.VISIBLE);
+        addButton.setEnabled(true);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,7 +175,7 @@ public class ShowRestoActivity extends MenuActivity {
      */
     private void showAddReviewButton() {
         Button addReviewButton = (Button) findViewById(R.id.buttonAddReview);
-        addReviewButton.setVisibility(View.VISIBLE);
+        addReviewButton.setEnabled(true);
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -194,7 +194,7 @@ public class ShowRestoActivity extends MenuActivity {
      */
     private void showReviewButton() {
         Button showReviewButton = (Button) findViewById(R.id.buttonShowReview);
-        showReviewButton.setVisibility(View.VISIBLE);
+        showReviewButton.setEnabled(true);
         showReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

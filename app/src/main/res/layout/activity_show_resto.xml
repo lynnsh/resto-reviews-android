@@ -211,14 +211,14 @@
                     android:isIndicator="true"/>
             </LinearLayout>
 
-            <!-- TODO: enable/disable buttons-->
+            <!-- enable/disable buttons-->
             <Button
                 android:id="@+id/buttonAdd"
                 style="@style/buttonStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_add"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonEdit"
@@ -226,7 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_edit"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonDelete"
@@ -234,7 +234,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_delete"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonAddReview"
@@ -242,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_addReview"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonShowReview"
@@ -250,7 +250,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_showReview"
-                android:visibility="invisible" />
+                android:enabled="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
