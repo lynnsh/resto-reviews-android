@@ -57,7 +57,8 @@
                 android:layout_weight="1"
                 android:inputType="textMultiLine"
                 android:lines="3"
-                android:scrollHorizontally="false"/>
+                android:scrollHorizontally="false"
+                android:gravity="top"/>
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -126,7 +127,9 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:inputType="textMultiLine"
-                android:lines="3" />
+                android:lines="3"
+                android:scrollHorizontally="false"
+                android:gravity="top" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
