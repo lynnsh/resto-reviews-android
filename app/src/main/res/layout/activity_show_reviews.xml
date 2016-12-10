@@ -8,72 +8,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.ShowReviewsActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.ShowReviewsActivity"
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <!--<TableLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:text="@string/title_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/textTitle"
-                android:layout_span="1"/>
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:id="@+id/editTitle"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:layout_span="1"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:text="@string/content_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textContent" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:id="@+id/editContent" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:numStars="5"
-                android:id="@+id/ratingBarReview"
-                android:isIndicator="false"/>
-        </TableRow>
-
-
-    </TableLayout> -->
+        android:layout_height="wrap_content"
+        android:text="@string/title_show_reviews"
+        style="@style/titleStyle"
+        android:textColor="@color/purple"/>
 
     <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/review_list"
         />

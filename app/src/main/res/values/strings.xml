@@ -111,4 +111,5 @@
     <string name="calc_20">20%</string>
     <string name="calc_tip">Amount of tip is: </string>
     <string name="calc_total">Total amount is: </string>
+    <string name="title_show_reviews">Reviews</string>
 </resources>

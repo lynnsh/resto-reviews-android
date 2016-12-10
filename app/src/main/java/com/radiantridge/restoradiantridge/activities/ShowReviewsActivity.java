@@ -2,9 +2,11 @@ package com.radiantridge.restoradiantridge.activities;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -67,6 +69,8 @@ public class ShowReviewsActivity extends MenuActivity {
             ListView lv=(ListView) findViewById(R.id.review_list);
             ListAdapter adapter = new ReviewAdapter(this, list);
             lv.setAdapter(adapter);
+            lv.setDivider(new ColorDrawable(ContextCompat.getColor(this, R.color.grey)));
+            lv.setDividerHeight(1);
         }
     }
 }
