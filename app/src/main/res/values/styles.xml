@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <item name="colorAccent">@color/purple</item>
+        <item name="colorAccent">@color/lighter_grey</item>
     </style>
 
     <style name="textStyle" parent="AppTheme">
@@ -37,10 +37,11 @@
 
     <style name="MyRadioButton" parent="Theme.AppCompat.Light">
         <item name="colorControlNormal">@color/grey</item>
-        <item name="colorControlActivated">@color/purple</item>
+        <item name="colorControlActivated">@color/lighter_grey</item>
     </style>
     
-    <!--<style name="ratingStyle" parent="Theme.AppCompat">-->
-        <!--<item name=""></item>-->
-    <!--</style>-->
+    <style name="ratingStyle" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/lighter_grey</item>
+        <item name="colorControlActivated">@color/lighter_grey</item>
+    </style>
 </resources>

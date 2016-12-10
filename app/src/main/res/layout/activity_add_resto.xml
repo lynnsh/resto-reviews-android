@@ -29,12 +29,16 @@
             <TextView
                 android:id="@+id/textRestoName"
                 style="@style/formStyle"
-                android:text="@string/resto_name" />
+                android:text="@string/resto_name"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editRestoName"
                 style="@style/editText"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -52,13 +56,17 @@
             <TextView
                 android:id="@+id/textRestoAdd"
                 style="@style/formStyle"
-                android:text="@string/resto_add" />
+                android:text="@string/resto_add"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editAddress"
                 style="@style/editText"
                 android:inputType="textMultiLine"
-                android:lines="3" />
+                android:lines="3"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -76,7 +84,9 @@
             <TextView
                 android:id="@+id/textPhone"
                 style="@style/formStyle"
-                android:text="@string/resto_phone" />
+                android:text="@string/resto_phone"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editTextPhone"
@@ -89,12 +99,16 @@
             <TextView
                 android:id="@+id/textGenre"
                 style="@style/formStyle"
-                android:text="@string/resto_genre" />
+                android:text="@string/resto_genre"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editGenre"
                 style="@style/editText"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -112,14 +126,17 @@
             <TextView
                 android:id="@+id/textPrice"
                 style="@style/formStyle"
-                android:text="@string/resto_price" />
+                android:text="@string/resto_price"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editPrice"
                 style="@style/editText"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -137,13 +154,17 @@
             <TextView
                 android:id="@+id/textNotes"
                 style="@style/formStyle"
-                android:text="@string/resto_notes" />
+                android:text="@string/resto_notes"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editNotes"
                 style="@style/editText"
                 android:inputType="textMultiLine"
-                android:lines="3" />
+                android:lines="3"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -151,12 +172,16 @@
             <TextView
                 android:id="@+id/textLongitude"
                 style="@style/formStyle"
-                android:text="@string/resto_longitude" />
+                android:text="@string/resto_longitude"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editLongitude"
                 style="@style/editText"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -164,31 +189,43 @@
             <TextView
                 android:id="@+id/textLatitude"
                 style="@style/formStyle"
-                android:text="@string/resto_latitude" />
+                android:text="@string/resto_latitude"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
 
             <EditText
                 android:id="@+id/editLatitude"
                 style="@style/editText"
-                android:inputType="numberSigned" />
+                android:inputType="numberSigned"
+                android:layout_width="0dp"
+                android:layout_weight="1" />
         </TableRow>
     </TableLayout>
 
-    <TextView
-        android:id="@+id/textRating"
-        style="@style/formStyle"
-        android:layout_width="wrap_content"
+    <!-- TODO: finish stars, alignment still a bit off-->
+    <!-- TODO: fix multiline-->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/resto_rating"/>
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="43dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:rating="1.0"
-        />
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/textRating"
+            style="@style/formStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resto_rating"
+            android:layout_weight="1"/>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="1.0"
+            android:theme="@style/ratingStyle" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonSave"

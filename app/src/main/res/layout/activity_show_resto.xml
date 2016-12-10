@@ -29,28 +29,16 @@
             <TextView
                 android:id="@+id/textRestoName"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_name" />
 
             <EditText
                 android:id="@+id/editRestoName"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="textPersonName" />
-        </TableRow>
-
-        <TableRow android:layout_margin="5dp">
-
-            <TextView
-                android:id="@+id/textNameError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:text="@string/name_error"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -58,15 +46,15 @@
             <TextView
                 android:id="@+id/textRestoAdd"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_add" />
 
             <EditText
                 android:id="@+id/editAddress"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="textMultiLine"
                 android:lines="3"
                 android:scrollHorizontally="false"/>
@@ -75,29 +63,17 @@
         <TableRow android:layout_margin="5dp">
 
             <TextView
-                android:id="@+id/textAddressError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:text="@string/genre_error"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible" />
-        </TableRow>
-
-        <TableRow android:layout_margin="5dp">
-
-            <TextView
                 android:id="@+id/textPhone"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_phone" />
 
             <EditText
                 android:id="@+id/editTextPhone"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="phone" />
         </TableRow>
 
@@ -106,28 +82,16 @@
             <TextView
                 android:id="@+id/textGenre"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_genre" />
 
             <EditText
                 android:id="@+id/editGenre"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="textPersonName" />
-        </TableRow>
-
-        <TableRow android:layout_margin="5dp">
-
-            <TextView
-                android:id="@+id/textGenreError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:text="@string/genre_error"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -135,28 +99,16 @@
             <TextView
                 android:id="@+id/textPrice"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_price" />
 
             <EditText
                 android:id="@+id/editPrice"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="number" />
-        </TableRow>
-
-        <TableRow android:layout_margin="5dp">
-
-            <TextView
-                android:id="@+id/textPriceError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_span="2"
-                android:text="@string/price_error"
-                android:textColor="@color/colorAccent"
-                android:visibility="invisible" />
         </TableRow>
 
         <TableRow android:layout_margin="5dp">
@@ -164,15 +116,15 @@
             <TextView
                 android:id="@+id/textNotes"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_notes" />
 
             <EditText
                 android:id="@+id/editNotes"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="textMultiLine"
                 android:lines="3" />
         </TableRow>
@@ -182,15 +134,15 @@
             <TextView
                 android:id="@+id/textLongitude"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_longitude" />
 
             <EditText
                 android:id="@+id/editLongitude"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="numberSigned" />
         </TableRow>
 
@@ -199,37 +151,43 @@
             <TextView
                 android:id="@+id/textLatitude"
                 style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:text="@string/resto_latitude" />
 
             <EditText
                 android:id="@+id/editLatitude"
                 style="@style/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:inputType="numberSigned" />
         </TableRow>
-
-        <TableRow android:layout_margin="5dp">
-
-            <TextView
-                android:id="@+id/textRating"
-                style="@style/formStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resto_rating" />
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/Widget.AppCompat.RatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="43dp"
-                android:background="@color/purple"
-                android:isIndicator="false"
-                android:numStars="5" />
-        </TableRow>
     </TableLayout>
+
+    <!-- TODO: finish stars, alignment still a bit off-->
+    <!-- TODO: fix multiline-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/textRating"
+            style="@style/formStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resto_rating"
+            android:layout_weight="1"/>
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:rating="1.0"
+            android:theme="@style/ratingStyle" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonAdd"

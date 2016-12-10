@@ -22,7 +22,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*">
+        android:stretchColumns="0,1">
 
         <TableRow android:layout_margin="5dp">
 

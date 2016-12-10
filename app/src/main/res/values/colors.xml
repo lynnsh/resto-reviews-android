@@ -12,4 +12,5 @@
     <color name="background">#000000</color>
     <color name="text">#FFFFFF</color>
     <color name="grey">#4d4d4d</color>
+    <color name="lighter_grey">#a6a6a6</color>
 </resources>
