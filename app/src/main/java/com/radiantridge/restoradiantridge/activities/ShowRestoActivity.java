@@ -130,7 +130,6 @@ public class ShowRestoActivity extends MenuActivity {
                         dbconn.deleteResto(restoId);
                         Toast.makeText(getApplicationContext(), R.string.delete_text, Toast.LENGTH_SHORT).show();
                         // go back to list of restos
-                        // TODO :  SWITCH TO START ACTIVITY FOR RESULT
                         Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
                         startActivity(intent);
 
