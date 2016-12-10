@@ -48,4 +48,8 @@
     <style name="reviewStyle" parent="textStyle">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="errorStyle" parent="textStyle">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 </resources>

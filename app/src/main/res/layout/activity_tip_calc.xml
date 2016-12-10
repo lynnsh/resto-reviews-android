@@ -12,7 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.radiantridge.restoradiantridge.activities.TipCalcActivity">
 
-    <!--TODO: make it a table?-->
     <TextView
         android:id="@+id/textView2"
         style="@style/titleStyle"
@@ -21,36 +20,36 @@
         android:text="@string/title_calculator"
         android:textColor="@color/green" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/textStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:text="@string/calc_bill" />
-
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:inputType="numberDecimal"
-            style="@style/editText"/>
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/textAmountError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:text="@string/tipAmount_error"
-        android:textColor="@color/colorAccent"
+        style="@style/errorStyle"
         android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/formStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/calc_bill" />
+
+        <EditText
+            android:id="@+id/editText"
+            style="@style/editText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:inputType="numberDecimal" />
+
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -64,7 +63,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calc_10"
-            android:theme="@style/MyRadioButton"/>
+            android:theme="@style/MyRadioButton"
+            android:textSize="20sp"/>
 
         <RadioButton
             android:id="@+id/radioButton15"
@@ -73,7 +73,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/calc_15"
-            android:theme="@style/MyRadioButton" />
+            android:theme="@style/MyRadioButton"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/radioButton20"
@@ -81,16 +82,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/calc_20"
-            android:theme="@style/MyRadioButton" />
+            android:theme="@style/MyRadioButton"
+            android:textSize="20sp" />
     </RadioGroup>
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:onClick="onCalculateTip"
-        android:text="@string/button_calc" />
+        android:onClick="calculateTip"
+        android:text="@string/button_calc"
+        style="@style/buttonStyle"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,16 +102,19 @@
 
         <TextView
             style="@style/textStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
+            android:gravity="end"
             android:text="@string/calc_tip" />
 
         <TextView
             android:id="@+id/calc_tip_tv"
             style="@style/textStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -119,16 +125,19 @@
 
         <TextView
             style="@style/textStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:gravity="end"
             android:text="@string/calc_total" />
 
         <TextView
             android:id="@+id/calc_total_tv"
             style="@style/textStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 </LinearLayout>

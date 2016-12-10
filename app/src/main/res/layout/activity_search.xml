@@ -25,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- TODO: style rad btns in tip-->
     <RadioGroup
         android:id="@+id/radioGroupSearch"
         android:layout_width="match_parent"
