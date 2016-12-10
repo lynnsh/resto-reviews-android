@@ -109,4 +109,5 @@
     <string name="calc_ten">10%</string>
     <string name="calc_fifteen">15%</string>
     <string name="calc_twenty">20%</string>
+    <string name="title_lat_long">Choose Coordinates</string>
 </resources>
