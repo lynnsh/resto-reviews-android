@@ -63,7 +63,7 @@
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calc_ten" />
+            android:text="@string/calc_10" />
 
         <RadioButton
             android:id="@+id/radioButton15"
@@ -71,14 +71,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/calc_fifteen" />
+            android:text="@string/calc_15" />
 
         <RadioButton
             android:id="@+id/radioButton20"
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calc_twenty" />
+            android:text="@string/calc_20" />
     </RadioGroup>
 
     <Button
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:onClick="onCalculateTip"
-        android:text="@string/button_calc_tip" />
+        android:text="@string/button_calc" />
 
     <LinearLayout
         android:layout_width="match_parent"
