@@ -23,7 +23,6 @@ import com.radiantridge.restoradiantridge.R;
  * @author Erika Bourque
  */
 public class AboutActivity extends MenuActivity {
-// TODO: possibly add second group pic, square for vertical and row for horizontal
 
     /**
      * Minimum override method
