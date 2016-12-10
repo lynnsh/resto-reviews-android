@@ -28,18 +28,18 @@
 
         <TextView
             style="@style/textStyle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_weight="3"
             android:text="@string/calc_bill" />
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="169dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.27"
-            android:background="@drawable/edittextborders"
-            android:inputType="numberDecimal" />
+            android:layout_weight="2"
+            android:inputType="numberDecimal"
+            style="@style/editText"/>
 
     </LinearLayout>
 
@@ -63,7 +63,8 @@
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calc_10" />
+            android:text="@string/calc_10"
+            android:theme="@style/MyRadioButton"/>
 
         <RadioButton
             android:id="@+id/radioButton15"
@@ -71,14 +72,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/calc_15" />
+            android:text="@string/calc_15"
+            android:theme="@style/MyRadioButton" />
 
         <RadioButton
             android:id="@+id/radioButton20"
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/calc_20" />
+            android:text="@string/calc_20"
+            android:theme="@style/MyRadioButton" />
     </RadioGroup>
 
     <Button

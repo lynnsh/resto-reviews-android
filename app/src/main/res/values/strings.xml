@@ -30,13 +30,6 @@
     <string name="button_search">Search</string>
     <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
     <string name="dialog_phone_title">Call Restaurant</string>
-    <!--<string name="about_menu_text">-->
-        <!--This app allows you to search a database for popular restaurants.-->
-        <!--You can specify a genre, specify a city (where the nearest restaurants within 50km of that location will be shown),-->
-        <!--or you can search for a restaurant by name. This app also allows you to ADD a new restaurant to the database.-->
-        <!--Furthermore, we even provide you with a tip calculator that you can use to find out how much of a tip you should give your waiter following-->
-        <!--your visit.-->
-    <!--</string>-->
     <string name="about_header">Dawson College</string>
     <string name="about_course_desc">420–518–DW</string>
     <string name="dialog_about_title">Our group</string>

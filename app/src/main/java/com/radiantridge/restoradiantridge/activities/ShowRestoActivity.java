@@ -65,8 +65,6 @@ public class ShowRestoActivity  extends MenuActivity {
         int source = resto.getSource();
         //showAddButton();
 
-        // TODO: change this to receive objs only
-        // TODO: check to show appropriate buttons (zomato, local db, heroku)
         //local db
         if(source==0)
         {

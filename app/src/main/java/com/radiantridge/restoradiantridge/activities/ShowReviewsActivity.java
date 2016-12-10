@@ -48,8 +48,6 @@ public class ShowReviewsActivity extends MenuActivity {
 
         int id = resto.getHerokuId();
 
-        // TODO : MAKE A LIST VIEW FOR REVIEWS
-
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
