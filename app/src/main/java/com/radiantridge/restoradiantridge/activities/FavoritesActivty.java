@@ -34,6 +34,6 @@ public class FavoritesActivty extends MenuActivity {
 
         // Displaying the restaurants
         Log.i(TAG, "Displaying all restaurants");
-        fragment.setNewList(db.getAllRestos());
+        fragment.addToList(db.getAllRestos(), true);
     }
 }

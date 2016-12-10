@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_nearby_resto"
     android:layout_width="match_parent"
@@ -8,32 +8,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.NearbyActivity">
+    tools:context="com.radiantridge.restoradiantridge.activities.NearbyActivity"
+    android:orientation="vertical"
+    android:background="@color/background">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/nearby_lat"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/nearby_long"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_lat_long"
-            android:onClick="launchLatLong"/>
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="com.radiantridge.restoradiantridge.fragments.RestoListFragment"
-            android:id="@+id/nearby_list" />
-    </LinearLayout>
-
-
-
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/title_nearby"
+        style="@style/titleStyle"
+        android:textColor="@color/nearby"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nearby_lat"
+        style="@style/textStyle"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nearby_long"
+        style="@style/textStyle"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_lat_long"
+        android:onClick="launchLatLong"
+        style="@style/buttonStyle"/>
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.radiantridge.restoradiantridge.fragments.RestoListFragment"
+        android:id="@+id/nearby_list" />
+</LinearLayout>

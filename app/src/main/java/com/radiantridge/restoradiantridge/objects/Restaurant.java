@@ -6,7 +6,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * Created by 1141669 on 11/21/2016.
+ * Restaurant class describes a restaurant.
+ * A restaurant has a name, address, genre, price range from 1 to 4,
+ * a star rating, notes, phone number, latitude and longitude.
+ * For comparison and database use, it also has a created time, modified
+ * time, database id, source type, heroku id, and zomato id.
  *
  * @author Rafia Anwar
  */

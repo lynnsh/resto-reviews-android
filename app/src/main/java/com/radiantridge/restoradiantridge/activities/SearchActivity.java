@@ -1,9 +1,12 @@
 package com.radiantridge.restoradiantridge.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
@@ -19,9 +22,13 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
  * @version 01/12/2016
  */
 public class SearchActivity extends MenuActivity {
-    private Spinner spinner;
-    DatabaseHelper db;
-    RestoListFragment fragment;
+    private final String TAG = "Search";
+    private RadioGroup radios;
+    private int selectedId;
+    private EditText searchBox;
+    private DatabaseHelper db;
+    private RestoListFragment fragment;
+    private String query;
 
     /**
      * Overriden lifecycle method.  Sets up
@@ -37,9 +44,22 @@ public class SearchActivity extends MenuActivity {
         // Initializing variables
         db = DatabaseHelper.getDatabaseConnector(this);
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.search_list);
+        radios = (RadioGroup) findViewById(R.id.radioGroupSearch);
+        searchBox = (EditText) findViewById(R.id.search_ET);
 
         // Setting up spinner with its options
-        setUpSpinner();
+//        setUpSpinner();
+
+        if ((savedInstanceState != null) && (savedInstanceState.getString("query") != null))
+        {
+            selectedId = savedInstanceState.getInt("selectedRadioId");
+            query = savedInstanceState.getString("query");
+
+            searchBox.setText(query);
+            radios.check(selectedId);
+
+            searchDb();
+        }
     }
 
     /**
@@ -50,42 +70,67 @@ public class SearchActivity extends MenuActivity {
      */
     public void search(View view)
     {
-        EditText searchBox = (EditText) findViewById(R.id.search_ET);
-        String selection = (String) spinner.getSelectedItem();
-        String query = searchBox.getText().toString();
-        Restaurant[] results = null;
+        selectedId = radios.getCheckedRadioButtonId();
+        query = searchBox.getText().toString();
+        Log.i(TAG, "Query: " + query);
 
-        // Sending appropriate query
-        switch(selection)
-        {
-            case "Name":
-                results = db.searchByName(query);
-                break;
-            case "City":
-                results = db.searchByCity(query);
-                break;
-            case "Genre":
-                results = db.searchByGenre(query);
-                break;
-        }
-        
-        // Displaying results
-        if (results != null)
-        {
-            fragment.setNewList(results);
-        }
+        fragment.setListAdapter(null);
+
+        searchDb();
+    }
+
+//    /**
+//     * This method gives the spinner its adapter from
+//     * a saved array of strings for the search type.
+//     */
+//    private void setUpSpinner()
+//    {
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.search_types_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//    }
+
+    /**
+     * Overriden lifecycle method.  Saves the query
+     * and selection chosen.
+     *
+     * @param outstate  The outgoing saved instance state
+     */
+    @Override
+    protected void onSaveInstanceState(Bundle outstate)
+    {
+        super.onSaveInstanceState(outstate);
+        outstate.putInt("selectedRadioId", selectedId);
+        outstate.putString("query", query);
     }
 
     /**
-     * This method gives the spinner its adapter from
-     * a saved array of strings for the search type.
+     * This method queries the database based on the
+     * selection.
      */
-    private void setUpSpinner()
+    private void searchDb()
     {
-        spinner = (Spinner) findViewById(R.id.searchType);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.search_types_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        Restaurant[] results = null;
+
+        // Sending appropriate query
+        switch(selectedId)
+        {
+            case R.id.radbtnName:
+                results = db.searchByName(query);
+                break;
+            case R.id.radbtnCity:
+                results = db.searchByCity(query);
+                break;
+            case R.id.radbtnGenre:
+                results = db.searchByGenre(query);
+                break;
+        }
+
+        // Displaying results
+        if (results != null)
+        {
+            fragment.addToList(results, true);
+        }
     }
 }

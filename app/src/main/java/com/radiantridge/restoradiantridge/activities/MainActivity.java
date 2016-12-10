@@ -23,6 +23,7 @@ import java.util.Calendar;
  */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Login";
+    private static final int MAINRESTO = 1;
 
     /**
      * Overriden lifecycle method.  Creates the view, and checks if login details
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             Log.i(TAG, "SharedPrefs found, launching MainResto.");
 
             // Starting the main resto activity
-            startActivity(new Intent(this, MainRestoActivity.class));
+            startActivityForResult(new Intent(this, MainRestoActivity.class), MAINRESTO);
         }
     }
 
@@ -106,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
      */
     private void saveData(String fname, String lname, String email, String pw)
     {
-        // TODO: verify that Alena is using same format of timestamp
         Log.i(TAG, "Saving data.");
 
         // Getting the shared prefs editor
@@ -122,5 +122,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Saving the changes
         editor.commit();
+    }
+
+    /**
+     * Overriden lifecycle method.  Finishes the main activity.
+     *
+     * @param requestCode   The request code
+     * @param resultCode    The result code
+     * @param data          The result's data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if (requestCode == MAINRESTO)
+        {
+            if (resultCode == RESULT_OK) {
+                finish();
+            }
+        }
     }
 }

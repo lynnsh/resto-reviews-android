@@ -32,6 +32,9 @@ public class MainRestoActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_resto);
 
+        // To finish the main activity
+        setResult(RESULT_OK, null);
+
         updateGreeting();
     }
 

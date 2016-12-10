@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -41,10 +42,7 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     // GPS Related Variables
     private Location location;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10; // 10 meters
-    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
-    private boolean isGPSEnabled = false;
-    private boolean isNetworkEnabled = false;
-    private boolean canGetLocation = false;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 5; // 5 minutes
     private LocationManager locationManager;
 
     /**
@@ -63,7 +61,6 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         // Check that network is available
         if (!isInternetAvailable())
         {
-            // TODO: force close even if back pressed
             displayNetworkError();
         }
         else {
@@ -150,13 +147,13 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
      * Overriden method.  This method will update the tracker if the
      * permission for GPS access has been allowed.
      *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
+     * @param requestCode   The request's code
+     * @param permissions   The permissions requested
+     * @param grantResults  The results of the request
      */
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
         if (requestCode == MY_PERMISSION_REQUEST) {
             // If request is cancelled, the result arrays are empty.
             if (grantResults.length > 0
@@ -182,10 +179,11 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
     /**
      * This method retrieves the current location and sets up the location
      * manager to listen for updates on the location.
-     *
-     * @return The current location
      */
     private void initLocationTracking() {
+        boolean isGPSEnabled;
+        boolean isNetworkEnabled;
+
         Log.i(TAG, "initLocationTracking");
         // Check if permissions were granted by user
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -210,8 +208,6 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
 
             // if GPS Enabled get lat/long using GPS Services
             if (isGPSEnabled || isNetworkEnabled) {
-                this.canGetLocation = true;
-
                 // First get location from Network Provider
                 if (isNetworkEnabled) {
                     locationManager.requestLocationUpdates(
@@ -321,44 +317,41 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         stopUsingGPS();
     }
 
-//    @Override
-//    protected void onResume() {
-//        Log.i(TAG, "onResume");
-//        super.onResume();
-//
-//        // Check that network is available
-//        if (!isInternetAvailable())
-//        {
-//            // show popup and force finish
-//        }
-//        else {
-//            // Getting latitude and longitude data
-//            initLocationTracking();
-//            displayData();
-//        }
-//    }
-
+    /**
+     * This method requests the list of restaurants from Heroku.
+     */
     private void getListFromHeroku()
     {
         GetRestosTask task = new GetRestosTask(fragment);
         task.execute(latitude, longitude);
     }
 
+    /**
+     * This method checks if the device has access to the internet.
+     *
+     * @return      True if the device is connected to the internet
+     */
     private boolean isInternetAvailable()
     {
         boolean isAvailable = false;
         ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
 
-        if (activeNetwork != null)
+        if ((activeNetwork != null) &&
+                activeNetwork.isConnectedOrConnecting())
         {
-            // Not null means there is a connection
+            // There is an internet connection
             isAvailable = true;
         }
 
         return isAvailable;
     }
 
+    /**
+     * This method updates the view with the new latitude and longitude,
+     * and requests the list of nearby restaurants from Zomato and
+     * Heroku.
+     */
     private void displayData()
     {
         updateLatLong();
@@ -368,6 +361,11 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
         getListFromHeroku();
     }
 
+    /**
+     * This method displays an error alert dialog to inform
+     * the user that the device is not connected to the internet,
+     * and closes the activity.
+     */
     private void displayNetworkError()
     {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
