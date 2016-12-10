@@ -10,15 +10,19 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:id="@+id/item_review_title"/>
+            android:id="@+id/item_review_title"
+            style="@style/textStyle"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:id="@+id/item_review_rating"/>
+            android:id="@+id/item_review_rating"
+            style="@style/textStyle"
+            android:gravity="end"/>
     </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/item_review_content"/>
+        android:id="@+id/item_review_content"
+        style="@style/reviewStyle"/>
 </LinearLayout>
