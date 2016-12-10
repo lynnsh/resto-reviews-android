@@ -27,7 +27,7 @@
             android:textSize="32dp"
             android:gravity="center"
             android:textColor="#ff6666"
-            android:text="Tip Calculator" />
+            android:text="@string/calc_title" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -35,7 +35,7 @@
             android:layout_height="66dp">
 
             <TextView
-                android:text="Bill"
+                android:text="@string/calc_bill"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/textView4"
@@ -81,14 +81,14 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10%"
+                android:text="@string/calc_10"
                 android:id="@+id/radioButton10"
                 android:layout_weight="0.29" />
 
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="15%"
+                android:text="@string/calc_15"
                 android:id="@+id/radioButton15"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight="0.23" />
@@ -96,7 +96,7 @@
             <RadioButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="20%"
+                android:text="@string/calc_20"
                 android:id="@+id/radioButton20"
                 android:layout_weight="0.31" />
             </RadioGroup>
@@ -109,7 +109,7 @@
             android:weightSum="1">
 
             <Button
-                android:text="Button"
+                android:text="@string/calc_button"
                 android:layout_width="63dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="81dp">
             <TextView
-                android:text="Tip"
+                android:text="@string/calc_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView5"
@@ -132,7 +132,6 @@
 
 
             <TextView
-                android:text="Calculated tip will be displayed here"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView6"
@@ -145,14 +144,13 @@
             android:layout_height="81dp">
 
             <TextView
-                android:text="Total Bill + Tip"
+                android:text="@string/calc_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView7"
                 android:layout_weight="1" />
 
             <TextView
-                android:text="will be displayed here"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView8"
