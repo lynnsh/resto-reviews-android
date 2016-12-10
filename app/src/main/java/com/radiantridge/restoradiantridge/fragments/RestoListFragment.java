@@ -105,7 +105,7 @@ public class RestoListFragment extends ListFragment {
 
             Log.i(TAG, "New ListAdapter");
             setListAdapter(new RestaurantAdapter(getActivity(), list));
-            getListView().setDivider(new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.editText)));
+            getListView().setDivider(new ColorDrawable(ContextCompat.getColor(getActivity(), R.color.grey)));
             getListView().setDividerHeight(1);
         }
     }

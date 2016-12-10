@@ -3,13 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="about_and_calc">#03CA00</color>
-    <color name="favorites">#e6e600</color>
-    <color name="nearby">#ff0000</color>
-    <color name="add">#cc00cc</color>
-    <color name="picker">#ff8000</color>
-    <color name="search">#33ffff</color>
+    <color name="green">#03CA00</color>
+    <color name="yellow">#e6e600</color>
+    <color name="red">#ff0000</color>
+    <color name="purple">#cc00cc</color>
+    <color name="orange">#ff8000</color>
+    <color name="blue">#33ffff</color>
     <color name="background">#000000</color>
     <color name="text">#FFFFFF</color>
-    <color name="editText">#4d4d4d</color>
+    <color name="grey">#4d4d4d</color>
+    <color name="lighter_grey">#a6a6a6</color>
 </resources>

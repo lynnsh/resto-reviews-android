@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title_nearby"
         style="@style/titleStyle"
-        android:textColor="@color/nearby"/>
+        android:textColor="@color/red"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

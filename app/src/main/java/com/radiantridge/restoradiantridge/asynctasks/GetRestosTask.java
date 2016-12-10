@@ -30,7 +30,7 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
     public static final String TAG = "GetRestosTask";
-    RestoListFragment fragment;
+    private RestoListFragment fragment;
 
     /**
      * Constructor.  Requires the fragment that will display the
@@ -87,7 +87,7 @@ public class GetRestosTask extends AsyncTask<Double, Void, Restaurant[]> {
      */
     private void retrieveRestos(InputStream is, List<Restaurant> restos) throws IOException, JSONException {
         int bytesRead;
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[3072];
 
         //for data from the server
         BufferedInputStream bufferedInStream = new BufferedInputStream(is);

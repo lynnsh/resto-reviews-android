@@ -4,11 +4,11 @@
     <string name="menu_dawson">Dawson</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_sync">Sync to Back-End</string>
-    <string name="greeting">Hello, </string>
+    <string name="greeting">Hello,</string>
     <string name="title_login">Log In</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>
-    <string name="email">Email Address:</string>
+    <string name="email">Username (Email):</string>
     <string name="password">Password:</string>
     <string name="button_login">Log In</string>
     <string name="button_save">Save</string>
@@ -24,9 +24,9 @@
     <string name="button_lat_long">Change Lat and Long</string>
     <string name="longitude">Longitude: </string>
     <string name="latitude">Latitude: </string>
-    <string name="search_city">City: </string>
-    <string name="search_name">Name: </string>
-    <string name="search_genre">Genre: </string>
+    <string name="search_city">City</string>
+    <string name="search_name">Name</string>
+    <string name="search_genre">Genre</string>
     <string name="button_search">Search</string>
     <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
     <string name="dialog_phone_title">Call Restaurant</string>
@@ -101,6 +101,8 @@
     <string name="title_picker">Restaurants Around Somewhere</string>
     <string name="title_add_review">Add New Review</string>
     <string name="title_show_resto">Restaurant Details</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_lat_long">Choose Coordinates</string>
     <string name="calc_bill">Enter the bill amount:</string>
     <string name="button_calc">Calculate!</string>
     <string name="calc_title">Tip Calculator</string>
@@ -109,5 +111,4 @@
     <string name="calc_20">20%</string>
     <string name="calc_tip">Amount of tip is: </string>
     <string name="calc_total">Total amount is: </string>
-    <string name="title_settings">Settings</string>
 </resources>
