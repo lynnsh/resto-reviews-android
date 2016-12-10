@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
@@ -21,11 +23,11 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
  */
 public class SearchActivity extends MenuActivity {
     private final String TAG = "Search";
-    private Spinner spinner;
+    private RadioGroup radios;
+    private int selectedId;
     private EditText searchBox;
     private DatabaseHelper db;
     private RestoListFragment fragment;
-    private int selection;
     private String query;
 
     /**
@@ -42,19 +44,19 @@ public class SearchActivity extends MenuActivity {
         // Initializing variables
         db = DatabaseHelper.getDatabaseConnector(this);
         fragment = (RestoListFragment) getFragmentManager().findFragmentById(R.id.search_list);
-        spinner = (Spinner) findViewById(R.id.searchType);
+        radios = (RadioGroup) findViewById(R.id.radioGroupSearch);
         searchBox = (EditText) findViewById(R.id.search_ET);
 
         // Setting up spinner with its options
-        setUpSpinner();
+//        setUpSpinner();
 
         if ((savedInstanceState != null) && (savedInstanceState.getString("query") != null))
         {
-            selection = savedInstanceState.getInt("selection");
+            selectedId = savedInstanceState.getInt("selectedRadioId");
             query = savedInstanceState.getString("query");
 
             searchBox.setText(query);
-            spinner.setSelection(selection);
+            radios.check(selectedId);
 
             searchDb();
         }
@@ -68,9 +70,8 @@ public class SearchActivity extends MenuActivity {
      */
     public void search(View view)
     {
-        selection = spinner.getSelectedItemPosition();
+        selectedId = radios.getCheckedRadioButtonId();
         query = searchBox.getText().toString();
-        Log.i(TAG, "Selection: " + selection);
         Log.i(TAG, "Query: " + query);
 
         fragment.setListAdapter(null);
@@ -78,17 +79,17 @@ public class SearchActivity extends MenuActivity {
         searchDb();
     }
 
-    /**
-     * This method gives the spinner its adapter from
-     * a saved array of strings for the search type.
-     */
-    private void setUpSpinner()
-    {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.search_types_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-    }
+//    /**
+//     * This method gives the spinner its adapter from
+//     * a saved array of strings for the search type.
+//     */
+//    private void setUpSpinner()
+//    {
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+//                R.array.search_types_array, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//    }
 
     /**
      * Overriden lifecycle method.  Saves the query
@@ -100,7 +101,7 @@ public class SearchActivity extends MenuActivity {
     protected void onSaveInstanceState(Bundle outstate)
     {
         super.onSaveInstanceState(outstate);
-        outstate.putInt("selection", selection);
+        outstate.putInt("selectedRadioId", selectedId);
         outstate.putString("query", query);
     }
 
@@ -113,15 +114,15 @@ public class SearchActivity extends MenuActivity {
         Restaurant[] results = null;
 
         // Sending appropriate query
-        switch(selection)
+        switch(selectedId)
         {
-            case 0:
+            case R.id.radbtnName:
                 results = db.searchByName(query);
                 break;
-            case 1:
+            case R.id.radbtnCity:
                 results = db.searchByCity(query);
                 break;
-            case 2:
+            case R.id.radbtnGenre:
                 results = db.searchByGenre(query);
                 break;
         }

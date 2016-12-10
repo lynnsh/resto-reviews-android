@@ -24,9 +24,9 @@
     <string name="button_lat_long">Change Lat and Long</string>
     <string name="longitude">Longitude: </string>
     <string name="latitude">Latitude: </string>
-    <string name="search_city">City: </string>
-    <string name="search_name">Name: </string>
-    <string name="search_genre">Genre: </string>
+    <string name="search_city">City</string>
+    <string name="search_name">Name</string>
+    <string name="search_genre">Genre</string>
     <string name="button_search">Search</string>
     <string name="dialog_phone_text">This restaurant does not have a phone number.</string>
     <string name="dialog_phone_title">Call Restaurant</string>

@@ -4,52 +4,68 @@
     android:id="@+id/activity_find_resto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.SearchActivity"
-    android:orientation="vertical"
-    android:background="@color/background">
+    tools:context="com.radiantridge.restoradiantridge.activities.SearchActivity">
 
     <TextView
+        style="@style/titleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_search"
-        android:textColor="@color/search"
-        style="@style/titleStyle"/>
+        android:textColor="@color/search" />
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/search_ET"
+        style="@style/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- TODO: style rad btns here and tip-->
+    <RadioGroup
+        android:id="@+id/radioGroupSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <!-- TODO: style spinner-->
-        <Spinner
-            android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <RadioButton
+            android:id="@+id/radbtnName"
+            style="@style/textStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/searchType"
-            android:layout_weight="1"
-            android:background="@color/editText"
-            style="@style/spinnerStyle"
-            />
-        <EditText
-            android:layout_width="wrap_content"
+            android:text="@string/search_name" />
+
+        <RadioButton
+            android:id="@+id/radbtnCity"
+            style="@style/textStyle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/search_ET"
-            android:layout_weight="3"
-            style="@style/editText"/>
-    </LinearLayout>
+            android:layout_gravity="center_horizontal"
+            android:text="@string/search_city" />
+
+        <RadioButton
+            android:id="@+id/radbtnGenre"
+            style="@style/textStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_genre" />
+    </RadioGroup>
+
     <Button
+        style="@style/buttonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_search"
         android:onClick="search"
-        style="@style/buttonStyle"/>
+        android:text="@string/button_search" />
 
     <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/search_list"
         android:name="com.radiantridge.restoradiantridge.fragments.RestoListFragment"
-        android:id="@+id/search_list" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
