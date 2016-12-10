@@ -48,7 +48,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:enabled="false"/>
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -68,7 +69,8 @@
                         android:gravity="top"
                         android:inputType="textMultiLine"
                         android:lines="3"
-                        android:scrollHorizontally="false" />
+                        android:scrollHorizontally="false"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -85,7 +87,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="phone" />
+                        android:inputType="phone"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -102,7 +105,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -119,7 +123,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="number" />
+                        android:inputType="number"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -139,7 +144,8 @@
                         android:gravity="top"
                         android:inputType="textMultiLine"
                         android:lines="3"
-                        android:scrollHorizontally="false" />
+                        android:scrollHorizontally="false"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -156,7 +162,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="numberSigned" />
+                        android:inputType="numberSigned"
+                        android:enabled="false" />
                 </TableRow>
 
                 <TableRow android:layout_margin="5dp">
@@ -173,7 +180,8 @@
                         style="@style/editText"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:inputType="numberSigned" />
+                        android:inputType="numberSigned"
+                        android:enabled="false" />
                 </TableRow>
             </TableLayout>
 
@@ -197,13 +205,14 @@
                     android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="43dp"
-                    android:isIndicator="false"
                     android:numStars="5"
                     android:rating="1.0"
-                    android:theme="@style/ratingStyle" />
+                    android:theme="@style/ratingStyle"
+                    android:isIndicator="true"/>
             </LinearLayout>
 
             <!-- TODO: enable/disable buttons-->
+            <!-- TODO: prevent keyboard popup-->
             <Button
                 android:id="@+id/buttonAdd"
                 style="@style/buttonStyle"

@@ -139,6 +139,8 @@ public class NearbyActivity extends MenuActivity implements LocationListener {
             Log.i(TAG, "Manual location");
             latitude = data.getDoubleExtra("latitude", 0.0);
             longitude = data.getDoubleExtra("longitude", 0.0);
+            // TODO: fix dis
+            fragment.setListAdapter(null);
             displayData();
         }
     }

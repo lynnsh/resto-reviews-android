@@ -47,9 +47,6 @@ public class SearchActivity extends MenuActivity {
         radios = (RadioGroup) findViewById(R.id.radioGroupSearch);
         searchBox = (EditText) findViewById(R.id.search_ET);
 
-        // Setting up spinner with its options
-//        setUpSpinner();
-
         if ((savedInstanceState != null) && (savedInstanceState.getString("query") != null))
         {
             selectedId = savedInstanceState.getInt("selectedRadioId");
@@ -78,18 +75,6 @@ public class SearchActivity extends MenuActivity {
 
         searchDb();
     }
-
-//    /**
-//     * This method gives the spinner its adapter from
-//     * a saved array of strings for the search type.
-//     */
-//    private void setUpSpinner()
-//    {
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.search_types_array, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
-//    }
 
     /**
      * Overriden lifecycle method.  Saves the query
