@@ -27,10 +27,6 @@ public class AddRestoActivity extends MenuActivity {
     private static final String TAG = "Add resto Act";
     private Restaurant resto;
     private String name;
-//    private int num;
-//    private String street;
-//    private String city;
-//    private String code;
     private String genre;
     private int price;
     private String notes;
