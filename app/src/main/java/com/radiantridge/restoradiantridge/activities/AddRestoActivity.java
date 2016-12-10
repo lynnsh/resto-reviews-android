@@ -3,7 +3,6 @@ package com.radiantridge.restoradiantridge.activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,9 +18,12 @@ import com.radiantridge.restoradiantridge.objects.Restaurant;
 import java.sql.Timestamp;
 
 /**
- * This activity takes in user input to add a restaurant to the database.
+ * This activity adds a restaurant to the local database.
+ * The restaurant can be a zomato or heroku resto.
+ * It can also be created by providing input.
  *
  * @author Rafia Anwar
+ * @version 02/12/2016
  */
 public class AddRestoActivity extends MenuActivity {
     private static final String TAG = "Add resto Act";
@@ -33,13 +35,16 @@ public class AddRestoActivity extends MenuActivity {
     private Double longit;
     private Double latid;
     private Double rating;
-   private DatabaseHelper dbconn;
-    private EditText editName, editAddress,txtphone,editGenre,editPrice,editNotes,editLongitude,editLatitude;
+    private DatabaseHelper dbconn;
+    private EditText editName, editAddress, txtphone, editGenre, editPrice, editNotes, editLongitude, editLatitude;
     private RatingBar editRating;
     private boolean exisitngRecord;
     private boolean save; //keeps check of valid inputs
+
     /**
      * Overridden Lifecycle method.
+     * It receives a resto object and checks if it already exists in database
+     *
      * @param savedInstanceState stores the value when screen rotated
      */
     @Override
@@ -50,78 +55,59 @@ public class AddRestoActivity extends MenuActivity {
         resto = new Restaurant();
         getFields();
         Bundle bundle = this.getIntent().getExtras();
-        if(bundle != null)
-        {
-            exisitngRecord =  bundle.getBoolean("databaseResto");
+        if (bundle != null) {
+            exisitngRecord = bundle.getBoolean("databaseResto");
             Log.i(TAG, "Received a resto object from ShowActitivty");
-            resto =(Restaurant) bundle.getSerializable("resto");
-            if(resto != null)
-            {
+            resto = (Restaurant) bundle.getSerializable("resto");
+            if (resto != null) {
                 Log.i(TAG, "resto obj is not null");
-                Log.i(TAG, "name " + resto.getName());
-                //Log.i(TAG, "POSTAL code after being sent " + resto.getAddPostalCode());
-                //sets the field to the input froom zomato resto
+                //sets the field to the input from zomato resto
                 setEditFields();
-            }
-            else {
+            } else {
                 Log.i(TAG, "resto obj is null");
             }
         }
-
     }
 
     /**
      * This method gets all the data from input fields, validates it,
      * and insert it into the database.
-     * @param v
+     *
+     * @param v View which fired the event
      */
     public void saveResto(View v) {
-        //make labels work, stop eveyrhitng until valid input
-        //getting the text values from fields
-        //gets the name field and save it to name string
-        boolean isNameValid,isAddressValid,isPriceValid,isGenreValid;
-        isNameValid =  handleNameField(v);
-//        handleNumField(v);
-//        handleStreetField(v);
-//        handleCityField(v);
-//        isAddressValid= handleCodeField(v);
-        isAddressValid = handleAddress(v);
-        isGenreValid = handleGenreField(v);
-        isPriceValid = handlePriceField(v);
-        handleNotesField(v);
-        handleLongLatFields(v);
-        handleRatingBar(v);
+        boolean isNameValid, isAddressValid, isPriceValid, isGenreValid;
+        isNameValid = handleNameField();
+        isAddressValid = handleAddress();
+        isGenreValid = handleGenreField();
+        isPriceValid = handlePriceField();
+        handleNotesField();
+        handleLongLatFields();
+        handleRatingBar();
         String phone = txtphone.getText().toString();
         if (phone != null && !(phone.isEmpty())) {
             resto.setPhone(phone);
         }
-
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
         //keep the original creation time for the resto already present in database
-        if(exisitngRecord)
+        if (exisitngRecord)
             resto.setCreatedTime(resto.getCreatedTime());
         else
-        resto.setCreatedTime(timestamp);
+            resto.setCreatedTime(timestamp);
         resto.setModifiedTime(timestamp);
-        Log.i(TAG,"time " +timestamp);
-
-        Log.i(TAG,""+isNameValid +" "+ isAddressValid +" " + isPriceValid +" "+ isGenreValid);
-        if(isNameValid && isAddressValid && isPriceValid && isGenreValid) {
-            if(exisitngRecord)
-            {
-                Log.i(TAG , "Updating resto..");
+        Log.i(TAG, "time " + timestamp);
+        if (isNameValid && isAddressValid && isPriceValid && isGenreValid) {
+            if (exisitngRecord) {
+                Log.i(TAG, "Updating resto..");
                 dbconn.updateResto(resto);
                 Toast.makeText(getApplicationContext(), R.string.edit_text, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), FavoritesActivty.class);
                 startActivity(intent);
-
-            }
-            else {
+            } else {
                 Log.i(TAG, "Saving resto..");
                 int id = (int) dbconn.addResto(resto);
                 //check that there was no errors during the addition
-                if(id != -1) {
+                if (id != -1) {
                     resto.setDbId(id);
                     Toast.makeText(getApplicationContext(), R.string.save_text, Toast.LENGTH_SHORT).show();
                 }
@@ -135,118 +121,101 @@ public class AddRestoActivity extends MenuActivity {
         }
     }
 
-    private boolean handleNameField(View v){
-        boolean isValid=false;
+    /**
+     * This method validates the name from user input.
+     * If name field is null or empty , an error is displayed
+     * It sets the value to resto object
+     *
+     * @return true if name field is not null or empty
+     */
+    private boolean handleNameField() {
+        boolean isValid = false;
         name = editName.getText().toString();
-        TextView nameErr= (TextView) findViewById(R.id.textNameError);
-        if(name != null&& !(name.isEmpty())) {
+        TextView nameErr = (TextView) findViewById(R.id.textNameError);
+        if (name != null && !(name.isEmpty())) {
             resto.setName(name);
-            isValid=true;
+            isValid = true;
             nameErr.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            isValid=false;
+        } else {
+            isValid = false;
             nameErr.setVisibility(View.VISIBLE);
         }
         return isValid;
     }
 
-    private boolean handleAddress(View v)
-    {
+    /**
+     * This method validates the address from user input.
+     * If address field is null or empty , an error is displayed
+     * It sets the value to resto object
+     *
+     * @return true if address field is not null or empty
+     */
+    private boolean handleAddress() {
         boolean isValid;
         String address = editAddress.getText().toString();
+        TextView addErr = (TextView) findViewById(R.id.textAddressError);
 
-        if (!address.isEmpty())
-        {
+        if (address != null && !address.isEmpty()) {
             isValid = true;
             resto.setAddress(address);
-        }
-        else
-        {
+            addErr.setVisibility(View.INVISIBLE);
+        } else {
             // make error bar visible
+            addErr.setVisibility(View.VISIBLE);
             isValid = false;
         }
-
         return isValid;
     }
-//    private void handleNumField(View v) {
-//        String number = editNumber.getText().toString();
-//        if (number != null && !(number.isEmpty())) {
-//            num = Integer.parseInt(number);
-//            resto.setAddNum(num);
-//        }
-//        Log.i(TAG, "NUM " + num);
-//    }
-//    private void handleStreetField(View v) {
-//        street = editStreet.getText().toString();
-//
-//        if (street != null && !(street.isEmpty())) {
-//            resto.setAddStreet(street);
-//        }
-//        Log.i(TAG, "STREET " + street);
-//    }
-//    private void handleCityField(View v) {
-//        city = editCity.getText().toString();
-//
-//        if (city != null && !(city.isEmpty())) {
-//            resto.setAddCity(city);
-//        }
-//        Log.i(TAG, "city " + city);
-//    }
 
-//    private boolean handleCodeField(View v) {
-//        boolean isValid=false;
-//        code = editCode.getText().toString();
-//        TextView codeErr= (TextView) findViewById(R.id.textCodeError);
-//        String regex = "^[A-Za-z][0-9][A-Za-z][ ]?[0-9][A-Za-z][0-9]$";
-//        if (code != null && !(code.isEmpty())) {
-//            if (code.matches(regex)) {
-//                isValid = true;
-//                codeErr.setVisibility(View.INVISIBLE);
-//                resto.setAddPostalCode(code);
-//                Log.i(TAG, "matches regex");
-//            } else {
-//                isValid = false;
-//                codeErr.setVisibility(View.VISIBLE);
-//                Log.i(TAG, " regex failed");
-//                //editCode.setText("");
-//            }
-//        }
-//        Log.i(TAG, "code " + code);
-//        return isValid;
-//    }
-    private boolean handleGenreField(View v) {
-        boolean isValid=false;
+    /**
+     * This method validates the genre from user input.
+     * If genre field is null or empty , an error is displayed
+     * It sets the value to resto object
+     *
+     * @return true if genre field is not null or empty
+     */
+    private boolean handleGenreField() {
+        boolean isValid = false;
         genre = editGenre.getText().toString();
-        TextView genreErr= (TextView) findViewById(R.id.textGenreError);
+        TextView genreErr = (TextView) findViewById(R.id.textGenreError);
         if (genre != null && !(genre.isEmpty())) {
-            isValid=true;
+            isValid = true;
             genreErr.setVisibility(View.INVISIBLE);
-                resto.setGenre(genre);
-        }
-        else{
-            isValid=false;
+            resto.setGenre(genre);
+        } else {
+            isValid = false;
             genreErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "genre " + genre);
         return isValid;
     }
-    private boolean handlePriceField(View v) {
-        boolean isValid=false;
+
+    /**
+     * This method validates the price from user input.
+     * If price field is null or empty , an error bar is displayed.
+     * If price is not in range of 1-4, an error bar is displayed
+     * and sets the value to resto object
+     *
+     * @return true if price field is not null,empty or out of range
+     */
+    private boolean handlePriceField() {
+        boolean isValid = false;
         String priceRange = editPrice.getText().toString();
-        TextView priceErr= (TextView) findViewById(R.id.textPriceError);
+        TextView priceErr = (TextView) findViewById(R.id.textPriceError);
         String regex = "^[1-4]{1}$";
         if (priceRange != null && !(priceRange.isEmpty())) {
             if (priceRange.matches(regex)) {
-                isValid=true;
+                isValid = true;
                 priceErr.setVisibility(View.INVISIBLE);
                 price = Integer.parseInt(priceRange);
                 resto.setPriceRange(price);
                 Log.i(TAG, "matches regex");
+            } else {
+                isValid = false;
+                priceErr.setVisibility(View.VISIBLE);
             }
-        } else{
-            isValid=false;
+        } else {
+            isValid = false;
             priceErr.setVisibility(View.VISIBLE);
         }
         Log.i(TAG, "price range " + price);
@@ -254,8 +223,11 @@ public class AddRestoActivity extends MenuActivity {
         return isValid;
     }
 
-    private void handleNotesField(View v)
-    {
+    /**
+     * This method validates that notes from user input
+     * is not null or empty and sets the value to resto object
+     */
+    private void handleNotesField() {
         notes = editNotes.getText().toString();
         if (notes != null && !(notes.isEmpty())) {
             resto.setNotes(notes);
@@ -263,7 +235,11 @@ public class AddRestoActivity extends MenuActivity {
         Log.i(TAG, "notes " + notes);
     }
 
-    private void handleLongLatFields(View v) {
+    /**
+     * This method validates that longitude and latitude is not null or empty
+     * and sets the values to resto object
+     */
+    private void handleLongLatFields() {
         String longitude = editLongitude.getText().toString();
         String latitude = editLatitude.getText().toString();
         if (longitude != null && !(longitude.isEmpty()) && latitude != null && !(latitude.isEmpty())) {
@@ -272,19 +248,27 @@ public class AddRestoActivity extends MenuActivity {
             resto.setLongitude(longit);
             resto.setLatitude(latid);
         }
-        Log.i(TAG, "longitude & latitude " + longit +" & "+latid);
-
-
+        Log.i(TAG, "longitude & latitude " + longit + " & " + latid);
     }
-    private void handleRatingBar(View v) {
+
+    /**
+     * This method sets the rating from user input to resto object
+     */
+    private void handleRatingBar() {
         rating = (double) editRating.getRating();
 
         resto.setStarRating(rating);
 
         Log.i(TAG, "rating bar val" + rating);
     }
+
+    /**
+     * Overridden method
+     * When back button is pressed, a dialog appears to confirm
+     * if the user actually wants to leave the page.
+     */
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         //code taken from Android Developers Site
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.dialog_title);
@@ -293,10 +277,7 @@ public class AddRestoActivity extends MenuActivity {
         builder.setPositiveButton(R.string.dialog_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 // User clicked OK button
-//                Intent intent = new Intent(getApplicationContext(), MainRestoActivity.class);
-//                startActivity(intent);
                 finish();
-
             }
         });
         builder.setNegativeButton(R.string.dialog_no, new DialogInterface.OnClickListener() {
@@ -307,23 +288,30 @@ public class AddRestoActivity extends MenuActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
-    private void setEditFields(){
+
+    /**
+     * This method sets the field sto the input from zomato resto
+     */
+    private void setEditFields() {
         editName.setText(resto.getName());
-        //how to check for nulls
         editAddress.setText(resto.getAddress());
         txtphone.setText(resto.getPhone());
         editGenre.setText(resto.getGenre());
-        editPrice.setText(resto.getPriceRange()+"");
+        editPrice.setText(resto.getPriceRange() + "");
         editNotes.setText("");
-        String lon = resto.getLongitude()+"";
+        String lon = resto.getLongitude() + "";
         editLongitude.setText(lon);
-        String lat = resto.getLatitude()+"";
+        String lat = resto.getLatitude() + "";
         editLatitude.setText(lat);
         editRating.setRating((float) resto.getStarRating());
 
     }
+
+    /**
+     * This method gets the reference to all the EditText fields of form
+     * and save them in private fields.
+     */
     private void getFields() {
         editName = (EditText) findViewById(R.id.editRestoName);
         editAddress = (EditText) findViewById(R.id.editAddress);
@@ -335,6 +323,4 @@ public class AddRestoActivity extends MenuActivity {
         editLatitude = (EditText) findViewById(R.id.editLatitude);
         editRating = (RatingBar) findViewById(R.id.ratingBar);
     }
-
-
 }

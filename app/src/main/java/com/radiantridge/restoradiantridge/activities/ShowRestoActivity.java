@@ -42,6 +42,8 @@ public class ShowRestoActivity extends MenuActivity {
 
     /**
      * Overridden Lifecycle method.
+     * Receives a resto object, and after checking its source,
+     * displays the appropriaate buttons
      *
      * @param savedInstanceState stores the value when screen rotated
      */
@@ -167,7 +169,7 @@ public class ShowRestoActivity extends MenuActivity {
     }
 
     /**
-     * Dispalys the button to add a review for heroku restaurant,
+     * Displays the button to add a review for heroku restaurant,
      * when clicked sends the resto object to add activity and initiates
      * addReviewActivity
      */
@@ -265,6 +267,4 @@ public class ShowRestoActivity extends MenuActivity {
         rating = resto.getStarRating();
         phone = resto.getPhone();
     }
-
-
 }
