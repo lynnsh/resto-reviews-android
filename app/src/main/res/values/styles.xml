@@ -33,4 +33,9 @@
     <style name="buttonStyle" parent="AppTheme">
         <item name="android:textSize">30sp</item>
     </style>
+
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/editText</item>
+        <item name="colorControlActivated">@color/add</item>
+    </style>
 </resources>

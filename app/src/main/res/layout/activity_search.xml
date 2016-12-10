@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <!-- TODO: style rad btns here and tip-->
+    <!-- TODO: style rad btns in tip-->
     <RadioGroup
         android:id="@+id/radioGroupSearch"
         android:layout_width="match_parent"
@@ -37,7 +37,8 @@
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/search_name" />
+            android:text="@string/search_name"
+            android:theme="@style/MyRadioButton"/>
 
         <RadioButton
             android:id="@+id/radbtnCity"
@@ -45,14 +46,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/search_city" />
+            android:text="@string/search_city"
+            android:theme="@style/MyRadioButton" />
 
         <RadioButton
             android:id="@+id/radbtnGenre"
             style="@style/textStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/search_genre" />
+            android:text="@string/search_genre"
+            android:theme="@style/MyRadioButton" />
     </RadioGroup>
 
     <Button
