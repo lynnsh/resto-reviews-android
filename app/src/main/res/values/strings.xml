@@ -110,4 +110,5 @@
     <string name="calc_tip">Amount of tip is: </string>
     <string name="calc_total">Total amount is: </string>
     <string name="title_show_reviews">Reviews</string>
+    <string name="about_authors">Authors:\nRafia Anwar, Erika Bourque, Victor Ruggi, &amp; Alena Shulzhenko</string>
 </resources>
