@@ -40,12 +40,12 @@
     <string name="about_header">Dawson College</string>
     <string name="about_course_desc">420–518–DW</string>
     <string name="dialog_about_title">Our group</string>
-    <string name="dialog_about_text">Android-PHP Project Group Members\n\n
-        Victor Ruggi\n
+    <string name="dialog_about_text">Android-PHP Project Group Members:\n\n
         Rafia Anwar\n
         Erika Bourque\n
+        Victor Ruggi\n
         Alena Shulzhenko\n\n
-        Fifth semester of six</string>
+        Fifth semester in Dawson College Computer Science Technology.</string>
     <string name="close">Close</string>
     <string name="to_main_menu">Back To Main Menu</string>
     <string name="resto_name">Enter Restaurant Name: </string>
@@ -86,6 +86,7 @@
     <string name="sync_start">Starting the sync...</string>
     <string name="sync_success">The sync was successful!</string>
     <string name="sync_error">The sync failed.</string>
+    <string name="sync_nodata">There are no restaurants in favourites to sync.</string>
     <string name="review_success">The review was added successfully!</string>
     <string name="review_error">The review addition failed.</string>
     <string name="duplicate_error">This restaurant is already in favourites.</string>
