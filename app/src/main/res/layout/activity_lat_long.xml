@@ -4,44 +4,64 @@
     android:id="@+id/activity_lat_long"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.radiantridge.restoradiantridge.activities.LatLongActivity"
-    android:background="@color/background"
-    android:orientation="vertical">
+    tools:context="com.radiantridge.restoradiantridge.activities.LatLongActivity">
 
-    <!--TODO: fix table-->
+    <TextView
+        style="@style/titleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/title_lat_long"
+        android:textColor="@color/red" />
+
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:stretchColumns="0,1">
-        <TableRow>
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
-                android:text="@string/latitude"
-                style="@style/textStyle"/>
+                style="@style/formStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/latitude" />
+
             <EditText
                 android:id="@+id/latitude_ET"
-                android:inputType="numberDecimal|numberSigned"
-                style="@style/editText"/>
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal|numberSigned" />
         </TableRow>
-        <TableRow>
+
+        <TableRow android:layout_margin="5dp">
+
             <TextView
-                android:text="@string/longitude"
-                style="@style/textStyle"/>
+                style="@style/formStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/longitude" />
+
             <EditText
                 android:id="@+id/longitude_ET"
-                android:inputType="numberDecimal|numberSigned"
-                style="@style/editText"/>
-        </TableRow>
-        <TableRow>
-            <Button
-                android:text="@string/button_save"
-                android:onClick="save"
-                android:layout_span="2"
-                style="@style/buttonStyle"/>
+                style="@style/editText"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:inputType="numberDecimal|numberSigned" />
         </TableRow>
     </TableLayout>
+
+    <Button
+        style="@style/buttonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="save"
+        android:text="@string/button_save" />
 
 </LinearLayout>

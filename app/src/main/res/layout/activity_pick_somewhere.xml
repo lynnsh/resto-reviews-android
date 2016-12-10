@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_picker"
-        android:textColor="@color/picker"
+        android:textColor="@color/orange"
         style="@style/titleStyle"/>
 
     <fragment
