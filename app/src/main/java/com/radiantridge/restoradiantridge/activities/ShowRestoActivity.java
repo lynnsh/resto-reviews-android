@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.radiantridge.restoradiantridge.helpers.DatabaseHelper;
@@ -37,7 +38,8 @@ public class ShowRestoActivity extends MenuActivity {
     private double rating;
     private int id;
     private DatabaseHelper dbconn;
-    private EditText txtname, txtaddress, txtphone, txtgenre, txtprice, txtnotes, txtlongitude, txtlatitude;
+    private EditText txtaddress, txtphone, txtgenre, txtprice, txtnotes, txtlongitude, txtlatitude;
+    private TextView txtname;
     private RatingBar ratingBar;
 
     /**
@@ -210,7 +212,7 @@ public class ShowRestoActivity extends MenuActivity {
      * and save them in private fields.
      */
     private void getFields() {
-        txtname = (EditText) findViewById(R.id.editRestoName);
+        txtname = (TextView) findViewById(R.id.editRestoName);
         txtaddress = (EditText) findViewById(R.id.editAddress);
         txtphone = (EditText) findViewById(R.id.editTextPhone);
         txtgenre = (EditText) findViewById(R.id.editGenre);

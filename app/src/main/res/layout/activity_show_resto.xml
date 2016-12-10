@@ -13,10 +13,10 @@
     tools:context="com.radiantridge.restoradiantridge.activities.ShowRestoActivity">
 
     <TextView
+        android:id="@+id/editRestoName"
         style="@style/titleStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_show_resto"
         android:textColor="@color/purple" />
 
     <ScrollView
@@ -28,29 +28,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="0,1">
-
-                <TableRow android:layout_margin="5dp">
-
-                    <TextView
-                        android:id="@+id/textRestoName"
-                        style="@style/formStyle"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:text="@string/resto_name" />
-
-                    <EditText
-                        android:id="@+id/editRestoName"
-                        style="@style/editText"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:inputType="textPersonName"
-                        android:enabled="false"/>
-                </TableRow>
 
                 <TableRow android:layout_margin="5dp">
 
@@ -193,12 +174,11 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/textRating"
                     style="@style/formStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/resto_rating" />
+                    android:text="@string/show_resto_rating" />
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -216,7 +196,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_add"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonEdit"
@@ -224,7 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_edit"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonDelete"
@@ -232,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_delete"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonAddReview"
@@ -240,7 +220,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_addReview"
-                android:visibility="invisible" />
+                android:enabled="false" />
 
             <Button
                 android:id="@+id/buttonShowReview"
@@ -248,7 +228,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/button_showReview"
-                android:visibility="invisible" />
+                android:enabled="false" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
