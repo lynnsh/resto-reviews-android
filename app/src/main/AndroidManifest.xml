@@ -12,28 +12,27 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity" android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.AboutActivity" />
-        <activity android:name=".activities.MenuActivity" />
-        <activity android:name=".activities.MainRestoActivity" />
-        <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.FavoritesActivty" />
-        <activity android:name=".activities.SearchActivity" />
-        <activity android:name=".activities.NearbyActivity" />
-        <activity android:name=".activities.TipCalcActivity" />
-        <activity android:name=".activities.AddRestoActivity" />
-        <activity android:name=".activities.ShowRestoActivity" />
-        <activity android:name=".activities.LatLongActivity" />
-        <activity android:name=".activities.AddReviewActivity" />
-        <activity android:name=".activities.ShowReviewsActivity" />
-
-        <activity android:name=".activities.PickSomewhereActivity">
+        <activity android:name=".activities.AboutActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.MenuActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.MainRestoActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.SettingsActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.FavoritesActivty" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.SearchActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.NearbyActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.TipCalcActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.AddRestoActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.ShowRestoActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.LatLongActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.AddReviewActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.ShowReviewsActivity" android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".activities.PickSomewhereActivity" android:windowSoftInputMode="stateHidden">
 
         </activity>
         <meta-data

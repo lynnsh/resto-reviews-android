@@ -12,7 +12,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.radiantridge.restoradiantridge.activities.TipCalcActivity">
 
-    <!--TODO: make it a table?-->
     <TextView
         android:id="@+id/textView2"
         style="@style/titleStyle"
