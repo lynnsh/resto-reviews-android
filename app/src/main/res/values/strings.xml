@@ -4,7 +4,7 @@
     <string name="menu_dawson">Dawson</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_sync">Sync to Back-End</string>
-    <string name="greeting">Hello, </string>
+    <string name="greeting">Hello,</string>
     <string name="title_login">Log In</string>
     <string name="first_name">First Name:</string>
     <string name="last_name">Last Name:</string>

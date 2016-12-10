@@ -21,7 +21,8 @@
     <style name="formStyle" parent="AppTheme">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text</item>
-        <item name="android:layout_margin">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:gravity">right</item>
     </style>
 
     <style name="editText" parent="AppTheme">
