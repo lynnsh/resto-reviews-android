@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_show_resto"
-        android:textColor="@color/add" />
+        android:textColor="@color/purple" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -225,7 +225,7 @@
                 style="@style/Widget.AppCompat.RatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="43dp"
-                android:background="@color/add"
+                android:background="@color/purple"
                 android:isIndicator="false"
                 android:numStars="5" />
         </TableRow>

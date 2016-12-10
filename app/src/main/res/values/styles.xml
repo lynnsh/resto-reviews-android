@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <item name="colorAccent">@color/add</item>
+        <item name="colorAccent">@color/purple</item>
     </style>
 
     <style name="textStyle" parent="AppTheme">
@@ -26,7 +26,7 @@
     </style>
 
     <style name="editText" parent="AppTheme">
-        <item name="android:background">@color/editText</item>
+        <item name="android:background">@color/grey</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/text</item>
     </style>
@@ -36,7 +36,7 @@
     </style>
 
     <style name="MyRadioButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlNormal">@color/editText</item>
-        <item name="colorControlActivated">@color/add</item>
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/purple</item>
     </style>
 </resources>

@@ -36,7 +36,7 @@ public class AboutActivity extends MenuActivity {
         TextView schoolName = new TextView(this);
         schoolName.setText(R.string.about_header);
         schoolName.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60);
-        schoolName.setTextColor(ContextCompat.getColor(this, R.color.about_and_calc));
+        schoolName.setTextColor(ContextCompat.getColor(this, R.color.green));
         schoolName.setClickable(true);
         schoolName.setOnClickListener(new View.OnClickListener() {
             @Override

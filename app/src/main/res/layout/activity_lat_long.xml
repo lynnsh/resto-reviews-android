@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_lat_long"
-        android:textColor="@color/nearby" />
+        android:textColor="@color/red" />
 
     <TableLayout
         android:layout_width="match_parent"

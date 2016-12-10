@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title_add_review"
         style="@style/titleStyle"
-        android:textColor="@color/add"/>
+        android:textColor="@color/purple"/>
 
     <TableLayout
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:id="@+id/ratingBarReview"
-                android:background="@color/add"/>
+                android:background="@color/purple"/>
 
         </TableRow>
 
