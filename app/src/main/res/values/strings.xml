@@ -102,4 +102,11 @@
     <string name="title_add_review">Add New Review</string>
     <string name="title_show_resto">Restaurant Details</string>
     <string name="title_settings">Settings</string>
+    <string name="button_calc_tip">Calculate Tip</string>
+    <string name="calc_tip">Tip:</string>
+    <string name="calc_total">Total Bill with Tip:</string>
+    <string name="calc_bill">Bill:</string>
+    <string name="calc_ten">10%</string>
+    <string name="calc_fifteen">15%</string>
+    <string name="calc_twenty">20%</string>
 </resources>

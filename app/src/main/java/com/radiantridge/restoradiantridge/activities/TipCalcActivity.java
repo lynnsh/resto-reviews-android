@@ -64,10 +64,10 @@ public class TipCalcActivity extends AppCompatActivity {
                     Double billPlusTip = bill + calculatedTip;
                     Double billAndTip = Math.round(billPlusTip * 100.0) / 100.0;
 
-                    TextView tipTextView = (TextView) findViewById(R.id.textView6);
+                    TextView tipTextView = (TextView) findViewById(R.id.calc_tip_tv);
                     tipTextView.setText(calculatedTip.toString());
 
-                    TextView totalTextView = (TextView) findViewById(R.id.textView8);
+                    TextView totalTextView = (TextView) findViewById(R.id.calc_total_tv);
                     totalTextView.setText(billAndTip.toString());
                 }
             }
