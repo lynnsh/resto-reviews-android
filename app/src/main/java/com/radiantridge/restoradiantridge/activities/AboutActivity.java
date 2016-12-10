@@ -20,6 +20,7 @@ import com.radiantridge.restoradiantridge.R;
  * It displays text and an image icon at the bottom.
  *
  * @author Victor Ruggi
+ * @author Erika Bourque
  */
 public class AboutActivity extends MenuActivity {
 // TODO: possibly add second group pic, square for vertical and row for horizontal
