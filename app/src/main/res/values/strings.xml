@@ -51,7 +51,7 @@
     <string name="resto_code"> Postal Code: </string>
     <string name="resto_genre">Restaurant Genre: </string>
     <string name="resto_phone">Phone: </string>
-    <string name="resto_price">Price Range($-$$$): </string>
+    <string name="resto_price">Price Range($-$$$$): </string>
     <string name="resto_notes">Notes: </string>
     <string name="resto_longitude">Restaurant Longitude: </string>
     <string name="resto_latitude">Restaurant Latitude: </string>
@@ -61,7 +61,7 @@
     <string name="resto_save">Save: </string>
     <string name="name_error">Please enter a name </string>
     <string name="genre_error">Please enter a genre </string>
-    <string name="price_error">Please enter a price range($-$$$) as (1-4) </string>
+    <string name="price_error">Please enter a price range($–$$$$) as (1–4) </string>
     <string name="tipAmount_error">Please enter a valid amount</string>
     <string name="code_error">Please enter a valid Postal Code </string>
     <string name="dialog_title">Confirmation Dialog! </string>

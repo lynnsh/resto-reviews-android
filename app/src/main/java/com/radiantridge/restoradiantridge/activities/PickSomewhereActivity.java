@@ -21,6 +21,12 @@ import com.radiantridge.restoradiantridge.asynctasks.GetRestosTask;
 import com.radiantridge.restoradiantridge.R;
 import com.radiantridge.restoradiantridge.fragments.RestoListFragment;
 
+/**
+ * This activity allows the user to pick a place using Google Place Picker
+ * and search Zomato and Heroku for restaurants near that place.
+ *
+ * @author Erika Bourque
+ */
 public class PickSomewhereActivity extends MenuActivity implements GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mGoogleApiClient;
     private final int PLACE_PICKER_REQUEST = 1;

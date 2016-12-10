@@ -172,5 +172,5 @@ public class RestoListFragment extends ListFragment {
         list = temp;
     }
 
-    
+
 }
